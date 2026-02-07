@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synteza Ścieżek Kariery – Zuzanna (v2)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f7f5f0;
+            --card: #ffffff;
+            --ink: #1a1815;
+            --muted: #6b6560;
+            --line: rgba(26, 24, 21, 0.08);
+            --accent: #c17f59;
+            --accent-soft: #e8d5c4;
+            --success: #5a8a6e;
+            --success-soft: #e0efe6;
+            --warning: #c9a857;
+            --warning-soft: #f5efd8;
+            --info: #5a7a9a;
+            --info-soft: #dfeaf5;
+            --niche: #8a6a9a;
+            --niche-soft: #f0e8f5;
+            --realistic: #d97706;
+            --investigative: #059669;
+            --artistic: #7c3aed;
+            --social: #dc2626;
+            --enterprising: #0284c7;
+            --conventional: #4b5563;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        h2 .emoji {
+            font-size: 1.1em;
+        }
+        
+        h3 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 30px 0 16px;
+        }
+        
+        .section-intro {
+            color: var(--muted);
+            font-size: 0.95em;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+        
+        /* Main comparison table */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(26, 24, 21, 0.06);
+            background: var(--card);
+            border: 1px solid var(--line);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+        
+        thead th {
+            background: linear-gradient(180deg, var(--ink) 0%, #2d2a26 100%);
+            color: #f5f0eb;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 16px 14px;
+            text-align: left;
+            vertical-align: bottom;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            white-space: nowrap;
+        }
+        
+        tbody td {
+            padding: 16px 14px;
+            vertical-align: top;
+            border-bottom: 1px solid var(--line);
+        }
+        
+        tbody tr:hover td {
+            background: rgba(193, 127, 89, 0.04);
+        }
+        
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Category rows */
+        .category-row td {
+            background: linear-gradient(135deg, var(--accent-soft) 0%, #f5ebe3 100%) !important;
+            font-weight: 700;
+            font-size: 0.95em;
+            color: var(--accent);
+            padding: 12px 14px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        /* Path name styling */
+        .path-name {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        
+        .path-detail {
+            font-size: 0.85em;
+            color: var(--muted);
+        }
+        
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 8px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+        
+        .tag-top { background: var(--success-soft); color: var(--success); border: 1px solid rgba(90, 138, 110, 0.2); }
+        .tag-manual { background: #fef3e2; color: #a66d3a; border: 1px solid #f0d9b8; }
+        .tag-quiet { background: #e8f4ec; color: #4a7c5a; border: 1px solid #c8dece; }
+        .tag-remote { background: #f5f0fa; color: #7a5a9a; border: 1px solid #e0d5ea; }
+        .tag-ai { background: #e8f5e8; color: #3a7a4a; border: 1px solid #c8e8c8; }
+        .tag-niche { background: var(--niche-soft); color: var(--niche); border: 1px solid rgba(138, 106, 154, 0.2); }
+        .tag-local { background: var(--warning-soft); color: #8a7030; border: 1px solid #e8ddb0; }
+        .tag-music { background: var(--info-soft); color: var(--info); border: 1px solid rgba(90, 122, 154, 0.2); }
+        
+        /* Holland RIASEC colors */
+        .tag-R { background: rgba(217, 119, 6, 0.15); color: var(--realistic); border: 1px solid rgba(217, 119, 6, 0.3); }
+        .tag-I { background: rgba(5, 150, 105, 0.15); color: var(--investigative); border: 1px solid rgba(5, 150, 105, 0.3); }
+        .tag-A { background: rgba(124, 58, 237, 0.15); color: var(--artistic); border: 1px solid rgba(124, 58, 237, 0.3); }
+        .tag-S { background: rgba(220, 38, 38, 0.15); color: var(--social); border: 1px solid rgba(220, 38, 38, 0.3); }
+        .tag-E { background: rgba(2, 132, 199, 0.15); color: var(--enterprising); border: 1px solid rgba(2, 132, 199, 0.3); }
+        .tag-C { background: rgba(75, 85, 99, 0.15); color: var(--conventional); border: 1px solid rgba(75, 85, 99, 0.3); }
+        
+        /* Rating dots */
+        .rating {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .dot.filled { background: linear-gradient(180deg, var(--accent) 0%, #a66d3a 100%); border-color: transparent; }
+        
+        /* Pros/cons */
+        .pro { color: var(--success); font-size: 0.9em; }
+        .con { color: #c45a5a; font-size: 0.9em; }
+        
+        /* Questions table */
+        .questions-table td {
+            padding: 20px;
+        }
+        
+        .question-text {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.1em;
+            font-style: italic;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        
+        .scale-hint {
+            font-size: 0.8em;
+            color: var(--muted);
+            background: rgba(0,0,0,0.03);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+        
+        .suggests {
+            font-size: 0.85em;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+        
+        .suggests strong {
+            color: var(--accent);
+        }
+        
+        /* Method badge */
+        .method-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.65em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        .method-holland { background: rgba(124, 58, 237, 0.15); color: #7c3aed; }
+        .method-schein { background: rgba(5, 150, 105, 0.15); color: #059669; }
+        .method-ikigai { background: rgba(220, 38, 38, 0.15); color: #dc2626; }
+        .method-praktyka { background: rgba(217, 119, 6, 0.15); color: #d97706; }
+        
+        /* Info boxes */
+        .info-box {
+            background: linear-gradient(135deg, var(--accent-soft) 0%, #f5ebe3 100%);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 18px 22px;
+            margin-bottom: 28px;
+        }
+        
+        .info-box strong {
+            color: var(--accent);
+        }
+        
+        .method-box {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .method-box h4 {
+            font-size: 1em;
+            color: var(--ink);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .method-box p {
+            font-size: 0.9em;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+        
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        
+        /* Holland hexagon description */
+        .holland-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .holland-type {
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            line-height: 1.5;
+        }
+        
+        .holland-type.R { background: rgba(217, 119, 6, 0.1); border-left: 3px solid var(--realistic); }
+        .holland-type.I { background: rgba(5, 150, 105, 0.1); border-left: 3px solid var(--investigative); }
+        .holland-type.A { background: rgba(124, 58, 237, 0.1); border-left: 3px solid var(--artistic); }
+        .holland-type.S { background: rgba(220, 38, 38, 0.1); border-left: 3px solid var(--social); }
+        .holland-type.E { background: rgba(2, 132, 199, 0.1); border-left: 3px solid var(--enterprising); }
+        .holland-type.C { background: rgba(75, 85, 99, 0.1); border-left: 3px solid var(--conventional); }
+        
+        .holland-type strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.95em;
+        }
+        
+        /* Highlight row */
+        .highlight-row td {
+            background: linear-gradient(135deg, var(--success-soft) 0%, #f0f8f4 100%) !important;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            color: var(--muted);
+            margin-top: 50px;
+            padding: 24px;
+            border-top: 1px solid var(--line);
+            font-size: 0.9em;
+        }
+        
+        footer em {
+            display: block;
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.2em;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        
+        /* Print styles */
+        @media print {
+            body { background: white; padding: 10px; }
+            .table-wrap { box-shadow: none; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            table { font-size: 0.8em; min-width: 900px; }
+            .holland-types { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header>
+        <h1>🎯 Synteza Ścieżek Kariery (v2)</h1>
+        <p class="subtitle">Rozszerzona wersja z pytaniami opartymi na profesjonalnych metodach doradztwa zawodowego</p>
+    </header>
+
+    <!-- ==================== METODY DIAGNOSTYCZNE ==================== -->
+    <section class="section">
+        <h2><span class="emoji">🔬</span> Metody użyte w tej analizie</h2>
+        <p class="section-intro">Pytania poniżej są oparte na uznanych narzędziach diagnostycznych stosowanych przez profesjonalnych doradców zawodowych na całym świecie.</p>
+        
+        <div class="method-grid">
+            <div class="method-box">
+                <h4><span class="method-badge method-holland">RIASEC</span> Model Hollanda</h4>
+                <p>Teoria typów osobowości zawodowej Johna Hollanda (1959). Ludzie i środowiska pracy można podzielić na 6 typów. Dopasowanie typu osobowości do środowiska pracy zwiększa satysfakcję i sukces.</p>
+                <div class="holland-types">
+                    <div class="holland-type R"><strong>R – Realistic (Praktyk)</strong>Praca z narzędziami, maszynami, materiałami. Konkretne zadania.</div>
+                    <div class="holland-type I"><strong>I – Investigative (Badacz)</strong>Analiza, rozwiązywanie problemów, nauka, badania.</div>
+                    <div class="holland-type A"><strong>A – Artistic (Artysta)</strong>Tworzenie, wyrażanie siebie, sztuka, design.</div>
+                    <div class="holland-type S"><strong>S – Social (Społeczny)</strong>Pomaganie innym, nauczanie, doradztwo.</div>
+                    <div class="holland-type E"><strong>E – Enterprising (Przedsiębiorczy)</strong>Zarządzanie, przekonywanie, sprzedaż.</div>
+                    <div class="holland-type C"><strong>C – Conventional (Konwencjonalny)</strong>Organizacja, dane, procedury, szczegóły.</div>
+                </div>
+            </div>
+            
+            <div class="method-box">
+                <h4><span class="method-badge method-schein">Schein</span> Kotwice Kariery</h4>
+                <p>Edgar Schein (MIT, lata 70.) zidentyfikował 8 "kotwic" – wartości i motywacji, które kierują wyborami zawodowymi przez całe życie:</p>
+                <ul style="font-size: 0.85em; color: var(--muted); margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Kompetencja techniczna/funkcjonalna</strong> – być ekspertem</li>
+                    <li><strong>Kompetencja menedżerska</strong> – zarządzać innymi</li>
+                    <li><strong>Autonomia/niezależność</strong> – robić po swojemu</li>
+                    <li><strong>Bezpieczeństwo/stabilność</strong> – pewność zatrudnienia</li>
+                    <li><strong>Kreatywność przedsiębiorcza</strong> – tworzyć coś nowego</li>
+                    <li><strong>Służba/poświęcenie sprawie</strong> – pomagać światu</li>
+                    <li><strong>Czyste wyzwanie</strong> – pokonywać trudności</li>
+                    <li><strong>Styl życia</strong> – równowaga praca/życie</li>
+                </ul>
+            </div>
+            
+            <div class="method-box">
+                <h4><span class="method-badge method-ikigai">Ikigai</span> Japońska filozofia celu</h4>
+                <p>Ikigai (生き甲斐) = "powód do wstawania rano". Przecięcie 4 obszarów:</p>
+                <ul style="font-size: 0.85em; color: var(--muted); margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Co kochasz?</strong> (pasja)</li>
+                    <li><strong>W czym jesteś dobra?</strong> (talent)</li>
+                    <li><strong>Czego świat potrzebuje?</strong> (misja)</li>
+                    <li><strong>Za co można Ci zapłacić?</strong> (zawód)</li>
+                </ul>
+            </div>
+            
+            <div class="method-box">
+                <h4><span class="method-badge method-praktyka">Praktyka</span> Polskie narzędzia</h4>
+                <p>Narzędzia stosowane w polskim doradztwie zawodowym:</p>
+                <ul style="font-size: 0.85em; color: var(--muted); margin-left: 20px; margin-top: 8px;">
+                    <li><strong>MŁOKOZZ</strong> – Młodzieżowy Kwestionariusz Zainteresowań</li>
+                    <li><strong>WKP</strong> – Wielowymiarowy Kwestionariusz Preferencji</li>
+                    <li><strong>DIAPREZAMUS</strong> – diagnoza predyspozycji</li>
+                    <li><strong>Zawodometr</strong> – test zainteresowań i predyspozycji</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TABELA 1: PORÓWNANIE CECH ==================== -->
+    <section class="section">
+        <h2><span class="emoji">📊</span> Tabela 1: Porównanie Ścieżek</h2>
+        <p class="section-intro">Każda ścieżka z kodem RIASEC (Holland). Sortowane od najlepszego dopasowania.</p>
+        
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="min-width: 200px;">Ścieżka</th>
+                        <th style="min-width: 80px;">Holland</th>
+                        <th style="min-width: 100px;">Czas</th>
+                        <th style="min-width: 200px;">Charakter pracy</th>
+                        <th style="min-width: 90px;">Zarobki</th>
+                        <th style="min-width: 200px;">Plusy</th>
+                        <th style="min-width: 200px;">Minusy</th>
+                        <th style="min-width: 90px;">Fit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr class="category-row">
+                        <td colspan="8">⭐ TOP – Idealne dopasowanie (R+A+I)</td>
+                    </tr>
+                    
+                    <tr class="highlight-row">
+                        <td>
+                            <div class="path-name">Technik Dentystyczny</div>
+                            <div class="path-detail">CAD/CAM + Ceramika</div>
+                            <div class="tags">
+                                <span class="tag tag-top">🥇 TOP</span>
+                                <span class="tag tag-local">📍 Lokalne</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="tag tag-R">R</span>
+                            <span class="tag tag-A">A</span>
+                            <span class="tag tag-I">I</span>
+                        </td>
+                        <td><strong>2,5 roku</strong></td>
+                        <td>Laboratorium. Porcelana, mikroskop. Praca samodzielna w skupieniu.</td>
+                        <td><strong>4-5k → 12k+</strong></td>
+                        <td class="pro">✓ Idealny profil RIASEC<br>✓ Krótkie<br>✓ AI-odporne<br>✓ Namacalny efekt</td>
+                        <td class="con">⚠ Siedząca<br>⚠ Mało ludzi</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Złotnik-Jubiler</div>
+                            <div class="tags">
+                                <span class="tag tag-top">🥈 TOP</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="tag tag-R">R</span>
+                            <span class="tag tag-A">A</span>
+                            <span class="tag tag-E">E</span>
+                        </td>
+                        <td><strong>1-2 lata</strong></td>
+                        <td>Warsztat. Metale, kamienie. Możliwość własnej marki.</td>
+                        <td><strong>3,5k → 15k+</strong></td>
+                        <td class="pro">✓ Rysunek + rzemiosło<br>✓ Własna działalność<br>✓ Kreatywne</td>
+                        <td class="con">⚠ Wymaga inwestycji<br>⚠ Budowanie klientów</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Konserwacja Dzieł Sztuki</div>
+                            <div class="tags">
+                                <span class="tag tag-niche">Prestiżowa</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="tag tag-R">R</span>
+                            <span class="tag tag-A">A</span>
+                            <span class="tag tag-I">I</span>
+                        </td>
+                        <td><strong>6 lat</strong></td>
+                        <td>Zabytki. Chemia + manualne + estetyka.</td>
+                        <td><strong>4-5k → 15k</strong></td>
+                        <td class="pro">✓ Chemia + rysunek<br>✓ Prestiż<br>✓ Praca z "duszą"</td>
+                        <td class="con">⚠ 6 lat<br>⚠ Egzamin + portfolio</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Zegarmistrz</div>
+                        </td>
+                        <td>
+                            <span class="tag tag-R">R</span>
+                            <span class="tag tag-I">I</span>
+                            <span class="tag tag-C">C</span>
+                        </td>
+                        <td><strong>3 lata</strong></td>
+                        <td>Mikromechanika. Lupy. Ekstremalna precyzja.</td>
+                        <td><strong>3,5k → 12k+</strong></td>
+                        <td class="pro">✓ Pasuje do wizji<br>✓ Praca w ciszy</td>
+                        <td class="con">⚠ Wąska nisza</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr class="category-row">
+                        <td colspan="8">🎵 Muzyczne (A+R+I)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Lutnictwo Artystyczne</div>
+                        </td>
+                        <td>
+                            <span class="tag tag-A">A</span>
+                            <span class="tag tag-R">R</span>
+                            <span class="tag tag-I">I</span>
+                        </td>
+                        <td><strong>5 lat</strong></td>
+                        <td>Budowa instrumentów. Drewno, lakiery, akustyka.</td>
+                        <td><strong>4-6k → 20k+</strong></td>
+                        <td class="pro">✓ Słuch + manualne<br>✓ Prestiż</td>
+                        <td class="con">⚠ Egzamin: zbudować instrument!<br>⚠ Wąski rynek</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Reżyseria Dźwięku</div>
+                        </td>
+                        <td>
+                            <span class="tag tag-A">A</span>
+                            <span class="tag tag-I">I</span>
+                            <span class="tag tag-R">R</span>
+                        </td>
+                        <td><strong>3-5 lat</strong></td>
+                        <td>Studio. DAW, miks. Film, gry.</td>
+                        <td><strong>4,5k → 15k</strong></td>
+                        <td class="pro">✓ Wykorzystuje słuch<br>✓ Kreatywne</td>
+                        <td class="con">⚠ Deadline'y<br>⚠ Dużo komputera</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr class="category-row">
+                        <td colspan="8">🧪 Naukowe/IT (I+R+C)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Bioinformatyka</div>
+                        </td>
+                        <td>
+                            <span class="tag tag-I">I</span>
+                            <span class="tag tag-R">R</span>
+                            <span class="tag tag-C">C</span>
+                        </td>
+                        <td><strong>3-5 lat</strong></td>
+                        <td>Komputer, dane, pipeline'y. Praca zdalna.</td>
+                        <td><strong>6-9k → 20k+</strong></td>
+                        <td class="pro">✓ Top zarobki<br>✓ Synergia z fundacją</td>
+                        <td class="con">⚠ 8h+ komputera!<br>⚠ Brak manualu</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr class="category-row">
+                        <td colspan="8">🎨 Artystyczne (A+I+R)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Wizualizacja Naukowa</div>
+                        </td>
+                        <td>
+                            <span class="tag tag-A">A</span>
+                            <span class="tag tag-I">I</span>
+                            <span class="tag tag-R">R</span>
+                        </td>
+                        <td><strong>Portfolio</strong></td>
+                        <td>Ilustracje naukowe. Rysunek + ścisłość.</td>
+                        <td><strong>Zróżnicowane</strong></td>
+                        <td class="pro">✓ AI-odporna<br>✓ Zdalnie</td>
+                        <td class="con">⚠ Dużo komputera<br>⚠ Freelance</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ==================== TABELA 2: PYTANIA PROFESJONALISTÓW ==================== -->
+    <section class="section">
+        <h2><span class="emoji">🪞</span> Tabela 2: Profesjonalne Pytania Diagnostyczne</h2>
+        <p class="section-intro">Pytania oparte na uznanych metodach doradztwa zawodowego. Każde pytanie oznaczone jest źródłem metodologicznym. Odpowiadaj szczerze – nie ma "dobrych" odpowiedzi.</p>
+        
+        <h3>🔷 Typ osobowości zawodowej (Holland RIASEC)</h3>
+        
+        <div class="table-wrap">
+            <table class="questions-table">
+                <thead>
+                    <tr>
+                        <th style="min-width: 80px;">Typ</th>
+                        <th style="min-width: 400px;">Pytanie</th>
+                        <th style="min-width: 100px;">Skala 1-5</th>
+                        <th style="min-width: 250px;">Co oznacza wysoki wynik?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="tag tag-R">R</span><br>Realistic</td>
+                        <td>
+                            <div class="question-text">"Czy lubisz pracować z narzędziami, maszynami lub materiałami? Czy sprawiają Ci satysfakcję zadania wymagające zręczności rąk?"</div>
+                            <div class="scale-hint">1 = zdecydowanie nie | 5 = bardzo lubię</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> technik dent., jubiler, zegarmistrz, lutnik, laborant<br><strong>Nisko:</strong> zawody biurowe, czysto społeczne</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-I">I</span><br>Investigative</td>
+                        <td>
+                            <div class="question-text">"Czy lubisz analizować problemy i szukać rozwiązań? Czy fascynuje Cię zrozumienie 'dlaczego coś działa'?"</div>
+                            <div class="scale-hint">1 = nie interesuje mnie | 5 = to moja pasja</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> bioinformatyka, biotechnologia, chemia, konserwacja<br><strong>Nisko:</strong> prace rutynowe, wykonawcze</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-A">A</span><br>Artistic</td>
+                        <td>
+                            <div class="question-text">"Czy cenisz możliwość wyrażania siebie i tworzenia? Czy estetyka i piękno są dla Ciebie ważne w pracy?"</div>
+                            <div class="scale-hint">1 = nie | 5 = kluczowe</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> technik dent. (ceramika), jubiler, lutnik, grafika, konserwacja<br><strong>Nisko:</strong> praca stricte analityczna/techniczna</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-S">S</span><br>Social</td>
+                        <td>
+                            <div class="question-text">"Czy energię czerpiesz z pomagania innym? Czy kontakt z ludźmi Cię napędza czy męczy?"</div>
+                            <div class="scale-hint">1 = kontakt męczy | 5 = kontakt napędza</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> muzykoterapia, protetyk słuchu, nauczyciel<br><strong>Nisko:</strong> praca samodzielna w warsztacie/lab</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-E">E</span><br>Enterprising</td>
+                        <td>
+                            <div class="question-text">"Czy widzisz siebie jako osobę przekonującą innych, zarządzającą, prowadzącą własny biznes?"</div>
+                            <div class="scale-hint">1 = wolę wykonywać | 5 = chcę prowadzić</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> własna pracownia/marka, freelance<br><strong>Nisko:</strong> praca najemna, etat</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-C">C</span><br>Conventional</td>
+                        <td>
+                            <div class="question-text">"Czy lubisz pracę uporządkowaną, według procedur? Czy cenisz przewidywalność i strukturę?"</div>
+                            <div class="scale-hint">1 = wolę chaos twórczy | 5 = kocham porządek</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> laborant, kontrola jakości, zegarmistrz<br><strong>Nisko:</strong> praca stricte kreatywna, bez procedur</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="info-box">
+            <strong>📊 Interpretacja kodu Hollanda:</strong> Zapisz 3 typy, w których masz najwyższe wyniki (np. RAI, AIR). To Twój "kod Holland". Porównaj go z kodami przy ścieżkach w Tabeli 1. Im większe pokrycie, tym lepsze dopasowanie.
+        </div>
+        
+        <h3>⚓ Kotwice Kariery (Schein)</h3>
+        
+        <div class="table-wrap">
+            <table class="questions-table">
+                <thead>
+                    <tr>
+                        <th style="min-width: 150px;">Kotwica</th>
+                        <th style="min-width: 400px;">Pytanie</th>
+                        <th style="min-width: 100px;">Skala 1-5</th>
+                        <th style="min-width: 250px;">Co oznacza wysoki wynik?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kompetencja techniczna</strong></td>
+                        <td>
+                            <div class="question-text">"Marzę o tym, by być tak dobra w tym co robię, że ludzie będą szukać mojej ekspertyzy."</div>
+                            <div class="scale-hint">1 = nieważne | 5 = bardzo ważne</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests">Ścieżki specjalistyczne: technik dent. (ceramika), lutnik, zegarmistrz, konserwator</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Autonomia / Niezależność</strong></td>
+                        <td>
+                            <div class="question-text">"Marzę o karierze, która da mi swobodę robienia rzeczy po swojemu, we własnym tempie."</div>
+                            <div class="scale-hint">1 = wolę strukturę | 5 = wolność kluczowa</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> własna pracownia, freelance, praca zdalna<br><strong>Nisko:</strong> etat w firmie/instytucji</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bezpieczeństwo / Stabilność</strong></td>
+                        <td>
+                            <div class="question-text">"Wolę wiedzieć, że moja praca jest bezpieczna i przewidywalna, niż podejmować ryzyko dla większych zysków."</div>
+                            <div class="scale-hint">1 = lubię ryzyko | 5 = stabilność kluczowa</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> etat, zawody medyczne, edukacja<br><strong>Nisko:</strong> freelance, własny biznes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Służba / Misja</strong></td>
+                        <td>
+                            <div class="question-text">"Poczuję się spełniona tylko jeśli moja praca będzie miała realny wpływ na świat lub pomagała innym."</div>
+                            <div class="scale-hint">1 = nieważne | 5 = sens = priorytet</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> muzykoterapia, fundacja, medycyna, edukacja<br>+ synergia z GeneQuest!</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wyzwanie</strong></td>
+                        <td>
+                            <div class="question-text">"Potrzebuję ciągłych wyzwań i trudnych problemów do rozwiązania, by czuć się zmotywowana."</div>
+                            <div class="scale-hint">1 = wolę spokój | 5 = wyzwania napędzają</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> IT, bioinformatyka, projektowanie<br><strong>Nisko:</strong> praca rutynowa, powtarzalna</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Styl życia</strong></td>
+                        <td>
+                            <div class="question-text">"Równowaga między pracą a życiem prywatnym jest dla mnie ważniejsza niż kariera czy zarobki."</div>
+                            <div class="scale-hint">1 = kariera najważniejsza | 5 = życie prywatne najważniejsze</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> praca 8-16, bez deadline'ów, lokalna<br><strong>Nisko:</strong> startup, branża kreatywna (crunch)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kreatywność przedsiębiorcza</strong></td>
+                        <td>
+                            <div class="question-text">"Marzę o stworzeniu czegoś własnego – produktu, firmy, marki – nawet jeśli to ryzykowne."</div>
+                            <div class="scale-hint">1 = wolę pracować dla kogoś | 5 = chcę tworzyć własne</div>
+                        </td>
+                        <td class="path-detail">____/5</td>
+                        <td class="suggests"><strong>Wysoko:</strong> własna pracownia jubilerska, marka, studio<br><strong>Nisko:</strong> etat w instytucji</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h3>🔴 Ikigai – 4 kluczowe pytania</h3>
+        
+        <div class="table-wrap">
+            <table class="questions-table">
+                <thead>
+                    <tr>
+                        <th style="min-width: 120px;">Obszar</th>
+                        <th style="min-width: 450px;">Pytanie (rozwiń odpowiedź)</th>
+                        <th style="min-width: 250px;">Notatki</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: rgba(220, 38, 38, 0.05);">
+                        <td><strong>❤️ Co KOCHASZ?</strong><br><span class="path-detail">Pasja</span></td>
+                        <td>
+                            <div class="question-text">"Co robisz, gdy nikt nie patrzy i nie musisz? Co sprawia, że tracisz poczucie czasu? O czym mogłabyś mówić godzinami?"</div>
+                            <div class="scale-hint">Wypisz 3-5 rzeczy, które Cię naprawdę kręcą (nie "co powinnam lubić", ale co FAKTYCZNIE lubię)</div>
+                        </td>
+                        <td class="path-detail">
+                            1. __________________<br>
+                            2. __________________<br>
+                            3. __________________
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(5, 150, 105, 0.05);">
+                        <td><strong>💪 W czym jesteś DOBRA?</strong><br><span class="path-detail">Talent</span></td>
+                        <td>
+                            <div class="question-text">"Co przychodzi Ci łatwiej niż innym? Za co Cię chwalą? Co robisz lepiej niż przeciętna osoba?"</div>
+                            <div class="scale-hint">Nie bądź skromna – wypisz swoje realne mocne strony (umiejętności techniczne + miękkie)</div>
+                        </td>
+                        <td class="path-detail">
+                            1. __________________<br>
+                            2. __________________<br>
+                            3. __________________
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(2, 132, 199, 0.05);">
+                        <td><strong>🌍 Czego świat POTRZEBUJE?</strong><br><span class="path-detail">Misja</span></td>
+                        <td>
+                            <div class="question-text">"Jakie problemy chciałabyś rozwiązać? Komu chciałabyś pomóc? Co Cię złości w świecie?"</div>
+                            <div class="scale-hint">Pomyśl o konkretnych problemach: zdrowie, edukacja, środowisko, piękno, jakość życia...</div>
+                        </td>
+                        <td class="path-detail">
+                            1. __________________<br>
+                            2. __________________<br>
+                            3. __________________
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(217, 119, 6, 0.05);">
+                        <td><strong>💰 Za co można Ci ZAPŁACIĆ?</strong><br><span class="path-detail">Zawód</span></td>
+                        <td>
+                            <div class="question-text">"Jakie umiejętności masz, za które ludzie są gotowi płacić? Co możesz zaoferować rynkowi pracy?"</div>
+                            <div class="scale-hint">Bądź realistyczna – co TERAZ możesz zaoferować i co możesz ROZWINĄĆ w ciągu 2-5 lat?</div>
+                        </td>
+                        <td class="path-detail">
+                            Teraz: ______________<br>
+                            Za 2-5 lat: __________
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h3>🧪 Pytania praktyczne (polskie doradztwo zawodowe)</h3>
+        
+        <div class="table-wrap">
+            <table class="questions-table">
+                <thead>
+                    <tr>
+                        <th style="min-width: 150px;">Obszar</th>
+                        <th style="min-width: 400px;">Pytanie</th>
+                        <th style="min-width: 100px;">Odpowiedź</th>
+                        <th style="min-width: 250px;">Implikacje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🖥️ Tolerancja ekranu</strong></td>
+                        <td>
+                            <div class="question-text">"Ile godzin dziennie realnie jestem w stanie siedzieć przy komputerze bez cierpienia fizycznego i psychicznego?"</div>
+                        </td>
+                        <td class="path-detail">____ godzin</td>
+                        <td class="suggests"><strong>1-3h:</strong> unikaj IT/bioinfo<br><strong>6-8h:</strong> IT, design, data – ok</td>
+                    </tr>
+                    <tr>
+                        <td><strong>✋ Test precyzji</strong></td>
+                        <td>
+                            <div class="question-text">"Czy praca wymagająca precyzji na milimetry przez kilka godzin daje mi 'flow' czy frustrację?"</div>
+                        </td>
+                        <td class="path-detail">flow / frustracja</td>
+                        <td class="suggests"><strong>Flow:</strong> technik dent., jubiler, zegarmistrz<br><strong>Frustracja:</strong> unikaj rzemiosła precyzyjnego</td>
+                    </tr>
+                    <tr>
+                        <td><strong>📍 Mobilność</strong></td>
+                        <td>
+                            <div class="question-text">"Czy jestem gotowa wyjechać do dużego miasta na 3-5 lat dla lepszej edukacji/pracy?"</div>
+                        </td>
+                        <td class="path-detail">tak / nie / może</td>
+                        <td class="suggests"><strong>Tak:</strong> konserwacja (Wrocław), lutnictwo (Poznań)<br><strong>Nie:</strong> policealna lokalna, praca zdalna</td>
+                    </tr>
+                    <tr>
+                        <td><strong>⏰ Tempo startu</strong></td>
+                        <td>
+                            <div class="question-text">"Wolę 'szybko do zawodu' (1-2,5 roku) czy 'głębiej i dłużej' (3-6 lat studiów)?"</div>
+                        </td>
+                        <td class="path-detail">szybko / dłużej</td>
+                        <td class="suggests"><strong>Szybko:</strong> policealna, kursy<br><strong>Dłużej:</strong> studia, ASP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>📜 Dyplom vs Portfolio</strong></td>
+                        <td>
+                            <div class="question-text">"Czy zależy mi na formalnym dyplomie, czy wolę pokazać co umiem (portfolio, projekty)?"</div>
+                        </td>
+                        <td class="path-detail">dyplom / portfolio</td>
+                        <td class="suggests"><strong>Dyplom:</strong> konserwacja (wymagany!), biotechnologia<br><strong>Portfolio:</strong> gamedev, grafika, audio</td>
+                    </tr>
+                    <tr>
+                        <td><strong>😰 Deadline'y</strong></td>
+                        <td>
+                            <div class="question-text">"Jak reaguję na presję terminów i konieczność wielokrotnych poprawek?"</div>
+                        </td>
+                        <td class="path-detail">dobrze / źle</td>
+                        <td class="suggests"><strong>Dobrze:</strong> IT, animacja, branże projektowe<br><strong>Źle:</strong> rzemiosło, edukacja, stabilne etaty</td>
+                    </tr>
+                    <tr style="background: rgba(193,127,89,0.08);">
+                        <td><strong>💡 TEST KLUCZOWY</strong></td>
+                        <td>
+                            <div class="question-text">"Gdybym miała 2 miesiące bez żadnych zobowiązań, co wybrałabym na próbę?"</div>
+                            <div class="scale-hint"><strong>Opcje:</strong> KOD (programowanie) / LAB (chemia) / ANIMACJA (grafika) / WARSZTAT (fizyczny) / LUDZIE (terapia/nauka)</div>
+                        </td>
+                        <td class="path-detail">____________</td>
+                        <td class="suggests">To najlepszy kompas. Jedno słowo = kierunek pierwszego mini-testu.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="info-box" style="margin-top: 24px;">
+            <strong>💡 Co dalej?</strong><br><br>
+            1. Policz swój <strong>kod Holland</strong> (3 najwyższe typy)<br>
+            2. Zidentyfikuj <strong>2-3 dominujące kotwice Scheina</strong><br>
+            3. Znajdź <strong>przecięcie Ikigai</strong> (co kochasz + umiesz + potrzebne + płatne)<br>
+            4. Porównaj wyniki z Tabelą 1<br>
+            5. Ustaw <strong>1-3 mini-testy</strong> (po 2-6 tygodni) dla top ścieżek
+        </div>
+    </section>
+
+    <!-- ==================== MINI-TESTY ==================== -->
+    <section class="section">
+        <h2><span class="emoji">🧪</span> Proponowane Mini-Testy (2-6 tygodni każdy)</h2>
+        <p class="section-intro">Zanim podejmiesz decyzję, przetestuj top 2-3 ścieżki w praktyce. To da więcej niż 100 godzin dyskusji.</p>
+        
+        <div class="method-grid">
+            <div class="method-box">
+                <h4>🦷 Test: Technik Dentystyczny</h4>
+                <p><strong>2-4 tygodnie:</strong> Kurs podstaw modelowania 3D (Blender/ZBrush) + 1 dzień obserwacji w pracowni protetycznej.</p>
+                <p><strong>Pytanie testowe:</strong> "Czy precyzyjne dłubanie przez kilka godzin daje mi flow czy frustrację?"</p>
+            </div>
+            
+            <div class="method-box">
+                <h4>💎 Test: Jubiler</h4>
+                <p><strong>2-4 tygodnie:</strong> Kurs podstaw jubilerstwa (Warszawa/online) + zaprojektuj i wykonaj prostą biżuterię.</p>
+                <p><strong>Pytanie testowe:</strong> "Czy praca z metalem i kamieniami mnie wciąga?"</p>
+            </div>
+            
+            <div class="method-box">
+                <h4>💻 Test: Bioinformatyka</h4>
+                <p><strong>2-4 tygodnie:</strong> Mini-projekt w Pythonie (analiza publicznych danych genomowych) + praktyka w fundacji.</p>
+                <p><strong>Pytanie testowe:</strong> "Czy rozwiązywanie zagadek na ekranie mnie wciąga czy męczy?"</p>
+            </div>
+            
+            <div class="method-box">
+                <h4>🎵 Test: Dźwięk</h4>
+                <p><strong>2-3 tygodnie:</strong> Udźwiękowienie 60-90 sekundowej sceny (foley + miks w darmowym DAW).</p>
+                <p><strong>Pytanie testowe:</strong> "Czy to wciąga mnie bardziej niż samo granie?"</p>
+            </div>
+            
+            <div class="method-box">
+                <h4>🎨 Test: Wizualizacja naukowa</h4>
+                <p><strong>2-6 tygodni:</strong> Stwórz 1 planszę edukacyjną "jak działa X" (np. PCR) + krótką animację 20-30s.</p>
+                <p><strong>Pytanie testowe:</strong> "Czy łączenie rysunku z nauką mnie napędza?"</p>
+            </div>
+            
+            <div class="method-box">
+                <h4>🔬 Test: Lab (chemia)</h4>
+                <p><strong>2-3 tygodnie:</strong> "Dzień w labie" (obserwacja) + proste zadanie analizy wyników i raportu.</p>
+                <p><strong>Pytanie testowe:</strong> "Czy rutyna procedur mnie uspokaja czy nudzi?"</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <em>"Nie szukaj jednej 'właściwej' ścieżki. Szukaj tej, która pasuje do CIEBIE teraz – i która może ewoluować razem z Tobą."</em>
+        <p>Synteza oparta na: Model Hollanda (RIASEC), Kotwice Kariery Scheina, Ikigai, polskie narzędzia diagnostyczne (ORE, MŁOKOZZ, WKP)</p>
+        <p>Styczeń 2026 • Dla Zuzanny z GeneQuest Foundation</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

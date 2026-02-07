@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analiza Kariery: Trendy 2030 + Synergia z Fundacją</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --accent-bio: #0ea5e9;    /* Niebieski dla Bio/Tech */
+            --accent-man: #d97706;    /* Bursztyn dla Manual/Biznes */
+            --accent-chem: #10b981;   /* Zielony dla Chemii */
+            --border: #e2e8f0;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            padding: 40px 20px;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        /* Karty kontekstowe */
+        .context-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .context-card {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        
+        .context-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Tabela */
+        .table-wrap {
+            overflow-x: auto;
+            background: var(--surface);
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        
+        table {
+            width: 100%;
+            min-width: 1000px;
+            border-collapse: collapse;
+        }
+        
+        thead th {
+            background: #f1f5f9;
+            text-align: left;
+            padding: 16px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--border);
+        }
+        
+        tbody td {
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #f8fafc; }
+        
+        /* Style w komórkach */
+        .job-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+        
+        .edu-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+        
+        .synergy-box {
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+        
+        .synergy-bio { background: rgba(14, 165, 233, 0.1); color: #0284c7; }
+        .synergy-man { background: rgba(217, 119, 6, 0.1); color: #b45309; }
+        .synergy-chem { background: rgba(16, 185, 129, 0.1); color: #059669; }
+        
+        .rating-stars {
+            color: #fbbf24;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+        }
+        
+        /* Sekcja kategorii */
+        .cat-row td {
+            background: #f8fafc;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 12px 16px;
+            letter-spacing: 0.1em;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .check-icon { color: #10b981; font-weight: bold; }
+        .cross-icon { color: #ef4444; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Perspektywy 2025-2030 + Synergia Fundacyjna</h1>
+        <p class="subtitle">Analiza potencjału dla Zuzanny w kontekście trendów rynkowych i zasobów rodzinnych (GeneQuest & ORYX)</p>
+    </header>
+
+    <div class="context-grid">
+        <div class="context-card" style="border-left: 4px solid var(--accent-bio);">
+            <div class="context-title">🧬 Zasób: Fundacja (FD/DMD)</div>
+            <p style="font-size: 0.9rem; color: #64748b;">
+                Potrzebujesz maszyn (PCR, sekwenatory). Zuzanna ma "chemię w rękach". Jeśli wejdzie w <strong>diagnostykę laboratoryjną</strong> lub <strong>biotechnologię</strong>, staje się "operatorem" serca fundacji.
+            </p>
+        </div>
+        <div class="context-card" style="border-left: 4px solid var(--accent-man);">
+            <div class="context-title">🔧 Zasób: Manual + Biznes</div>
+            <p style="font-size: 0.9rem; color: #64748b;">
+                Optyk / Technik Dentystyczny. To są "czyste warsztaty". Odporne na AI, skalowalne w biznes (własny salon/lab) i dające namacalny produkt.
+            </p>
+        </div>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%">Kierunek / Zawód</th>
+                    <th style="width: 15%">Edukacja (Czas)</th>
+                    <th style="width: 25%">Synergia z Fundacją (GeneQuest)</th>
+                    <th style="width: 25%">Potencjał Biznesowy / Rynkowy</th>
+                    <th style="width: 10%">Ocena</th>
+                </tr>
+            </thead>
+            
+            <tr class="cat-row"><td colspan="5">🧬 BIO-TECH: Obsługa badań i poszukiwanie leku</td></tr>
+
+            <tr>
+                <td>
+                    <div class="job-title">Diagnosta Laboratoryjny / Genetyk</div>
+                    <div style="font-size: 0.85rem; color: #64748b;">Analiza DNA, PCR, Sekwencjonowanie</div>
+                    <span class="edu-tag">Studia 5 lat (Analityka Med.)</span>
+                </td>
+                <td>
+                    Wymagane jednolite magisterskie, aby mieć <strong>uprawnienia medyczne</strong>.
+                </td>
+                <td>
+                    <div class="synergy-box synergy-bio">
+                        <strong>Kluczowa.</strong> Zuzanna może oficjalnie prowadzić badania, autoryzować wyniki i zarządzać labem fundacji.
+                    </div>
+                </td>
+                <td>
+                    Ogromny rynek (diagnostyka genetyczna rośnie lawinowo). Stabilna praca + możliwość prowadzenia komercyjnego labu.
+                </td>
+                <td>
+                    <div class="rating-stars">★★★★★</div>
+                    <div style="font-size: 0.75rem; font-weight: 600; color: #0ea5e9;">STRATEGICZNA</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="job-title">Biotechnolog (R&D)</div>
+                    <div style="font-size: 0.85rem; color: #64748b;">Praca badawcza, testowanie leków</div>
+                    <span class="edu-tag">Studia 3-5 lat</span>
+                </td>
+                <td>
+                    Licencjat/Inżynier lub Magister.
+                </td>
+                <td>
+                    <div class="synergy-box synergy-bio">
+                        <strong>Wysoka.</strong> Idealna do pracy badawczej (szukanie leku), obsługi maszyn. Nie daje uprawnień diagnosty medycznego (szpitalnego).
+                    </div>
+                </td>
+                <td>
+                    Rynek Pharma/BioTech rośnie. Praca w korporacjach farmaceutycznych lub startupach.
+                </td>
+                <td>
+                    <div class="rating-stars">★★★★☆</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="job-title">Technik Analityk</div>
+                    <div style="font-size: 0.85rem; color: #64748b;">Laborant, operator sprzętu</div>
+                    <span class="edu-tag">Szkoła policealna (2 lata)</span>
+                </td>
+                <td>
+                    Szybka ścieżka (dyplom technika).
+                </td>
+                <td>
+                    <div class="synergy-box synergy-bio">
+                        <strong>Dobra na start.</strong> Może fizycznie wykonywać testy PCR/ELISA w fundacji pod nadzorem.
+                    </div>
+                </td>
+                <td>
+                    Praca wykonawcza. Niższe zarobki i sufit awansu (bez studiów). Dobra jako "Gap Year" z konkretnym fachem.
+                </td>
+                <td>
+                    <div class="rating-stars">★★★☆☆</div>
+                </td>
+            </tr>
+
+            <tr class="cat-row"><td colspan="5">🔧 PRECYZJA & WŁASNY BIZNES: Optyka i Rzemiosło</td></tr>
+
+            <tr>
+                <td>
+                    <div class="job-title">Optyk Okularowy / Optometrysta</div>
+                    <div style="font-size: 0.85rem; color: #64748b;">Fizyka światła + Manual + Salon</div>
+                    <span class="edu-tag">Policealna (2 lata) lub Studia (3 lata)</span>
+                </td>
+                <td>
+                    <strong>Optyk (rzemieślnik):</strong> Szlifowanie, montaż (2 lata).<br>
+                    <strong>Optometrysta (badanie):</strong> Studia (3 lata).
+                </td>
+                <td>
+                    <span class="cross-icon">✘</span> Brak bezpośredniej synergii badawczej, ale... zyski z salonu mogą wspierać fundację.
+                </td>
+                <td>
+                    <div class="synergy-box synergy-man">
+                        <strong>Potencjał biznesowy.</strong> Własny salon optyczny to stabilny biznes. Praca czysta, precyzyjna, "warsztatowa", ale z klientem.
+                    </div>
+                </td>
+                <td>
+                    <div class="rating-stars">★★★★★</div>
+                    <div style="font-size: 0.75rem; font-weight: 600; color: #d97706;">NOWY FAWORYT</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="job-title">Technik Dentystyczny</div>
+                    <div style="font-size: 0.85rem; color: #64748b;">CAD/CAM + Ceramika</div>
+                    <span class="edu-tag">Policealna (2,5 roku)</span>
+                </td>
+                <td>
+                    Szybki, konkretny fach.
+                </td>
+                <td>
+                    <span class="cross-icon">✘</span> Brak.
+                </td>
+                <td>
+                    <div class="synergy-box synergy-man">
+                        <strong>Idealny profil manualny.</strong> Rynek ogromny, odporny na kryzysy. Możliwość własnej pracowni (B2B dla gabinetów).
+                    </div>
+                </td>
+                <td>
+                    <div class="rating-stars">★★★★★</div>
+                    <div style="font-size: 0.75rem; font-weight: 600; color: #d97706;">IDEALNY PROFIL</div>
+                </td>
+            </tr>
+
+            <tr class="cat-row"><td colspan="5">⚗️ CHEMIA RYNKOWA: Przemysł i nisze</td></tr>
+
+            <tr>
+                <td>
+                    <div class="job-title">Technolog Żywności / Kosmetyków</div>
+                    <div style="font-size: 0.85rem; color: #64748b;">Receptury, jakość, produkcja</div>
+                    <span class="edu-tag">Studia inżynierskie</span>
+                </td>
+                <td>
+                    3,5 roku (inżynier).
+                </td>
+                <td>
+                    Niska. Wiedza chemiczna przydatna, ale profil inny niż medyczny.
+                </td>
+                <td>
+                    Stabilna praca w zakładach produkcyjnych. Własny biznes (np. manufaktura kosmetyków) możliwy, ale trudny marketingowo.
+                </td>
+                <td>
+                    <div class="rating-stars">★★★☆☆</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="job-title">Bioinformatyk</div>
+                    <div style="font-size: 0.85rem; color: #64748b;">Data Science w biologii</div>
+                    <span class="edu-tag">Studia / Kursy + Mentoring</span>
+                </td>
+                <td>
+                    Wymaga nauki programowania (Python/R).
+                </td>
+                <td>
+                    <div class="synergy-box synergy-bio">
+                        <strong>Ogromna.</strong> Analiza danych z sekwencjonowania, modelowanie leków in silico. Można robić zdalnie dla fundacji.
+                    </div>
+                </td>
+                <td>
+                    Najwyższe zarobki na liście. Ale praca w 100% przy komputerze (brak manualu).
+                </td>
+                <td>
+                    <div class="rating-stars">★★★★☆</div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div style="margin-top: 40px; background: #fff; padding: 25px; border-radius: 12px; border: 1px solid var(--border);">
+        <h3 style="margin-bottom: 15px; color: var(--text-main);">💡 Strategiczne Podsumowanie dla Taty (Fundatora)</h3>
+        
+        <p style="margin-bottom: 15px; color: var(--text-muted);">
+            Jeśli planujesz zakup maszyn (PCR, sekwenatory) i szukasz leku, masz dwie drogi dla Zuzanny:
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="background: rgba(14, 165, 233, 0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(14, 165, 233, 0.2);">
+                <strong style="color: #0284c7; display: block; margin-bottom: 5px;">Ścieżka "Operator Fundacji"</strong>
+                Zuzanna idzie na <strong>Analitykę Medyczną</strong> (Diagnosta) lub <strong>Biotechnologię</strong>. <br>
+                Zaleta: Jest sercem badań, prowadzi eksperymenty, rozumie proces.<br>
+                Ryzyko: Musi to kochać, bo to trudne studia.
+            </div>
+            
+            <div style="background: rgba(217, 119, 6, 0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(217, 119, 6, 0.2);">
+                <strong style="color: #b45309; display: block; margin-bottom: 5px;">Ścieżka "Niezależny Biznes"</strong>
+                Zuzanna wybiera <strong>Optyka</strong> lub <strong>Technika Dentystycznego</strong>.<br>
+                Zaleta: Ma swój niezależny, dochodowy fach, który pasuje do jej manualnych talentów. Fundację wspierasz Ty i zatrudnieni naukowcy, a ona może pomagać w bioinformatyce (dane) lub po prostu "mieć swoje życie".
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

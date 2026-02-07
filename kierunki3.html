@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Ścieżek dla Zuzanny – Pełna Analiza</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); padding: 20px; max-width: 1400px; margin: 0 auto; }
+        h1 { text-align: center; color: #1a365d; margin-bottom: 10px; font-size: 2.2em; }
+        .subtitle { text-align: center; color: #4a5568; margin-bottom: 40px; font-size: 1.1em; }
+        h2 { color: #2c5282; border-bottom: 3px solid #3182ce; padding-bottom: 10px; margin-top: 50px; display: flex; align-items: center; gap: 10px; }
+        h2 .emoji { font-size: 1.3em; }
+        h3 { color: #2d3748; margin-top: 30px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background-color: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-radius: 12px; overflow: hidden; }
+        th, td { padding: 16px; text-align: left; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        th { background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%); color: #fff; font-weight: 600; text-transform: uppercase; font-size: 0.85em; letter-spacing: 1px; }
+        tr:hover { background-color: #f7fafc; }
+        tr:last-child td { border-bottom: none; }
+        
+        /* Badges */
+        .synergy-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.75em; margin: 2px; font-weight: 600; }
+        .badge-manual { background: #fef3c7; color: #92400e; }
+        .badge-chem { background: #dbeafe; color: #1e40af; }
+        .badge-music { background: #ede9fe; color: #5b21b6; }
+        .badge-tech { background: #d1fae5; color: #065f46; }
+        .badge-art { background: #fce7f3; color: #9d174d; }
+        .badge-people { background: #fed7aa; color: #9a3412; }
+        .badge-logic { background: #e0e7ff; color: #3730a3; }
+        
+        /* Ratings */
+        .rating { font-weight: bold; padding: 8px 12px; border-radius: 8px; display: inline-block; }
+        .rating-top { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; }
+        .rating-high { background: #d1fae5; color: #065f46; }
+        .rating-good { background: #fef3c7; color: #92400e; }
+        .rating-niche { background: #ede9fe; color: #5b21b6; }
+        .rating-risky { background: #fee2e2; color: #991b1b; }
+        
+        /* Status indicators */
+        .pro { color: #059669; font-weight: 500; }
+        .con { color: #dc2626; font-size: 0.9em; }
+        .neutral { color: #6b7280; }
+        
+        /* Question boxes */
+        .question { font-style: italic; color: #4a5568; background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%); padding: 12px 16px; border-left: 4px solid #3182ce; border-radius: 0 8px 8px 0; margin: 8px 0; }
+        
+        /* Special boxes */
+        .highlight-box { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border: 2px solid #10b981; border-radius: 12px; padding: 20px; margin: 20px 0; }
+        .warning-box { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 2px solid #f59e0b; border-radius: 12px; padding: 20px; margin: 20px 0; }
+        .info-box { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; border-radius: 12px; padding: 20px; margin: 20px 0; }
+        
+        /* Category headers in table */
+        .category-row { background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%) !important; }
+        .category-row td { color: white; font-weight: 600; font-size: 1.1em; padding: 12px 16px; }
+        
+        /* Footer */
+        .footer { text-align: center; color: #718096; margin-top: 40px; padding: 20px; border-top: 1px solid #e2e8f0; }
+        
+        /* Tuesday column styling */
+        .tuesday { font-size: 0.95em; line-height: 1.7; }
+        .tuesday-time { font-weight: 600; color: #2c5282; }
+        
+        /* Local badge */
+        .local-badge { background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; font-weight: 600; }
+        
+        /* Print styles */
+        @media print {
+            body { background: white; }
+            table { box-shadow: none; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎯 Mapa Ścieżek Edukacyjno-Zawodowych dla Zuzanny</h1>
+    <p class="subtitle">Kompleksowa analiza na podstawie 4 raportów AI + research | Styczeń 2026</p>
+
+    <div class="info-box">
+        <strong>📋 Profil kandydatki:</strong> Absolwentka II st. szkoły muzycznej (harfa) | Mocne: matematyka, chemia, rysunek (manga), zdolności manualne | Słabsze: humanistyczne | Zasoby: firma IT rodzinna (ORYX IT), fundacja GeneQuest (FD/DMD)
+    </div>
+
+    <!-- ==================== WERSJA 1: ANALIZA STRATEGICZNA ==================== -->
+    <h2><span class="emoji">📊</span> WERSJA 1: Analiza Strategiczna (Fakty i Potencjał)</h2>
+    <p>Obiektywne zestawienie oparte na unikalnym profilu: połączeniu zdolności manualnych, ścisłych i analitycznych.</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 18%;">Ścieżka / Kierunek</th>
+                <th style="width: 22%;">Dlaczego to pasuje? (Synergia)</th>
+                <th style="width: 22%;">Plusy i Przyszłość</th>
+                <th style="width: 22%;">Wyzwania i Ryzyka</th>
+                <th style="width: 16%;">Ocena</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- KATEGORIA: BIOMEDYCZNE RZEMIOSŁO -->
+            <tr class="category-row">
+                <td colspan="5">🏥 BIOMEDYCZNE RZEMIOSŁO (Najwyższa zgodność z profilem)</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Technik Dentystyczny</strong><br>
+                    <small>(CAD/CAM + Ceramika)</small><br>
+                    <span class="local-badge">📍 Zielona Góra</span><br>
+                    <small>Szkoła policealna 2,5 roku</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-manual">✋ Manualne</span>
+                    <span class="synergy-badge badge-chem">🧪 Chemia</span>
+                    <span class="synergy-badge badge-art">🎨 Estetyka</span>
+                    <span class="synergy-badge badge-tech">💻 CAD/3D</span>
+                    <br><br>
+                    <strong>Idealne dopasowanie:</strong> Precyzja rąk (jak harfa) + chemia materiałów + projektowanie cyfrowe + artystyczne wykończenie ceramiki. To dokładnie profil Zuzanny.
+                </td>
+                <td>
+                    <span class="pro">✔ Całkowicie bezpieczne przed AI</span> (robot nie zrobi artystycznego licowania)<br>
+                    <span class="pro">✔ Krótka nauka (2,5 roku)</span><br>
+                    <span class="pro">✔ Konkretny fach w ręku</span><br>
+                    <span class="pro">✔ Zarobki 4800→14000+ zł</span><br>
+                    <span class="pro">✔ Dostępne lokalnie!</span><br>
+                    <span class="pro">✔ Możliwość własnego laboratorium</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Praca siedząca, wymagająca ogromnej cierpliwości</span><br>
+                    <span class="con">⚠ Niższe zarobki na start (rosną z biegłością)</span><br>
+                    <span class="con">⚠ Mało kontaktu z ludźmi (praca z materiałem)</span>
+                </td>
+                <td><span class="rating rating-top">⭐ TOP 1<br>IDEALNE</span></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Protetyk Słuchu</strong><br>
+                    <span class="local-badge">📍 Zielona Góra</span><br>
+                    <small>Szkoła policealna 2 lata</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-music">🎵 Słuch</span>
+                    <span class="synergy-badge badge-manual">✋ Manualne</span>
+                    <span class="synergy-badge badge-people">👥 Ludzie</span>
+                    <br><br>
+                    <strong>Dla muzyka:</strong> Audiometria = praca z częstotliwościami i barwą dźwięku. Otoplastyka (wkładki) = praca manualna. Wykształcenie muzyczne = przewaga.
+                </td>
+                <td>
+                    <span class="pro">✔ Szybkie wejście na rynek (2 lata)</span><br>
+                    <span class="pro">✔ Stabilna praca (starzejące się społeczeństwo)</span><br>
+                    <span class="pro">✔ AI-odporne</span><br>
+                    <span class="pro">✔ Dostępne lokalnie</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Mniej kreatywne niż inne opcje</span><br>
+                    <span class="con">⚠ Aspekt "sprzedażowy" (prowizje)</span><br>
+                    <span class="con">⚠ Trudni pacjenci (seniorzy)</span><br>
+                    <span class="con">⚠ Zarobki 4500-6500 zł</span>
+                </td>
+                <td><span class="rating rating-high">🥉 TOP 3<br>STABILNA</span></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Inżynieria Biomedyczna</strong><br>
+                    <small>Politechniki (3,5-4 lata)</small><br>
+                    <small>Spec: protetyka, ortotyka</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-tech">💻 Tech</span>
+                    <span class="synergy-badge badge-chem">🧪 Materiały</span>
+                    <span class="synergy-badge badge-manual">✋ Manualne</span>
+                    <br><br>
+                    Łączy technikę z medycyną. Serwis aparatury, projektowanie protez. Praca często "w terenie", nie tylko biurko.
+                </td>
+                <td>
+                    <span class="pro">✔ Tytuł inżyniera</span><br>
+                    <span class="pro">✔ Rynek rośnie</span><br>
+                    <span class="pro">✔ Zarobki 6000-12000 zł</span><br>
+                    <span class="pro">✔ Różnorodna praca</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Dłuższe studia (4 lata)</span><br>
+                    <span class="con">⚠ Wymaga przeprowadzki</span><br>
+                    <span class="con">⚠ AI = narzędzie, trzeba się adaptować</span>
+                </td>
+                <td><span class="rating rating-good">DOBRA<br>Inżynierska</span></td>
+            </tr>
+
+            <!-- KATEGORIA: TECHNOLOGIE -->
+            <tr class="category-row">
+                <td colspan="5">💻 TECHNOLOGIE I NAUKI ŚCISŁE (Najwyższy potencjał zarobkowy)</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Bioinformatyka</strong><br>
+                    <small>Studia 3-5 lat</small><br>
+                    <small>UW, UJ, PW, UAM</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-logic">🧠 Logika</span>
+                    <span class="synergy-badge badge-chem">🧪 Chemia/Bio</span>
+                    <span class="synergy-badge badge-tech">💻 Kod</span>
+                    <br><br>
+                    <strong>Synergia z GeneQuest:</strong> Analiza danych genomowych, AI w drug discovery. Możliwość pracy nad FD/DMD w fundacji rodzinnej!
+                </td>
+                <td>
+                    <span class="pro">✔ TOP zarobki (7000-14000+ zł)</span><br>
+                    <span class="pro">✔ Praca zdalna możliwa</span><br>
+                    <span class="pro">✔ AI = sprzymierzeniec (AlphaFold)</span><br>
+                    <span class="pro">✔ Udział w ważnych projektach</span><br>
+                    <span class="pro">✔ Praktyka w fundacji!</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Wymaga polubienia programowania</span><br>
+                    <span class="con">⚠ Brak aspektu manualnego</span><br>
+                    <span class="con">⚠ 8h przy monitorach</span><br>
+                    <span class="con">⚠ Może być "za suche"</span>
+                </td>
+                <td><span class="rating rating-top">⭐ TOP 2<br>STRATEGICZNA</span></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Chemia / Inż. Chemiczna</strong><br>
+                    <small>Studia 3-5 lat</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-chem">🧪 Chemia</span>
+                    <span class="synergy-badge badge-manual">✋ Lab</span>
+                    <span class="synergy-badge badge-logic">🧠 Logika</span>
+                    <br><br>
+                    Jeśli kocha eksperymenty chemiczne. Inżynieria = bardziej praktyczna. Połączenie z programowaniem = chemoinformatyka.
+                </td>
+                <td>
+                    <span class="pro">✔ Praca laboratoryjna (nie tylko komputer)</span><br>
+                    <span class="pro">✔ Farmacja, kosmetyki, materiały</span><br>
+                    <span class="pro">✔ Chemoinformatyka = nisza</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Niższe zarobki na start (3000-6000)</span><br>
+                    <span class="con">⚠ Trudny rynek pracy w Polsce</span><br>
+                    <span class="con">⚠ Często trzeba wyjechać</span>
+                </td>
+                <td><span class="rating rating-good">DOBRA<br>(dla pasjonata)</span></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Informatyka</strong><br>
+                    <small>Studia lub praktyka w ORYX IT</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-tech">💻 Kod</span>
+                    <span class="synergy-badge badge-logic">🧠 Logika</span>
+                    <br><br>
+                    Najwyższe zarobki. Możliwość praktyki w firmie ojca bez presji. Test czy programowanie to "to".
+                </td>
+                <td>
+                    <span class="pro">✔ Najwyższe zarobki (8000-20000+ zł)</span><br>
+                    <span class="pro">✔ Praca zdalna</span><br>
+                    <span class="pro">✔ Praktyka w ORYX IT</span>
+                </td>
+                <td>
+                    <span class="con">⚠ 8h w kodzie</span><br>
+                    <span class="con">⚠ Ciągła nauka (technologie się zmieniają)</span><br>
+                    <span class="con">⚠ AI zmienia rynek – wymaga adaptacji</span><br>
+                    <span class="con">⚠ Brak aspektu manualnego/artystycznego</span>
+                </td>
+                <td><span class="rating rating-good">DOBRA<br>(finansowo)</span></td>
+            </tr>
+
+            <!-- KATEGORIA: RZEMIOSŁO ARTYSTYCZNE -->
+            <tr class="category-row">
+                <td colspan="5">🎨 ELITARNE RZEMIOSŁO ARTYSTYCZNE (Dla pasjonatów)</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Lutnictwo Artystyczne</strong><br>
+                    <small>AM Poznań (jedyna w PL)</small><br>
+                    <small>lub czeladnictwo u mistrza</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-music">🎵 Słuch</span>
+                    <span class="synergy-badge badge-manual">✋ Drewno</span>
+                    <span class="synergy-badge badge-chem">🧪 Lakiery</span>
+                    <span class="synergy-badge badge-art">🎨 Rzeźba</span>
+                    <br><br>
+                    <strong>Elitarne:</strong> Wykorzystuje słuch muzyczny harpistki, zdolności rzeźbiarskie, chemię (lakiery, konserwacja). Praca z "duszą".
+                </td>
+                <td>
+                    <span class="pro">✔ 100% odporne na AI</span><br>
+                    <span class="pro">✔ Praca z fizyczną materią</span><br>
+                    <span class="pro">✔ Prestiż w wąskim gronie</span><br>
+                    <span class="pro">✔ Unikalność w skali świata</span>
+                </td>
+                <td>
+                    <span class="con">⚠ BARDZO wąska nisza</span><br>
+                    <span class="con">⚠ Niestabilne zarobki na start</span><br>
+                    <span class="con">⚠ Wymaga pasji graniczącej z obsesją</span><br>
+                    <span class="con">⚠ Trudny egzamin wstępny</span>
+                </td>
+                <td><span class="rating rating-niche">NISZOWA<br>(dla pasjonata)</span></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Konserwacja Zabytków</strong><br>
+                    <small>ASP (5 lat, jednolite mgr)</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-art">🎨 Rysunek</span>
+                    <span class="synergy-badge badge-chem">🧪 Chemia</span>
+                    <span class="synergy-badge badge-manual">✋ Manualne</span>
+                    <br><br>
+                    Renowacja obrazów, rzeźb, architektury. Wymaga: rysunek + malarstwo + wiedza chemiczna o materiałach.
+                </td>
+                <td>
+                    <span class="pro">✔ AI-odporne</span><br>
+                    <span class="pro">✔ Praca z misją</span><br>
+                    <span class="pro">✔ Prestiż (muzea, zabytki)</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Trudne egzaminy wstępne</span><br>
+                    <span class="con">⚠ 5 lat studiów</span><br>
+                    <span class="con">⚠ Niskie zarobki na start (3000-6000)</span><br>
+                    <span class="con">⚠ Praca projektowa (granty)</span>
+                </td>
+                <td><span class="rating rating-niche">NISZOWA<br>(z misją)</span></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Architektura Wnętrz</strong><br>
+                    <span class="local-badge">📍 Zielona Góra (UZ)</span><br>
+                    <small>3,5-5 lat</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-art">🎨 Estetyka</span>
+                    <span class="synergy-badge badge-tech">💻 CAD</span>
+                    <span class="synergy-badge badge-logic">🧠 Ergonomia</span>
+                    <br><br>
+                    Inżynieria + sztuka. Projektowanie przestrzeni, mebli. Wymaga teczki prac.
+                </td>
+                <td>
+                    <span class="pro">✔ Dostępne lokalnie!</span><br>
+                    <span class="pro">✔ Łączy kreatywność z techniką</span><br>
+                    <span class="pro">✔ Zarobki 5000-12000 zł</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Wymaga egzaminu z rysunku</span><br>
+                    <span class="con">⚠ Nadgodziny przed deadline'ami</span><br>
+                    <span class="con">⚠ AI wchodzi w projektowanie</span>
+                </td>
+                <td><span class="rating rating-good">DOBRA<br>(lokalna)</span></td>
+            </tr>
+
+            <!-- KATEGORIA: SZTUKA CYFROWA -->
+            <tr class="category-row">
+                <td colspan="5">🎮 SZTUKA I TECHNOLOGIA CYFROWA (Kreatywne + Tech)</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Sound Design / Reżyseria Dźwięku</strong><br>
+                    <small>AM Bydgoszcz (NOWA spec!)</small><br>
+                    <small>UMFC Warszawa, AM Katowice</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-music">🎵 Słuch</span>
+                    <span class="synergy-badge badge-tech">💻 Tech</span>
+                    <span class="synergy-badge badge-art">🎨 Kreacja</span>
+                    <br><br>
+                    <strong>Idealne dla harpistki:</strong> Kształcenie słuchowe + umysł ścisły. Praca z dźwiękiem w filmie, grach, reklamie.
+                </td>
+                <td>
+                    <span class="pro">✔ Wykorzystuje wykształcenie muzyczne</span><br>
+                    <span class="pro">✔ AM Bydgoszcz ma NOWĄ specjalność!</span><br>
+                    <span class="pro">✔ Praca kreatywno-techniczna</span><br>
+                    <span class="pro">✔ Zarobki 4000-15000 zł</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Niestabilność (projekty, freelance)</span><br>
+                    <span class="con">⚠ Deadline'y, nocki</span><br>
+                    <span class="con">⚠ Wymaga przeprowadzki</span>
+                </td>
+                <td><span class="rating rating-high">🥇 TOP 4<br>KREATYWNA</span></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Game Development</strong><br>
+                    <small>CDV Poznań, SWPS Kraków</small><br>
+                    <small>lub: portfolio + kursy</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-art">🎨 Rysunek</span>
+                    <span class="synergy-badge badge-tech">💻 Tech</span>
+                    <span class="synergy-badge badge-music">🎵 Sound</span>
+                    <br><br>
+                    Concept Art, Sound Design, Tech Art. Można specjalizować się w dźwięku (idealne dla muzyka).
+                </td>
+                <td>
+                    <span class="pro">✔ Wykorzystuje talent do rysowania</span><br>
+                    <span class="pro">✔ Sound Designer = nisza dla muzyka</span><br>
+                    <span class="pro">✔ Portfolio > dyplom</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Konkurencja z AI (generowanie obrazów)</span><br>
+                    <span class="con">⚠ Crunch, stres, presja</span><br>
+                    <span class="con">⚠ Niestabilność zatrudnienia</span>
+                </td>
+                <td><span class="rating rating-risky">ŚREDNIA<br>(ryzykowna)</span></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Grafika / Concept Art</strong><br>
+                    <small>ASP lub kursy specjalistyczne</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-art">🎨 Rysunek</span>
+                    <span class="synergy-badge badge-tech">💻 Digital</span>
+                    <br><br>
+                    Wykorzystanie talentu do mangi/anime. Ale: AI generuje obrazy – artysta musi mieć unikalny styl.
+                </td>
+                <td>
+                    <span class="pro">✔ Praca twórcza</span><br>
+                    <span class="pro">✔ Możliwość freelance</span>
+                </td>
+                <td>
+                    <span class="con">⚠ DUŻA konkurencja z AI</span><br>
+                    <span class="con">⚠ "10 razy poprawiasz pod klienta"</span><br>
+                    <span class="con">⚠ Niestabilne zarobki</span>
+                </td>
+                <td><span class="rating rating-risky">RYZYKOWNA<br>(AI zagrożenie)</span></td>
+            </tr>
+
+            <!-- KATEGORIA: TERAPIA -->
+            <tr class="category-row">
+                <td colspan="5">🧑‍🏫 EDUKACJA I TERAPIA (AI-odporne, ludzkie)</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Muzykoterapia</strong><br>
+                    <span class="local-badge">📍 Zielona Góra (UZ)</span><br>
+                    <small>AM Wrocław, Łódź, Katowice</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-music">🎵 Muzyka</span>
+                    <span class="synergy-badge badge-people">👥 Terapia</span>
+                    <br><br>
+                    Łączy zdolności muzyczne z zainteresowaniem psychologicznym. UZ ma tę specjalność!
+                </td>
+                <td>
+                    <span class="pro">✔ AI nie zastąpi relacji terapeuta-pacjent</span><br>
+                    <span class="pro">✔ Dostępne lokalnie</span><br>
+                    <span class="pro">✔ Poczucie misji</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Niskie zarobki (3000-6000 zł)</span><br>
+                    <span class="con">⚠ Obciążenie emocjonalne</span><br>
+                    <span class="con">⚠ Trudni pacjenci</span>
+                </td>
+                <td><span class="rating rating-high">🥈 TOP 5<br>Z MISJĄ</span></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>Nauczyciel Plastyki</strong><br>
+                    <small>Edukacja artystyczna + pedagogika</small>
+                </td>
+                <td>
+                    <span class="synergy-badge badge-art">🎨 Rysunek</span>
+                    <span class="synergy-badge badge-people">👥 Dzieci</span>
+                    <br><br>
+                    Wykorzystanie talentu plastycznego w pracy z dziećmi. Stabilna praca, ale niskie zarobki.
+                </td>
+                <td>
+                    <span class="pro">✔ Stabilna praca</span><br>
+                    <span class="pro">✔ AI-odporne</span><br>
+                    <span class="pro">✔ Wakacje, ferie</span>
+                </td>
+                <td>
+                    <span class="con">⚠ Niskie zarobki (5000-8000 zł)</span><br>
+                    <span class="con">⚠ Trudne dzieci</span><br>
+                    <span class="con">⚠ Biurokracja szkolna</span>
+                </td>
+                <td><span class="rating rating-good">STABILNA<br>(niskie zarobki)</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== WERSJA 2: PERSPEKTYWA OSOBISTA ==================== -->
+    <h2><span class="emoji">💭</span> WERSJA 2: "Check Your Pulse" (Perspektywa Osobista)</h2>
+    <p>Nie patrz "co się opłaca" – jak chcesz spędzać 8 godzin dziennie przez najbliższe lata?</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 18%;">Świat</th>
+                <th style="width: 40%;">Pytania do Zuzanny (Rachunek Sumienia)</th>
+                <th style="width: 42%;">Jak wygląda "zwykły wtorek" w tej pracy?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>🦷 Świat Precyzji Medycznej</strong><br><small>(Technik dent., Protetyk słuchu)</small></td>
+                <td>
+                    <div class="question">
+                        "Czy lubisz, gdy po 4 godzinach dłubania powstaje jeden, idealny przedmiot?"<br><br>
+                        "Czy cieszy Cię, że Twoja praca dosłownie zmienia czyjeś życie (uśmiech, słyszenie)?"<br><br>
+                        "Czy wolisz pracować w ciszy z materiałem, czy rozmawiać z ludźmi?"
+                    </div>
+                </td>
+                <td class="tuesday">
+                    <span class="tuesday-time">8:00</span> – Przychodzisz do laboratorium. Biały fartuch, lampa, lupy.<br>
+                    <span class="tuesday-time">9:00</span> – Projektujesz koronę w programie CAD (jak modelowanie 3D).<br>
+                    <span class="tuesday-time">11:00</span> – Frezarka kończy podbudowę. Zaczynasz ręczne nakładanie ceramiki.<br>
+                    <span class="tuesday-time">14:00</span> – Przerwa. W tle leci podcast.<br>
+                    <span class="tuesday-time">15:00</span> – Szlifujesz, polerując. Porównujesz kolor z próbnikiem.<br>
+                    <span class="tuesday-time">17:00</span> – Gotowe. Możesz dotknąć efekt swojej pracy. Jutro ktoś się uśmiechnie tym zębem.
+                </td>
+            </tr>
+            
+            <tr>
+                <td><strong>🧬 Świat Danych i Kodu</strong><br><small>(Bioinformatyka, IT)</small></td>
+                <td>
+                    <div class="question">
+                        "Czy lubisz rozwiązywać zagadki logiczne, które nie mają od razu rozwiązania?"<br><br>
+                        "Czy nie przeszkadza Ci, że efekt Twojej pracy widać TYLKO na ekranie?"<br><br>
+                        "Czy jesteś gotowa ciągle się uczyć, bo stare technologie przestają działać?"<br><br>
+                        "Czy ciekawi Cię, jak znaleźć wzorzec w milionach danych o genach?"
+                    </div>
+                </td>
+                <td class="tuesday">
+                    <span class="tuesday-time">9:00</span> – Logujesz się (może z domu, może z biura). Dwa monitory, kawa.<br>
+                    <span class="tuesday-time">10:00</span> – Spotkanie online z biologami: "Mamy nowe dane z sekwencjonowania".<br>
+                    <span class="tuesday-time">11:00</span> – Piszesz skrypt w Pythonie. Szukasz wzorców w danych.<br>
+                    <span class="tuesday-time">14:00</span> – Przerwa. OBOWIĄZKOWY spacer – ciało odpoczywało cały dzień.<br>
+                    <span class="tuesday-time">15:00</span> – Błąd w kodzie. Szukasz 2 godziny. Znajdujesz. Satysfakcja!<br>
+                    <span class="tuesday-time">18:00</span> – Twój mózg pracował na 100%. Ciało potrzebuje ruchu. Idziesz na siłownię.
+                </td>
+            </tr>
+            
+            <tr>
+                <td><strong>🎵 Świat Dźwięku</strong><br><small>(Sound Design, Reżyseria dźwięku)</small></td>
+                <td>
+                    <div class="question">
+                        "Czy słyszysz rzeczy, których inni nie słyszą? (fałszywa nuta, szum w tle)"<br><br>
+                        "Czy lubisz bawić się programami do obróbki dźwięku?"<br><br>
+                        "Czy akceptujesz, że deadline może oznaczać nockę w studio?"<br><br>
+                        "Czy fascynuje Cię, jak dźwięk zmienia emocje w filmie/grze?"
+                    </div>
+                </td>
+                <td class="tuesday">
+                    <span class="tuesday-time">10:00</span> – Przychodzisz do studia. Słuchawki, DAW (Ableton/Pro Tools), kawa.<br>
+                    <span class="tuesday-time">11:00</span> – Dostajesz scenę z gry: "Potrzebujemy odgłosu kroków w lesie".<br>
+                    <span class="tuesday-time">13:00</span> – Nagrywasz foley (chodzenie po liściach w studiu).<br>
+                    <span class="tuesday-time">15:00</span> – Miksowanie. Dostrajasz reverb, panoramę, głośność.<br>
+                    <span class="tuesday-time">17:00</span> – Feedback od reżysera: "Zmień na bardziej niepokojące". Poprawiasz.<br>
+                    <span class="tuesday-time">19:00</span> – Deadline za 2 dni. Zostajesz dłużej. Ale to Twoja kreacja.
+                </td>
+            </tr>
+            
+            <tr>
+                <td><strong>🪵 Świat Materii i Rzemiosła</strong><br><small>(Lutnictwo, Konserwacja)</small></td>
+                <td>
+                    <div class="question">
+                        "Czy lubisz mieć brudne ręce od drewna/farby/gipsu?"<br><br>
+                        "Czy potrafisz 3 miesiące pracować nad JEDNYM przedmiotem?"<br><br>
+                        "Czy drewno, zapach lakieru, cichy warsztat – to brzmi jak raj czy więzienie?"<br><br>
+                        "Czy jesteś gotowa zarabiać mniej, ale robić coś z duszą?"
+                    </div>
+                </td>
+                <td class="tuesday">
+                    <span class="tuesday-time">8:00</span> – Otwierasz warsztat. Zapach drewna. Narzędzia na ścianie.<br>
+                    <span class="tuesday-time">9:00</span> – Kontynuujesz pracę nad płytą wierzchnią skrzypiec. Dłutko, papier ścierny.<br>
+                    <span class="tuesday-time">12:00</span> – Sprawdzasz grubość – milimetry się liczą (wpływ na dźwięk).<br>
+                    <span class="tuesday-time">14:00</span> – Przychodzi klient – muzyk z pękniętą wiolonczelą. Omawiasz naprawę.<br>
+                    <span class="tuesday-time">16:00</span> – Wracasz do swojego instrumentu. Cisza. Skupienie. Medytacja w pracy.<br>
+                    <span class="tuesday-time">18:00</span> – Kończysz. Ten instrument może przetrwać 200 lat.
+                </td>
+            </tr>
+            
+            <tr>
+                <td><strong>👥 Świat Pomagania</strong><br><small>(Muzykoterapia, Nauczyciel)</small></td>
+                <td>
+                    <div class="question">
+                        "Czy cudze emocje i problemy Cię NAPĘDZAJĄ, czy OBCIĄŻAJĄ?"<br><br>
+                        "Czy masz cierpliwość tłumaczyć to samo trzeci raz?"<br><br>
+                        "Czy potrafisz zostawić problemy pacjenta/ucznia w pracy, nie zabierać do domu?"<br><br>
+                        "Czy wolisz widzieć postępy u innych, czy u siebie?"
+                    </div>
+                </td>
+                <td class="tuesday">
+                    <span class="tuesday-time">8:00</span> – Przygotowujesz salę. Instrumenty perkusyjne, gitara, odtwarzacz.<br>
+                    <span class="tuesday-time">9:00</span> – Sesja z grupą dzieci z autyzmem. Granie wspólne na bębnach.<br>
+                    <span class="tuesday-time">11:00</span> – Sesja indywidualna: senior z demencją. Śpiewacie piosenki z jego młodości. Płacze ze szczęścia.<br>
+                    <span class="tuesday-time">13:00</span> – Przerwa. Musisz "naładować baterie" – to praca emocjonalnie wymagająca.<br>
+                    <span class="tuesday-time">15:00</span> – Dokumentacja (niestety, też jest).<br>
+                    <span class="tuesday-time">17:00</span> – Wracasz do domu zmęczona, ale z poczuciem sensu. Dzisiaj ktoś się uśmiechnął dzięki Tobie.
+                </td>
+            </tr>
+            
+            <tr>
+                <td><strong>🧪 Świat Eksperymentu</strong><br><small>(Chemia, Lab)</small></td>
+                <td>
+                    <div class="question">
+                        "Czy cieszy Cię, gdy 'coś się z czymś miesza' i powstaje nowa substancja?"<br><br>
+                        "Czy lubisz protokoły, procedury, powtarzalność?"<br><br>
+                        "Czy fartuch i okulary ochronne brzmią cool czy nudno?"
+                    </div>
+                </td>
+                <td class="tuesday">
+                    <span class="tuesday-time">8:00</span> – Wchodzisz do laboratorium. Fartuch, rękawice, okulary.<br>
+                    <span class="tuesday-time">9:00</span> – Przygotowujesz próbki do analizy. Pipetowanie, ważenie.<br>
+                    <span class="tuesday-time">11:00</span> – Uruchamiasz chromatograf. Czekasz na wyniki.<br>
+                    <span class="tuesday-time">14:00</span> – Analizujesz dane przy komputerze. Raport dla klienta.<br>
+                    <span class="tuesday-time">16:00</span> – Sprzątanie sprzętu (WAŻNE w lab!).<br>
+                    <span class="tuesday-time">17:00</span> – Koniec. Rutyna, ale satysfakcjonująca dla analitycznego umysłu.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== GAP YEAR ==================== -->
+    <h2><span class="emoji">🔄</span> OPCJA SPECJALNA: Gap Year (Rok Testowy)</h2>
+    
+    <div class="warning-box">
+        <strong>⚡ Dlaczego to ma sens dla Zuzanny?</strong><br><br>
+        Macie UNIKALNE zasoby, których 99% maturzystów nie ma:
+        <ul>
+            <li><strong>ORYX IT</strong> – test czy programowanie/bioinformatyka to "to" (bez presji, w bezpiecznych warunkach)</li>
+            <li><strong>GeneQuest Foundation</strong> – realne doświadczenie z danymi biologicznymi, research, praca przy FD/DMD</li>
+            <li><strong>Zielona Góra</strong> – brak kosztów wynajmu, lokalne szkoły (Medyk, UZ)</li>
+        </ul>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Pytanie</th>
+                <th style="width: 75%;">Do przemyślenia</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Czy boisz się "wypaść z rytmu"?</strong></td>
+                <td>
+                    <div class="question">
+                        Wielu ludzi wraca po roku przerwy z WIĘKSZĄ motywacją, bo wiedzą już czego NIE chcą. Rok testowania różnych rzeczy może być wart więcej niż 5 lat studiów "w ciemno".
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Co można zrobić w Gap Year?</strong></td>
+                <td>
+                    <span class="pro">✔ 3 miesiące w ORYX IT</span> – test programowania/bioinformatyki<br>
+                    <span class="pro">✔ 3 miesiące w GeneQuest</span> – research, dane, kontakt z naukowcami<br>
+                    <span class="pro">✔ Kurs rysunku/concept artu</span> – test czy to pasja czy hobby<br>
+                    <span class="pro">✔ Praktyki w laboratorium dent. / u lutnika</span> – test "świata materii"<br>
+                    <span class="pro">✔ Zdanie dodatkowego przedmiotu na maturze</span> (jeśli trzeba)
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Efekt po roku</strong></td>
+                <td>
+                    Wiesz czego <strong>NIE</strong> chcesz (równie ważne jak wiedzieć co chcesz).<br>
+                    Masz <strong>realne doświadczenie</strong> do CV.<br>
+                    Świadomy wybór kierunku = mniejsze ryzyko porzucenia studiów.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== PODSUMOWANIE ==================== -->
+    <h2><span class="emoji">🎯</span> MOJA REKOMENDACJA (synteza wszystkich raportów)</h2>
+
+    <div class="highlight-box">
+        <h3 style="margin-top: 0; color: #065f46;">🏆 TOP 3 dla profilu Zuzanny:</h3>
+        <table style="box-shadow: none; margin-bottom: 0;">
+            <tr>
+                <td style="width: 10%; text-align: center; font-size: 2em;">🥇</td>
+                <td>
+                    <strong>Technik Dentystyczny (CAD/CAM)</strong><br>
+                    <small>Najlepsza synergia: manualne + chemia + estetyka + tech. Szybko (2,5 roku). Lokalnie. AI-odporne. Konkretny fach.</small>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-size: 2em;">🥈</td>
+                <td>
+                    <strong>Bioinformatyka (+ praktyka w GeneQuest)</strong><br>
+                    <small>Najwyższy potencjał. Synergia z fundacją. ALE: wymaga polubienia programowania. Test przez Gap Year.</small>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-size: 2em;">🥉</td>
+                <td>
+                    <strong>Sound Design / Reżyseria Dźwięku</strong><br>
+                    <small>Idealne dla harpistki. Kreatywne + techniczne. ALE: wymaga przeprowadzki, niestabilna branża.</small>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h3 style="margin-top: 0; color: #1e40af;">💡 Kluczowa zasada z wszystkich raportów:</h3>
+        <p style="font-size: 1.2em; text-align: center; margin: 20px 0;">
+            <em>"AI nie eliminuje zawodów – eliminuje <strong>przeciętność</strong>.<br>
+            Wygrywają ci, którzy łączą unikalne kompetencje i ciągle się uczą."</em>
+        </p>
+        <p style="text-align: center;">
+            Zuzanna ma UNIKALNY profil (muzyka + chemia + manualne + logika). To PRZEWAGA, nie problem wyboru.
+        </p>
+    </div>
+
+    <div class="footer">
+        <p>Opracowanie na podstawie: ChatGPT Pro, ChatGPT Deep Research, Gemini Deep Research, Claude Opus | Styczeń 2026</p>
+        <p><small>Dla Darka i Zuzanny z GeneQuest Foundation</small></p>
+    </div>
+
+</body>
+</html>

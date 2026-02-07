@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zawody z Perspektywami 2025–2030 | Analiza dla Zuzanny</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf8f5;
+            --card: #ffffff;
+            --ink: #1a1815;
+            --muted: #6b6560;
+            --line: rgba(26, 24, 21, 0.08);
+            --accent-emerald: #059669;
+            --accent-emerald-soft: #d1fae5;
+            --accent-amber: #d97706;
+            --accent-amber-soft: #fef3c7;
+            --accent-violet: #7c3aed;
+            --accent-violet-soft: #ede9fe;
+            --accent-rose: #e11d48;
+            --accent-rose-soft: #ffe4e6;
+            --accent-sky: #0284c7;
+            --accent-sky-soft: #e0f2fe;
+            --accent-teal: #0d9488;
+            --accent-teal-soft: #ccfbf1;
+            --gradient-warm: linear-gradient(135deg, #fef3c7 0%, #fce7f3 50%, #ede9fe 100%);
+            --gradient-cool: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 50%, #ede9fe 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.65;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: var(--gradient-warm);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(5,150,105,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: var(--muted);
+            max-width: 800px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .sources {
+            display: inline-flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 0.8em;
+            color: var(--muted);
+            position: relative;
+        }
+
+        .source-badge {
+            background: rgba(255,255,255,0.7);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            font-weight: 500;
+        }
+
+        /* Section headers */
+        .section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.6em;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2 .icon {
+            font-size: 1.2em;
+        }
+
+        .section-intro {
+            color: var(--muted);
+            font-size: 0.95em;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            padding: 20px 24px;
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85em;
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.excellent { background: var(--accent-emerald); }
+        .legend-dot.good { background: var(--accent-teal); }
+        .legend-dot.moderate { background: var(--accent-amber); }
+        .legend-dot.niche { background: var(--accent-violet); }
+        .legend-dot.business { background: var(--accent-rose); }
+
+        /* Table wrapper */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 40px rgba(26, 24, 21, 0.08);
+            background: var(--card);
+            border: 1px solid var(--line);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        thead th {
+            background: linear-gradient(180deg, var(--ink) 0%, #2d2a26 100%);
+            color: #f5f0eb;
+            font-size: 0.72em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 18px 16px;
+            text-align: left;
+            vertical-align: bottom;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        thead th:first-child {
+            border-radius: 19px 0 0 0;
+        }
+
+        thead th:last-child {
+            border-radius: 0 19px 0 0;
+        }
+
+        tbody td {
+            padding: 18px 16px;
+            vertical-align: top;
+            border-bottom: 1px solid var(--line);
+        }
+
+        tbody tr:hover td {
+            background: rgba(5, 150, 105, 0.03);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:last-child td:first-child {
+            border-radius: 0 0 0 19px;
+        }
+
+        tbody tr:last-child td:last-child {
+            border-radius: 0 0 19px 0;
+        }
+
+        /* Category rows */
+        .category-row td {
+            background: var(--gradient-cool) !important;
+            font-weight: 700;
+            font-size: 0.9em;
+            color: var(--accent-emerald);
+            padding: 14px 16px;
+            border-bottom: 2px solid var(--accent-emerald);
+            letter-spacing: 0.02em;
+        }
+
+        .category-row.bio td { 
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
+            color: #047857;
+            border-color: #059669;
+        }
+
+        .category-row.health td { 
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%) !important;
+            color: #0369a1;
+            border-color: #0284c7;
+        }
+
+        .category-row.tech td { 
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%) !important;
+            color: #6d28d9;
+            border-color: #7c3aed;
+        }
+
+        .category-row.craft td { 
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+            color: #b45309;
+            border-color: #d97706;
+        }
+
+        .category-row.business td { 
+            background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%) !important;
+            color: #be123c;
+            border-color: #e11d48;
+        }
+
+        /* Path name */
+        .path-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.05em;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .path-detail {
+            font-size: 0.82em;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.68em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .tag-manual { background: #fef3c7; color: #92400e; }
+        .tag-chem { background: #dbeafe; color: #1e40af; }
+        .tag-logic { background: #ede9fe; color: #5b21b6; }
+        .tag-art { background: #fce7f3; color: #9d174d; }
+        .tag-music { background: #cffafe; color: #0e7490; }
+        .tag-ai-safe { background: #d1fae5; color: #047857; }
+        .tag-ai-risk { background: #fee2e2; color: #b91c1c; }
+        .tag-genequest { background: linear-gradient(135deg, #fef3c7, #d1fae5); color: #047857; border: 1px solid #a7f3d0; }
+
+        /* Rating */
+        .rating {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .rating-bar {
+            display: flex;
+            gap: 3px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e5e7eb;
+        }
+
+        .dot.filled-emerald { background: var(--accent-emerald); }
+        .dot.filled-teal { background: var(--accent-teal); }
+        .dot.filled-amber { background: var(--accent-amber); }
+        .dot.filled-violet { background: var(--accent-violet); }
+        .dot.filled-rose { background: var(--accent-rose); }
+
+        .rating-label {
+            font-size: 0.72em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-left: 8px;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .rating-label.excellent { background: var(--accent-emerald-soft); color: var(--accent-emerald); }
+        .rating-label.good { background: var(--accent-teal-soft); color: var(--accent-teal); }
+        .rating-label.moderate { background: var(--accent-amber-soft); color: var(--accent-amber); }
+        .rating-label.niche { background: var(--accent-violet-soft); color: var(--accent-violet); }
+        .rating-label.business { background: var(--accent-rose-soft); color: var(--accent-rose); }
+
+        /* Pros/Cons */
+        .pros { color: var(--accent-emerald); }
+        .cons { color: var(--accent-rose); font-size: 0.9em; }
+
+        .icon-check::before { content: '✓ '; font-weight: bold; }
+        .icon-warn::before { content: '⚠ '; }
+
+        /* Salary */
+        .salary {
+            font-family: 'Source Sans 3', monospace;
+            font-weight: 600;
+            color: var(--accent-emerald);
+        }
+
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #d1fae5 100%);
+            border: 2px solid #a7f3d0;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+
+        .info-box h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            color: var(--ink);
+        }
+
+        .info-box p {
+            font-size: 0.95em;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 30px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85em;
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid var(--line);
+        }
+
+        footer strong {
+            color: var(--ink);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            table { font-size: 0.85em; }
+            thead th, tbody td { padding: 14px 12px; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 30px 20px; }
+            h1 { font-size: 1.8em; }
+            .legend { gap: 16px; padding: 16px; }
+            table { font-size: 0.8em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🎯 Zawody z Perspektywami 2025–2030</h1>
+        <p class="subtitle">Analiza dopasowania do profilu Zuzanny: zdolności manualne, chemia, rysunek, słuch absolutny. Uwzględniono kontekst fundacji GeneQuest i potencjał własnego biznesu.</p>
+        <div class="sources">
+            <span class="source-badge">📊 WEF Future of Jobs 2025</span>
+            <span class="source-badge">📋 MEN – Lista Zawodów 2025</span>
+            <span class="source-badge">📈 Barometr Zawodów PL</span>
+            <span class="source-badge">🏥 Cedefop / ILO</span>
+        </div>
+    </header>
+
+    <div class="info-box">
+        <h3>🧬 Kontekst: Fundacja GeneQuest</h3>
+        <p>Darek zakłada fundację poszukującą leku na Fibrous Dysplasia i będzie potrzebował maszyn do badań genetycznych. Zuzanna zrobiła już kurs z podstaw – opcje związane z diagnostyką genetyczną / sekwencjonowaniem NGS mogą otworzyć ścieżkę współpracy przy badaniach fundacji, a jednocześnie dać stabilny, perspektywiczny zawód.</p>
+    </div>
+
+    <section class="section">
+        <h2><span class="icon">📋</span> Legenda ocen dopasowania</h2>
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-dot excellent"></span>
+                <span><strong>Idealne</strong> – wszystkie predyspozycje + AI-safe</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-dot good"></span>
+                <span><strong>Bardzo dobre</strong> – większość predyspozycji</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-dot moderate"></span>
+                <span><strong>Dobre</strong> – częściowe dopasowanie</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-dot niche"></span>
+                <span><strong>Niszowe</strong> – wymaga pasji/specjalizacji</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-dot business"></span>
+                <span><strong>Biznes</strong> – własna działalność</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2><span class="icon">🔬</span> Przegląd zawodów z dobrymi perspektywami</h2>
+        <p class="section-intro">Zestawienie zawodów wg trendów rynkowych + ocena dopasowania do unikalnego profilu predyspozycji.</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 18%;">Zawód / Ścieżka</th>
+                        <th style="width: 20%;">Dlaczego pasuje?</th>
+                        <th style="width: 18%;">Perspektywy & Zarobki</th>
+                        <th style="width: 18%;">Ścieżka edukacyjna</th>
+                        <th style="width: 14%;">Ryzyka / Uwagi</th>
+                        <th style="width: 12%;">Ocena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- BIOTECHNOLOGIA / DIAGNOSTYKA -->
+                    <tr class="category-row bio">
+                        <td colspan="6">🧬 BIOTECHNOLOGIA & DIAGNOSTYKA LABORATORYJNA</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Diagnosta Laboratoryjny – Genetyka</div>
+                            <div class="path-detail">Specjalizacja: genetyka medyczna, diagnostyka molekularna</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-logic">Logika</span>
+                                <span class="tag tag-ai-safe">AI-safe</span>
+                                <span class="tag tag-genequest">GeneQuest ✨</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Wykorzystanie wiedzy chemicznej</span><br>
+                            <span class="pros icon-check">Praca z nowoczesnymi technologiami (NGS, PCR)</span><br>
+                            <span class="pros icon-check">Bezpośrednie zastosowanie w badaniach fundacji</span><br>
+                            <span class="pros icon-check">Praca precyzyjna, laboratoryjna</span>
+                        </td>
+                        <td>
+                            <div class="salary">8 345 – 10 554 zł brutto</div>
+                            <small>(od VII 2025 r.)</small><br><br>
+                            <span class="pros icon-check">Wzrost 15-20% do 2028</span><br>
+                            <span class="pros icon-check">Deficyt specjalistów</span><br>
+                            <span class="pros icon-check">Możliwość pracy w prywatnych labów</span>
+                        </td>
+                        <td>
+                            <strong>Studia 5-letnie:</strong><br>
+                            Analityka medyczna / Diagnostyka lab.<br><br>
+                            <strong>Specjalizacja (2-3 lata):</strong><br>
+                            Genetyka medyczna lub patologia molekularna
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Długa ścieżka (5+ lat)</span><br>
+                            <span class="cons icon-warn">Wymaga ciągłego dokształcania</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-emerald"></span>
+                                    <span class="dot filled-emerald"></span>
+                                    <span class="dot filled-emerald"></span>
+                                    <span class="dot filled-emerald"></span>
+                                    <span class="dot filled-emerald"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label excellent">Idealne</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Technik Analityki Medycznej</div>
+                            <div class="path-detail">Szybsza ścieżka do laboratorium</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-manual">Precyzja</span>
+                                <span class="tag tag-ai-safe">AI-safe</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Szybkie wejście na rynek (3 lata)</span><br>
+                            <span class="pros icon-check">Praca laboratoryjna, rutyna</span><br>
+                            <span class="pros icon-check">Możliwość dalszego studiowania</span>
+                        </td>
+                        <td>
+                            <div class="salary">~7 690 zł brutto</div>
+                            <small>(od VII 2025 r.)</small><br><br>
+                            <span class="pros icon-check">Stabilne zatrudnienie</span>
+                        </td>
+                        <td>
+                            <strong>Szkoła policealna / Studia lic. 3 lata</strong><br>
+                            Kierunek: Analityka medyczna
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Niższe zarobki bez specjalizacji</span><br>
+                            <span class="cons icon-warn">Ograniczone samodzielne uprawnienia</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label good">Bardzo dobre</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Biotechnolog</div>
+                            <div class="path-detail">Farmacja, środowisko, biomedycyna</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-logic">Logika</span>
+                                <span class="tag tag-genequest">GeneQuest ✨</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Zawód ceniony na Zachodzie</span><br>
+                            <span class="pros icon-check">Rozwój medycyny, farmakologii</span><br>
+                            <span class="pros icon-check">Niska konkurencja w PL</span>
+                        </td>
+                        <td>
+                            <div class="salary">7 000 – 12 000+ zł brutto</div>
+                            <br>
+                            <span class="pros icon-check">Wzrost znaczenia w UE</span><br>
+                            <span class="pros icon-check">Projekty R&D, farmacja</span>
+                        </td>
+                        <td>
+                            <strong>Studia 5-letnie (mgr inż.):</strong><br>
+                            Biotechnologia<br><br>
+                            <strong>Opcjonalnie:</strong> doktorat lub praca w przemyśle
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Długie studia</span><br>
+                            <span class="cons icon-warn">Praca może być "sucha" (mniej manualna)</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label good">Bardzo dobre</span>
+                        </td>
+                    </tr>
+
+                    <!-- OCHRONA ZDROWIA -->
+                    <tr class="category-row health">
+                        <td colspan="6">🏥 OCHRONA ZDROWIA – DEFICYTOWE</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Technik Dentystyczny (CAD/CAM)</div>
+                            <div class="path-detail">Protetyka, ceramika, cyfrowe projektowanie</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-art">Estetyka</span>
+                                <span class="tag tag-ai-safe">AI-safe</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Idealne dla zdolności manualnych</span><br>
+                            <span class="pros icon-check">Chemia materiałowa + estetyka</span><br>
+                            <span class="pros icon-check">Praca precyzyjna, cicha</span><br>
+                            <span class="pros icon-check">Robot nie zrobi artystycznego wykończenia</span>
+                        </td>
+                        <td>
+                            <div class="salary">5 000 – 15 000+ zł brutto</div>
+                            <small>(zależne od specjalizacji)</small><br><br>
+                            <span class="pros icon-check">Ceramika/CAD = top zarobki</span><br>
+                            <span class="pros icon-check">Możliwość własnego laboratorium</span>
+                        </td>
+                        <td>
+                            <strong>Szkoła policealna 2,5 roku</strong><br>
+                            Technik dentystyczny<br><br>
+                            <strong>Potem:</strong> kursy CAD/CAM, ceramiki
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Praca siedząca</span><br>
+                            <span class="cons icon-warn">Na początek niższe zarobki</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-emerald"></span>
+                                    <span class="dot filled-emerald"></span>
+                                    <span class="dot filled-emerald"></span>
+                                    <span class="dot filled-emerald"></span>
+                                    <span class="dot filled-emerald"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label excellent">Idealne</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Protetyk Słuchu</div>
+                            <div class="path-detail">Aparaty słuchowe, audiometria</div>
+                            <div class="tags">
+                                <span class="tag tag-music">Słuch</span>
+                                <span class="tag tag-manual">Precyzja</span>
+                                <span class="tag tag-ai-safe">AI-safe</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Wykorzystanie słuchu absolutnego!</span><br>
+                            <span class="pros icon-check">Praca z dźwiękiem, częstotliwościami</span><br>
+                            <span class="pros icon-check">Kontakt z pacjentem</span>
+                        </td>
+                        <td>
+                            <div class="salary">5 500 – 10 000 zł brutto</div>
+                            <br>
+                            <span class="pros icon-check">Starzejące się społeczeństwo</span><br>
+                            <span class="pros icon-check">Szybkie wejście na rynek</span>
+                        </td>
+                        <td>
+                            <strong>Szkoła policealna 2 lata</strong><br>
+                            Protetyk słuchu
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Mniej kreatywne</span><br>
+                            <span class="cons icon-warn">Praca "sprzedażowa" + trudny pacjent</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot filled-teal"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label good">Bardzo dobre</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Technik Optyk / Optometrysta</div>
+                            <div class="path-detail">Okulary, soczewki, badanie wzroku</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-art">Estetyka</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Zdolności manualne w użyciu</span><br>
+                            <span class="pros icon-check">Aspekt estetyczny (dopasowanie opraw)</span><br>
+                            <span class="pros icon-check">Ścieżka do własnego salonu</span>
+                        </td>
+                        <td>
+                            <div class="salary">4 000 – 7 000 zł brutto</div>
+                            <small>(etat)</small><br><br>
+                            <span class="pros icon-check">65% Polaków nosi okulary</span><br>
+                            <span class="pros icon-check">Możliwość własnego biznesu</span>
+                        </td>
+                        <td>
+                            <strong>Szkoła policealna 2 lata</strong><br>
+                            Technik optyk<br><br>
+                            <strong>Opcja:</strong> studia optometria (3-5 lat)
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Konkurencja sieciówek</span><br>
+                            <span class="cons icon-warn">Rynek dość nasycony w dużych miastach</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label moderate">Dobre</span>
+                        </td>
+                    </tr>
+
+                    <!-- TECHNOLOGIE -->
+                    <tr class="category-row tech">
+                        <td colspan="6">💻 TECHNOLOGIE & IT (wysoka konkurencja)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Bioinformatyka / Data Science</div>
+                            <div class="path-detail">Analiza danych biologicznych, AI w medycynie</div>
+                            <div class="tags">
+                                <span class="tag tag-logic">Logika</span>
+                                <span class="tag tag-chem">Chemia/Bio</span>
+                                <span class="tag tag-genequest">GeneQuest ✨</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Wykorzystuje umysł ścisły</span><br>
+                            <span class="pros icon-check">Top zarobki, praca zdalna</span><br>
+                            <span class="pros icon-check">Współpraca z AI, nie konkurencja</span>
+                        </td>
+                        <td>
+                            <div class="salary">12 000 – 25 000+ zł brutto</div>
+                            <br>
+                            <span class="pros icon-check">Globalny rynek</span><br>
+                            <span class="pros icon-check">Projekty przy lekach, genomice</span>
+                        </td>
+                        <td>
+                            <strong>Studia 5-letnie:</strong><br>
+                            Bioinformatyka, Informatyka + bio, Data Science<br><br>
+                            <strong>Opcja:</strong> Gap Year + test w firmie
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Wymaga polubienia kodu</span><br>
+                            <span class="cons icon-warn">Brak aspektu manualnego</span><br>
+                            <span class="cons icon-warn">Może być "za suche"</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label moderate">Dobre (inżynier)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">GameDev – Tech Art / Concept Art</div>
+                            <div class="path-detail">Grafika w grach, efekty wizualne</div>
+                            <div class="tags">
+                                <span class="tag tag-art">Rysunek</span>
+                                <span class="tag tag-logic">Technologia</span>
+                                <span class="tag tag-ai-risk">AI-ryzyko</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Wykorzystanie talentu plastycznego</span><br>
+                            <span class="pros icon-check">Tech Art = logika + sztuka</span><br>
+                            <span class="pros icon-check">Ciekawe projekty</span>
+                        </td>
+                        <td>
+                            <div class="salary">8 000 – 18 000+ zł brutto</div>
+                            <small>(dla specjalistów)</small><br><br>
+                            <span class="cons icon-warn">Niestabilność zatrudnienia</span>
+                        </td>
+                        <td>
+                            <strong>Portfolio + kursy</strong><br>
+                            Grafika 3D, Unreal/Unity<br><br>
+                            <strong>Opcja:</strong> Szkoła artystyczna + tech
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Konkurencja z AI (generowanie)</span><br>
+                            <span class="cons icon-warn">Crunch, stres, deadline'y</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot filled-amber"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label moderate">Średnie/Dobre</span>
+                        </td>
+                    </tr>
+
+                    <!-- RZEMIOSŁO -->
+                    <tr class="category-row craft">
+                        <td colspan="6">🔧 RZEMIOSŁO & ZAWODY MANUALNE (deficyt pracowników)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Lutnictwo Artystyczne</div>
+                            <div class="path-detail">Budowa/renowacja instrumentów</div>
+                            <div class="tags">
+                                <span class="tag tag-music">Słuch absolutny</span>
+                                <span class="tag tag-manual">Drewno</span>
+                                <span class="tag tag-chem">Lakiery</span>
+                                <span class="tag tag-ai-safe">AI-safe</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Elitarne rzemiosło</span><br>
+                            <span class="pros icon-check">Słuch + rzeźbiarstwo + chemia</span><br>
+                            <span class="pros icon-check">Całkowicie AI-odporne</span><br>
+                            <span class="pros icon-check">Praca z "duszą" i materią</span>
+                        </td>
+                        <td>
+                            <div class="salary">Niestabilne → 10 000+ zł</div>
+                            <small>(po zbudowaniu renomy)</small><br><br>
+                            <span class="pros icon-check">Prestiż w wąskim gronie</span>
+                        </td>
+                        <td>
+                            <strong>Akademia Muzyczna</strong><br>
+                            Lutnictwo lub<br><br>
+                            <strong>Czeladnictwo/terminowanie</strong><br>
+                            u mistrza lutnika
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Bardzo wąska nisza</span><br>
+                            <span class="cons icon-warn">Trudny start</span><br>
+                            <span class="cons icon-warn">Wymaga pasji graniczącej z obsesją</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-violet"></span>
+                                    <span class="dot filled-violet"></span>
+                                    <span class="dot filled-violet"></span>
+                                    <span class="dot filled-violet"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label niche">Niszowe (pasja)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Konserwator Zabytków</div>
+                            <div class="path-detail">Malarstwo, rzeźba, rzemiosło</div>
+                            <div class="tags">
+                                <span class="tag tag-art">Rysunek</span>
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-ai-safe">AI-safe</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Wszystkie predyspozycje!</span><br>
+                            <span class="pros icon-check">Chemia konserwatorska + estetyka</span><br>
+                            <span class="pros icon-check">Praca z materią, cicha</span>
+                        </td>
+                        <td>
+                            <div class="salary">5 000 – 12 000 zł brutto</div>
+                            <br>
+                            <span class="pros icon-check">Stabilne zapotrzebowanie</span><br>
+                            <span class="pros icon-check">Możliwość pracy za granicą</span>
+                        </td>
+                        <td>
+                            <strong>ASP – Konserwacja i Restauracja</strong><br>
+                            5-6 lat, magister<br><br>
+                            <strong>Specjalizacje:</strong> malarstwo, papier, metal
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Długie studia artystyczne</span><br>
+                            <span class="cons icon-warn">Wymaga talentu + egzaminy</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-violet"></span>
+                                    <span class="dot filled-violet"></span>
+                                    <span class="dot filled-violet"></span>
+                                    <span class="dot filled-violet"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label niche">Niszowe (talent)</span>
+                        </td>
+                    </tr>
+
+                    <!-- WŁASNY BIZNES -->
+                    <tr class="category-row business">
+                        <td colspan="6">🚀 WŁASNY BIZNES – POMYSŁY</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Salon Optyczny (własny)</div>
+                            <div class="path-detail">Biznes oparty na wykształceniu optyka</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-art">Estetyka</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">65% Polaków potrzebuje okularów</span><br>
+                            <span class="pros icon-check">Wysokie marże (30-50%)</span><br>
+                            <span class="pros icon-check">Możliwość franczyzy</span>
+                        </td>
+                        <td>
+                            <div class="salary">Inwestycja: 100-200k zł</div>
+                            <small>(franczyza od 50k)</small><br><br>
+                            <span class="pros icon-check">Zwrot w 2-3 lata</span><br>
+                            <span class="cons icon-warn">Konkurencja sieciówek</span>
+                        </td>
+                        <td>
+                            <strong>1.</strong> Technik optyk (2 lata)<br>
+                            <strong>2.</strong> Doświadczenie w salonie<br>
+                            <strong>3.</strong> Własna działalność
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Wysokie koszty startu</span><br>
+                            <span class="cons icon-warn">Ryzyko lokalizacji</span><br>
+                            <span class="cons icon-warn">Wymaga zdolności biznesowych</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-rose"></span>
+                                    <span class="dot filled-rose"></span>
+                                    <span class="dot filled-rose"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label business">Biznes</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Laboratorium Diagnostyczne (sekwencjonowanie)</div>
+                            <div class="path-detail">Usługi NGS, PCR, diagnostyka genetyczna</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-logic">Logika</span>
+                                <span class="tag tag-genequest">GeneQuest ✨</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Bezpośrednie powiązanie z fundacją</span><br>
+                            <span class="pros icon-check">Rynek rośnie dynamicznie</span><br>
+                            <span class="pros icon-check">B2B dla innych firm/lekarzy</span>
+                        </td>
+                        <td>
+                            <div class="salary">Inwestycja: 500k+ zł</div>
+                            <small>(sprzęt NGS bardzo drogi)</small><br><br>
+                            <span class="pros icon-check">Wysoka rentowność</span><br>
+                            <span class="pros icon-check">Synergia z fundacją</span>
+                        </td>
+                        <td>
+                            <strong>1.</strong> Studia diagnostyka/biotech<br>
+                            <strong>2.</strong> Doświadczenie w laboratorium<br>
+                            <strong>3.</strong> Własna działalność + partnerstwa
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Bardzo wysokie koszty startu</span><br>
+                            <span class="cons icon-warn">Regulacje, akredytacje</span><br>
+                            <span class="cons icon-warn">Wymaga specjalistycznej wiedzy</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-rose"></span>
+                                    <span class="dot filled-rose"></span>
+                                    <span class="dot filled-rose"></span>
+                                    <span class="dot filled-rose"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label business">Biznes (długoterm.)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="path-name">Chemia – Produkcja Specjalistyczna</div>
+                            <div class="path-detail">Spożywcza, kosmetyki, pirotechnika</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-manual">Precyzja</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="pros icon-check">Wiedza chemiczna w praktyce</span><br>
+                            <span class="pros icon-check">Nisza = mniejsza konkurencja</span><br>
+                            <span class="pros icon-check">Różne branże do wyboru</span>
+                        </td>
+                        <td>
+                            <div class="salary">Inwestycja: 50-500k zł</div>
+                            <small>(zależnie od skali)</small><br><br>
+                            <span class="pros icon-check">Pirotechnika: wysoka marża</span><br>
+                            <span class="cons icon-warn">Regulacje BHP, koncesje</span>
+                        </td>
+                        <td>
+                            <strong>1.</strong> Studia chemia / technologia chem.<br>
+                            <strong>2.</strong> Kursy specjalistyczne<br>
+                            <strong>3.</strong> Własna produkcja
+                        </td>
+                        <td>
+                            <span class="cons icon-warn">Wymaga kapitału</span><br>
+                            <span class="cons icon-warn">Regulacje (szczególnie pirotechnika)</span><br>
+                            <span class="cons icon-warn">Ryzyko biznesowe</span>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <div class="rating-bar">
+                                    <span class="dot filled-rose"></span>
+                                    <span class="dot filled-rose"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <span class="rating-label business">Biznes (ryzyko)</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>Źródła danych:</strong> World Economic Forum "Future of Jobs 2025" • MEN Lista Zawodów Przyszłości 2025 • Barometr Zawodów PL • Cedefop/ILO Prognozy do 2035 • Ministerstwo Zdrowia – Siatka Płac 2025</p>
+        <p style="margin-top: 12px;">Wygenerowano: styczeń 2026 | Analiza dla: Zuzanna | Kontekst: Fundacja GeneQuest</p>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synteza Ścieżek Kariery – Zuzanna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f7f5f0;
+            --card: #ffffff;
+            --ink: #1a1815;
+            --muted: #6b6560;
+            --line: rgba(26, 24, 21, 0.08);
+            --accent: #c17f59;
+            --accent-soft: #e8d5c4;
+            --success: #5a8a6e;
+            --success-soft: #e0efe6;
+            --warning: #c9a857;
+            --warning-soft: #f5efd8;
+            --info: #5a7a9a;
+            --info-soft: #dfeaf5;
+            --niche: #8a6a9a;
+            --niche-soft: #f0e8f5;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        h2 .emoji {
+            font-size: 1.1em;
+        }
+        
+        .section-intro {
+            color: var(--muted);
+            font-size: 0.95em;
+            margin-bottom: 24px;
+            max-width: 800px;
+        }
+        
+        /* Main comparison table */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(26, 24, 21, 0.06);
+            background: var(--card);
+            border: 1px solid var(--line);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+        
+        thead th {
+            background: linear-gradient(180deg, var(--ink) 0%, #2d2a26 100%);
+            color: #f5f0eb;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 16px 14px;
+            text-align: left;
+            vertical-align: bottom;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            white-space: nowrap;
+        }
+        
+        tbody td {
+            padding: 16px 14px;
+            vertical-align: top;
+            border-bottom: 1px solid var(--line);
+        }
+        
+        tbody tr:hover td {
+            background: rgba(193, 127, 89, 0.04);
+        }
+        
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Category rows */
+        .category-row td {
+            background: linear-gradient(135deg, var(--accent-soft) 0%, #f5ebe3 100%) !important;
+            font-weight: 700;
+            font-size: 0.95em;
+            color: var(--accent);
+            padding: 12px 14px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        /* Path name styling */
+        .path-name {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        
+        .path-detail {
+            font-size: 0.85em;
+            color: var(--muted);
+        }
+        
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 8px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+        
+        .tag-top { background: var(--success-soft); color: var(--success); border: 1px solid rgba(90, 138, 110, 0.2); }
+        .tag-manual { background: #fef3e2; color: #a66d3a; border: 1px solid #f0d9b8; }
+        .tag-quiet { background: #e8f4ec; color: #4a7c5a; border: 1px solid #c8dece; }
+        .tag-remote { background: #f5f0fa; color: #7a5a9a; border: 1px solid #e0d5ea; }
+        .tag-ai { background: #e8f5e8; color: #3a7a4a; border: 1px solid #c8e8c8; }
+        .tag-niche { background: var(--niche-soft); color: var(--niche); border: 1px solid rgba(138, 106, 154, 0.2); }
+        .tag-local { background: var(--warning-soft); color: #8a7030; border: 1px solid #e8ddb0; }
+        .tag-music { background: var(--info-soft); color: var(--info); border: 1px solid rgba(90, 122, 154, 0.2); }
+        
+        /* Rating dots */
+        .rating {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .dot.filled { background: linear-gradient(180deg, var(--accent) 0%, #a66d3a 100%); border-color: transparent; }
+        
+        /* Pros/cons */
+        .pro { color: var(--success); font-size: 0.9em; }
+        .con { color: #c45a5a; font-size: 0.9em; }
+        
+        /* Questions table */
+        .questions-table td {
+            padding: 20px;
+        }
+        
+        .question-text {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.1em;
+            font-style: italic;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        
+        .scale-hint {
+            font-size: 0.8em;
+            color: var(--muted);
+            background: rgba(0,0,0,0.03);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+        
+        .suggests {
+            font-size: 0.85em;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+        
+        .suggests strong {
+            color: var(--accent);
+        }
+        
+        /* Input field styling */
+        .answer-input {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        .answer-input input[type="range"] {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--info-soft) 0%, var(--success-soft) 100%);
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+        
+        .answer-input input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        
+        .answer-value {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            color: var(--muted);
+            margin-top: 50px;
+            padding: 24px;
+            border-top: 1px solid var(--line);
+            font-size: 0.9em;
+        }
+        
+        footer em {
+            display: block;
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.2em;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, var(--accent-soft) 0%, #f5ebe3 100%);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 18px 22px;
+            margin-bottom: 28px;
+        }
+        
+        .info-box strong {
+            color: var(--accent);
+        }
+        
+        /* Highlight row */
+        .highlight-row td {
+            background: linear-gradient(135deg, var(--success-soft) 0%, #f0f8f4 100%) !important;
+        }
+        
+        /* Print styles */
+        @media print {
+            body { background: white; padding: 10px; }
+            .table-wrap { box-shadow: none; }
+            .answer-input { display: none; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            table { font-size: 0.8em; min-width: 900px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header>
+        <h1>🎯 Synteza Ścieżek Kariery</h1>
+        <p class="subtitle">Kompletne zestawienie na podstawie 6 analiz AI • Profil: zdolności manualne + chemia + rysunek + muzyka</p>
+    </header>
+
+    <!-- ==================== TABELA 1: PORÓWNANIE CECH ==================== -->
+    <section class="section">
+        <h2><span class="emoji">📊</span> Tabela 1: Porównanie Ścieżek</h2>
+        <p class="section-intro">Każda ścieżka oceniona pod kątem kluczowych kryteriów. Sortowane od najlepszego dopasowania do profilu.</p>
+        
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="min-width: 180px;">Ścieżka</th>
+                        <th style="min-width: 100px;">Czas nauki</th>
+                        <th style="min-width: 200px;">Charakter pracy</th>
+                        <th style="min-width: 90px;">Zarobki</th>
+                        <th style="min-width: 80px;">AI</th>
+                        <th style="min-width: 80px;">Zdalnie?</th>
+                        <th style="min-width: 80px;">Lokalizacja</th>
+                        <th style="min-width: 200px;">Plusy</th>
+                        <th style="min-width: 200px;">Minusy</th>
+                        <th style="min-width: 90px;">Fit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <!-- KATEGORIA: TOP -->
+                    <tr class="category-row">
+                        <td colspan="10">⭐ TOP – Idealne dopasowanie do wizji "warsztat + precyzja + namacalny efekt"</td>
+                    </tr>
+                    
+                    <tr class="highlight-row">
+                        <td>
+                            <div class="path-name">Technik Dentystyczny</div>
+                            <div class="path-detail">CAD/CAM + Ceramika</div>
+                            <div class="tags">
+                                <span class="tag tag-top">🥇 TOP 1</span>
+                                <span class="tag tag-local">📍 Lokalne</span>
+                            </div>
+                        </td>
+                        <td><strong>2,5 roku</strong><br><span class="path-detail">Policealna (Medyk)</span></td>
+                        <td>Laboratorium protetyczne. Porcelana, mikroskop, lupy. Precyzyjne nakładanie warstw. Praca w ciszy, samodzielna.</td>
+                        <td><strong>4-5k → 12k+</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Bezpieczne</span></td>
+                        <td>Nie</td>
+                        <td><strong>Wszędzie</strong><br><span class="path-detail">Zielona Góra ✓</span></td>
+                        <td class="pro">✓ Idealnie pasuje do "wizji"<br>✓ Krótka nauka<br>✓ Bezpłatne<br>✓ Chemia + manualne + estetyka</td>
+                        <td class="con">⚠ Praca siedząca<br>⚠ Niższe zarobki na start<br>⚠ Mało ludzi</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Złotnik-Jubiler</div>
+                            <div class="path-detail">Rzemiosło + projektowanie</div>
+                            <div class="tags">
+                                <span class="tag tag-top">🥈 TOP</span>
+                                <span class="tag tag-manual">Manualne</span>
+                            </div>
+                        </td>
+                        <td><strong>1-2 lata</strong><br><span class="path-detail">Kurs / branżowa</span></td>
+                        <td>Warsztat. Metale szlachetne, kamienie, lutowanie. Precyzja + estetyka. Możliwość własnej marki.</td>
+                        <td><strong>3,5k → 15k+</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Bezpieczne</span></td>
+                        <td>Nie</td>
+                        <td><strong>Wszędzie</strong><br><span class="path-detail">Własna pracownia</span></td>
+                        <td class="pro">✓ Łączy rysunek z rzemiosłem<br>✓ Szybki start<br>✓ Własna działalność<br>✓ Kreatywne</td>
+                        <td class="con">⚠ Wymaga inwestycji<br>⚠ Trzeba budować klientów</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Konserwacja Dzieł Sztuki</div>
+                            <div class="path-detail">ASP Wrocław/UMK Toruń</div>
+                            <div class="tags">
+                                <span class="tag tag-top">🥉 TOP</span>
+                                <span class="tag tag-niche">Prestiżowa</span>
+                            </div>
+                        </td>
+                        <td><strong>6 lat</strong><br><span class="path-detail">Jednolite magisterskie</span></td>
+                        <td>Praca z zabytkami. Malarstwo, papier, kamień, drewno. Chemia + manualne + estetyka. Lab + teren.</td>
+                        <td><strong>4-5k → 15k</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Bezpieczne</span></td>
+                        <td>Nie</td>
+                        <td>Wrocław, Toruń<br><span class="path-detail">Potem własna pracownia</span></td>
+                        <td class="pro">✓ Spełnia wizję warsztatową<br>✓ Chemia + rysunek<br>✓ Prestiż<br>✓ Praca z "duszą"</td>
+                        <td class="con">⚠ Długie studia (6 lat)<br>⚠ Wymaga portfolio<br>⚠ Egzamin wstępny</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Zegarmistrz</div>
+                            <div class="path-detail">Mikromechanika</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Precyzja</span>
+                                <span class="tag tag-niche">Niszowe</span>
+                            </div>
+                        </td>
+                        <td><strong>3 lata</strong><br><span class="path-detail">Branżowa / kursy</span></td>
+                        <td>Warsztat. Mikromechanika, lupy, precyzja na najwyższym poziomie. Praca w skupieniu.</td>
+                        <td><strong>3,5k → 12k+</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Bezpieczne</span></td>
+                        <td>Nie</td>
+                        <td>Wszędzie<br><span class="path-detail">Mało miejsc nauki</span></td>
+                        <td class="pro">✓ Bardzo pasuje do wizji<br>✓ Prestiżowa nisza<br>✓ Praca w ciszy<br>✓ Namacalny efekt</td>
+                        <td class="con">⚠ Wąska nisza<br>⚠ Mało miejsc nauki<br>⚠ Wymaga pasji</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- KATEGORIA: MUZYCZNE -->
+                    <tr class="category-row">
+                        <td colspan="10">🎵 Muzyczne – Wykorzystują słuch i doświadczenie ze szkoły muzycznej</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Lutnictwo Artystyczne</div>
+                            <div class="path-detail">AM Poznań</div>
+                            <div class="tags">
+                                <span class="tag tag-music">Muzyczne</span>
+                                <span class="tag tag-niche">Elitarne</span>
+                            </div>
+                        </td>
+                        <td><strong>5 lat</strong><br><span class="path-detail">3+2 lata</span></td>
+                        <td>Warsztat. Drewno, lakiery, akustyka. Budowa/renowacja instrumentów. Absolutna precyzja.</td>
+                        <td><strong>4-6k → 20k+</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Bezpieczne</span></td>
+                        <td>Nie</td>
+                        <td>Poznań<br><span class="path-detail">Potem własna pracownia</span></td>
+                        <td class="pro">✓ Słuch + manualne<br>✓ Prestiż<br>✓ Praca z "duszą"<br>✓ Instrument przetrwa 200 lat</td>
+                        <td class="con">⚠ Trzeba zrobić instrument na egzamin!<br>⚠ Wąski rynek<br>⚠ Wymaga pasji-obsesji</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Reżyseria Dźwięku</div>
+                            <div class="path-detail">Sound design / postprodukcja</div>
+                            <div class="tags">
+                                <span class="tag tag-music">Słuch</span>
+                                <span class="tag tag-remote">Zdalnie ok</span>
+                            </div>
+                        </td>
+                        <td><strong>3-5 lat</strong><br><span class="path-detail">Studia lub kursy</span></td>
+                        <td>Studio. DAW, mikrofony, miks. Film, gry, reklama. Deadline'y, ale praca kreatywna.</td>
+                        <td><strong>4,5k → 15k</strong></td>
+                        <td><span class="tag tag-ai">⚡ Dźwignia</span></td>
+                        <td>Częściowo</td>
+                        <td>Duże miasta<br><span class="path-detail">Freelance zdalnie</span></td>
+                        <td class="pro">✓ Wykorzystuje słuch<br>✓ Kreatywne<br>✓ Częściowo zdalnie<br>✓ Bez "historii muzyki"</td>
+                        <td class="con">⚠ Deadline'y, stres<br>⚠ Dużo komputera<br>⚠ Freelance = niestabilność</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Protetyk Słuchu</div>
+                            <div class="path-detail">Policealna</div>
+                            <div class="tags">
+                                <span class="tag tag-music">Akustyka</span>
+                                <span class="tag tag-local">📍 Lokalne</span>
+                            </div>
+                        </td>
+                        <td><strong>2 lata</strong><br><span class="path-detail">Policealna</span></td>
+                        <td>Gabinet + pacjenci. Dopasowanie aparatów słuchowych. Akustyka + kontakt z ludźmi (seniorzy).</td>
+                        <td><strong>4k → 7k</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Bezpieczne</span></td>
+                        <td>Nie</td>
+                        <td><strong>Wszędzie</strong><br><span class="path-detail">Zielona Góra ✓</span></td>
+                        <td class="pro">✓ Szybkie (2 lata)<br>✓ Stabilne<br>✓ Wykorzystuje słuch<br>✓ Dostępne lokalnie</td>
+                        <td class="con">⚠ Dużo kontaktu z seniorami<br>⚠ Mniej kreatywne<br>⚠ Część "sprzedażowa"</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- KATEGORIA: NAUKOWE/IT -->
+                    <tr class="category-row">
+                        <td colspan="10">🧪 Naukowe / IT – Wysokie zarobki, ale dużo komputera</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Bioinformatyka</div>
+                            <div class="path-detail">Studia + praktyka w fundacji</div>
+                            <div class="tags">
+                                <span class="tag tag-remote">Zdalnie ok</span>
+                                <span class="tag tag-ai">⚡ Dźwignia</span>
+                            </div>
+                        </td>
+                        <td><strong>3-5 lat</strong><br><span class="path-detail">Lub 6-12 mies. + projekty</span></td>
+                        <td>Komputer, dane, pipeline'y. Analiza genomów, projektowanie leków. Praca zdalna możliwa.</td>
+                        <td><strong>6-9k → 20k+</strong></td>
+                        <td><span class="tag tag-ai">⚡ Dźwignia</span></td>
+                        <td><strong>Tak</strong></td>
+                        <td>Zdalnie / duże miasta<br><span class="path-detail">Fundacja = start!</span></td>
+                        <td class="pro">✓ Top zarobki<br>✓ Synergia z fundacją<br>✓ Praca zdalna<br>✓ Przyszłościowe</td>
+                        <td class="con">⚠ 8h+ przy komputerze!<br>⚠ Brak aspektu manualnego<br>⚠ Może być "za suche"</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Biotechnologia / Chemia</div>
+                            <div class="path-detail">Studia</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Lab + komputer</span>
+                            </div>
+                        </td>
+                        <td><strong>3-5 lat</strong><br><span class="path-detail">Studia</span></td>
+                        <td>Laboratorium "mokre" + komputer. Analizy, pipetowanie, eksperymenty. Mix manualnego i danych.</td>
+                        <td><strong>4,5-6k → 12k</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Wsparcie</span></td>
+                        <td>Częściowo</td>
+                        <td>Duże miasta / przemysł<br><span class="path-detail">Zielona Góra - ograniczone</span></td>
+                        <td class="pro">✓ Mokry lab + analiza<br>✓ Synergia z fundacją<br>✓ Chemia praktyczna</td>
+                        <td class="con">⚠ Studia wymagające<br>⚠ Zmianowość możliwa<br>⚠ Mniej lokalizacji</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- KATEGORIA: ARTYSTYCZNE -->
+                    <tr class="category-row">
+                        <td colspan="10">🎨 Artystyczne / Kreatywne – Wykorzystują rysunek, ale konkurencja z AI</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Wizualizacja Naukowa</div>
+                            <div class="path-detail">Ilustracja 2D/3D</div>
+                            <div class="tags">
+                                <span class="tag tag-remote">Zdalnie ok</span>
+                                <span class="tag tag-ai">🛡️ AI-odporna</span>
+                            </div>
+                        </td>
+                        <td><strong>Portfolio</strong><br><span class="path-detail">Bez 5 lat studiów</span></td>
+                        <td>Komputer (2D/3D). Ilustracje naukowe, wyjaśniające. Rysunek + ścisłość + poprawność merytoryczna.</td>
+                        <td><strong>Zróżnicowane</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Odporna</span></td>
+                        <td><strong>Tak</strong></td>
+                        <td>Rynek globalny</td>
+                        <td class="pro">✓ Rysunek + ścisłość<br>✓ AI-odporna (poprawność!)<br>✓ Zdalnie<br>✓ Portfolio z fundacji</td>
+                        <td class="con">⚠ Dużo komputera<br>⚠ Trzeba budować portfolio<br>⚠ Freelance</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">GameDev / Concept Art</div>
+                            <div class="path-detail">Tech Art</div>
+                            <div class="tags">
+                                <span class="tag tag-remote">Zdalnie ok</span>
+                            </div>
+                        </td>
+                        <td><strong>Portfolio</strong><br><span class="path-detail">Kursy + projekty</span></td>
+                        <td>Komputer. Tworzenie grafik do gier, szkice, modele 3D. Praca zespołowa, deadline'y.</td>
+                        <td><strong>5-8k → 12k+</strong></td>
+                        <td><span class="con">⚠ Ryzyko</span></td>
+                        <td><strong>Tak</strong></td>
+                        <td>Duże miasta / zdalnie</td>
+                        <td class="pro">✓ Wykorzystuje rysunek<br>✓ Kreatywne<br>✓ Możliwe zdalnie</td>
+                        <td class="con">⚠ Konkurencja z AI!<br>⚠ Crunch, stres<br>⚠ Niestabilność</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- KATEGORIA: INNE -->
+                    <tr class="category-row">
+                        <td colspan="10">📦 Inne opcje – Do rozważenia w szczególnych przypadkach</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Optyk Okularowy</div>
+                            <div class="tags">
+                                <span class="tag tag-local">📍 Lokalne</span>
+                                <span class="tag tag-manual">Manualne</span>
+                            </div>
+                        </td>
+                        <td><strong>2 lata</strong></td>
+                        <td>Warsztat + salon. Szlifowanie soczewek, obsługa klientów.</td>
+                        <td><strong>4k → 8k</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Niski</span></td>
+                        <td>Nie</td>
+                        <td>Wszędzie</td>
+                        <td class="pro">✓ Szybki start<br>✓ Stabilne<br>✓ Manualne</td>
+                        <td class="con">⚠ Kontakt z klientami<br>⚠ Mniej kreatywne</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Muzykoterapia</div>
+                            <div class="tags">
+                                <span class="tag tag-music">Muzyczne</span>
+                            </div>
+                        </td>
+                        <td><strong>3 lata</strong></td>
+                        <td>Praca z pacjentami. Sesje terapeutyczne, kontakt z chorymi/niepełnosprawnymi.</td>
+                        <td><strong>3,5k → 8k</strong></td>
+                        <td><span class="tag tag-ai">🛡️ Bezpieczne</span></td>
+                        <td>Częściowo</td>
+                        <td>Wszędzie<br><span class="path-detail">Fundacja?</span></td>
+                        <td class="pro">✓ Wykorzystuje muzykę<br>✓ Sens pracy<br>✓ Synergia z fundacją</td>
+                        <td class="con">⚠ DUŻO kontaktu z ludźmi!<br>⚠ Obciążenie emocjonalne<br>⚠ Może nie pasować</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Gap Year + Fundacja</div>
+                            <div class="tags">
+                                <span class="tag tag-top">Strategiczny</span>
+                            </div>
+                        </td>
+                        <td><strong>1 rok</strong></td>
+                        <td>Testowanie: bioinformatyka w fundacji, kursy rysunku, praktyki w labie protetycznym...</td>
+                        <td><strong>Zależy</strong></td>
+                        <td>N/A</td>
+                        <td>Tak</td>
+                        <td>Zielona Góra</td>
+                        <td class="pro">✓ Bez presji<br>✓ Testowanie<br>✓ Lepsze przygotowanie<br>✓ Świadomy wybór</td>
+                        <td class="con">⚠ Wymaga dyscypliny<br>⚠ "Rok straty"?</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ==================== TABELA 2: PYTANIA DO SAMODIAGNOZY ==================== -->
+    <section class="section">
+        <h2><span class="emoji">🪞</span> Tabela 2: Pytania do Samodiagnozy</h2>
+        <p class="section-intro">Nie patrz na "co się opłaca", ale jak chcesz spędzać swoje 8 godzin dziennie. Wypełnij szczerze – to więcej powie niż 100 godzin dyskusji.</p>
+        
+        <div class="table-wrap">
+            <table class="questions-table">
+                <thead>
+                    <tr>
+                        <th style="min-width: 140px;">Obszar</th>
+                        <th style="min-width: 350px;">Pytanie</th>
+                        <th style="min-width: 140px;">Skala</th>
+                        <th style="min-width: 280px;">Co sugeruje wynik?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td><strong>🔋 Energia</strong></td>
+                        <td>
+                            <div class="question-text">"Po czym czujesz się lepiej: po pracy z ludźmi czy po pracy w skupieniu?"</div>
+                            <div class="answer-input">
+                                <span>1 = ludzie męczą</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = ludzie ładują</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: samodzielna<br>4–5: z ludźmi</span></td>
+                        <td class="suggests"><strong>Wysoko:</strong> muzykoterapia, protetyk słuchu, nauczyciel<br><strong>Nisko:</strong> technik dent., lab, warsztat solo</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>💻 Komputer</strong></td>
+                        <td>
+                            <div class="question-text">"Ile godzin dziennie jesteś w stanie realnie siedzieć przy komputerze bez cierpienia?"</div>
+                            <div class="answer-input">
+                                <span>1 = 1-2h max</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = 6-8h ok</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: manualne<br>4–5: IT/data</span></td>
+                        <td class="suggests"><strong>Wysoko:</strong> IT, bioinformatyka, animacja, UX<br><strong>Nisko:</strong> technik dent., lutnik, jubiler, lab</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>✋ Precyzja manualna</strong></td>
+                        <td>
+                            <div class="question-text">"Czy praca rękami 'na milimetry' daje Ci flow? (detal, cierpliwość, skupienie)"</div>
+                            <div class="answer-input">
+                                <span>1 = nie znoszę</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = kocham</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: unikać manualu<br>4–5: rzemiosło</span></td>
+                        <td class="suggests"><strong>Wysoko:</strong> technik dent., lutnictwo, jubiler, zegarmistrz, konserwacja<br><strong>Nisko:</strong> IT, muzykoterapia</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>🧪 STEM / Abstrakcja</strong></td>
+                        <td>
+                            <div class="question-text">"Na ile lubisz abstrakcję: wzory, zależności, 'dlaczego to działa'?"</div>
+                            <div class="answer-input">
+                                <span>1 = meh</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = uwielbiam</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: artystyczne<br>4–5: STEM/analiza</span></td>
+                        <td class="suggests"><strong>Wysoko:</strong> bioinformatyka, biotechnologia, akustyka<br><strong>Nisko:</strong> czysto artystyczne</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>🔬 Lab vs Dane</strong></td>
+                        <td>
+                            <div class="question-text">"Czy bardziej ciekawi Cię: lab i materia czy dane i modele?"</div>
+                            <div class="answer-input">
+                                <span>1 = tylko dane</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = tylko lab</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: bioinformatyka<br>4–5: lab/rzemiosło</span></td>
+                        <td class="suggests"><strong>1–2:</strong> bioinformatyka, data<br><strong>3:</strong> biotechnologia (mix)<br><strong>4–5:</strong> technik dent., lab, renowacja</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>🎨 Cel rysunku</strong></td>
+                        <td>
+                            <div class="question-text">"Czy wolisz: rysować tworząc świat (styl, emocje) czy rysować 'dla celu' (wyjaśnić coś)?"</div>
+                            <div class="answer-input">
+                                <span>1 = świat/styl</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = wyjaśnianie</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: concept art<br>4–5: wizualizacja</span></td>
+                        <td class="suggests"><strong>1–2:</strong> concept art, gamedev, animacja<br><strong>4–5:</strong> wizualizacja naukowa, UX, edukacja</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>😰 Stres / Deadline'y</strong></td>
+                        <td>
+                            <div class="question-text">"Jak znosisz terminy i poprawki (feedback, iteracje)?"</div>
+                            <div class="answer-input">
+                                <span>1 = źle</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = spoko</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: stabilne<br>4–5: projektowe</span></td>
+                        <td class="suggests"><strong>Wysoko:</strong> animacja, UX, IT, reżyseria dźwięku<br><strong>Nisko:</strong> rzemiosło, edukacja, medyczne</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>🏠 Stabilność</strong></td>
+                        <td>
+                            <div class="question-text">"Co jest ważniejsze: stabilny etat czy różnorodność i wolność?"</div>
+                            <div class="answer-input">
+                                <span>1 = wolność</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = etat</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: freelance<br>4–5: etat</span></td>
+                        <td class="suggests"><strong>5:</strong> nauczyciel, technik dent., protetyk słuchu<br><strong>1–2:</strong> freelance audio/art, własna pracownia</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>📍 Lokalizacja</strong></td>
+                        <td>
+                            <div class="question-text">"Czy chcesz/możesz wyjechać do dużego miasta na 3-5 lat?"</div>
+                            <div class="answer-input">
+                                <span>1 = nie</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = tak</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: lokalne/zdalne<br>4–5: studia</span></td>
+                        <td class="suggests"><strong>Wysoko:</strong> konserwacja (Wrocław), lutnictwo (Poznań), reżyseria dźwięku<br><strong>Nisko:</strong> technik dent., optyk, protetyk słuchu (lokalne)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>📜 Dyplom vs Portfolio</strong></td>
+                        <td>
+                            <div class="question-text">"Jak ważny jest dyplom vs umiejętność/portfolio?"</div>
+                            <div class="answer-input">
+                                <span>1 = portfolio</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = dyplom</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: kursy<br>4–5: studia</span></td>
+                        <td class="suggests"><strong>5:</strong> konserwacja (wymagany!), biotechnologia<br><strong>1–2:</strong> jubiler, gamedev, animacja, audio – liczy się showreel</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>⏰ Tempo</strong></td>
+                        <td>
+                            <div class="question-text">"Czy wolisz drogę 'szybko do zawodu' (1-2,5 roku) czy 'głębiej i dłużej' (3-6 lat)?"</div>
+                            <div class="answer-input">
+                                <span>1 = szybko</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = dłużej</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: policealna<br>4–5: studia</span></td>
+                        <td class="suggests"><strong>1–2:</strong> technik dent. (2,5r), jubiler (1-2r), policealna<br><strong>4–5:</strong> konserwacja (6 lat), bioinformatyka (5 lat)</td>
+                    </tr>
+                    
+                    <tr style="background: linear-gradient(135deg, rgba(193,127,89,0.08), rgba(232,213,196,0.3));">
+                        <td><strong>💡 KLUCZOWE</strong></td>
+                        <td>
+                            <div class="question-text">"Gdybyś miała wybrać 1 rzecz na 2 miesiące bez zobowiązań, co wybierasz?"</div>
+                            <div class="scale-hint">
+                                <strong>Opcje:</strong> KOD / LAB / ANIMACJA / WARSZTAT (fizyczny) / PRACA Z LUDŹMI
+                            </div>
+                        </td>
+                        <td><span class="path-detail">Wpisz wybór</span></td>
+                        <td class="suggests">To najlepszy kompas. Jedna rzecz, jeden mini-test (2-6 tygodni), bez wielkich deklaracji.</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="info-box" style="margin-top: 24px;">
+            <strong>💡 Pro tip:</strong> Po wypełnieniu weź 3 obszary, gdzie masz najwyższe wyniki, i ustaw <strong>3 mini-testy</strong> (po 2-6 tygodni każdy). To da więcej niż 100 godzin rozmów o przyszłości.
+        </div>
+    </section>
+
+    <footer>
+        <em>"AI nie eliminuje zawodów – eliminuje przeciętność. Wygrywają ci, którzy łączą unikalne kompetencje."</em>
+        <p>Synteza 6 raportów AI (ChatGPT, Gemini, Claude) • Styczeń 2026 • Dla Zuzanny z GeneQuest Foundation</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

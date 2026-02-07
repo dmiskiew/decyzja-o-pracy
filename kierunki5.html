@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ścieżki Kariery – Szczegółowa Mapa</title>
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --card: #fff;
+      --ink: #2d2a26;
+      --muted: #6b6560;
+      --line: rgba(139, 119, 101, 0.18);
+      --accent: #c77b4a;
+      --accent2: #8b6f5c;
+      --good: #5a9a6e;
+      --warn: #c9a857;
+      --craft: #a67c52;
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      background: linear-gradient(145deg, var(--bg) 0%, #f0ebe4 50%, #e8e0d5 100%);
+      color: var(--ink);
+      font: 14px/1.55 'Crimson Pro', Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+    }
+    
+    .wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.2em;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1em;
+      font-style: italic;
+      margin: 0;
+    }
+    
+    .intro-box {
+      background: linear-gradient(135deg, rgba(199, 123, 74, 0.08), rgba(166, 124, 82, 0.05));
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 18px 22px;
+      margin-bottom: 28px;
+      color: var(--muted);
+    }
+    
+    .intro-box strong {
+      color: var(--ink);
+    }
+    
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(45, 42, 38, 0.08), 0 2px 8px rgba(45, 42, 38, 0.04);
+    }
+    
+    table {
+      width: 100%;
+      min-width: 1300px;
+      border-collapse: collapse;
+      background: var(--card);
+    }
+    
+    thead th {
+      background: linear-gradient(180deg, #3d352e 0%, #2d2a26 100%);
+      color: #f5f0eb;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 16px 14px;
+      text-align: left;
+      vertical-align: bottom;
+      border-bottom: 3px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    tbody td {
+      padding: 16px 14px;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    
+    tbody tr:hover td {
+      background: rgba(199, 123, 74, 0.04);
+    }
+    
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    /* Alternating row subtle tint */
+    tbody tr:nth-child(even) td {
+      background: rgba(139, 111, 92, 0.02);
+    }
+    tbody tr:nth-child(even):hover td {
+      background: rgba(199, 123, 74, 0.06);
+    }
+    
+    .path-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1em;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 4px;
+    }
+    
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    
+    .tag-manual { background: #fef3e2; color: #a66d3a; border: 1px solid #f0d9b8; }
+    .tag-quiet { background: #e8f4ec; color: #4a7c5a; border: 1px solid #c8dece; }
+    .tag-wlb { background: #eef3f8; color: #5a7a9a; border: 1px solid #d0dee8; }
+    .tag-remote { background: #f5f0fa; color: #7a5a9a; border: 1px solid #e0d5ea; }
+    .tag-ai { background: #fff8e6; color: #9a8a3a; border: 1px solid #e8ddb0; }
+    .tag-niche { background: #f8f0f0; color: #9a5a5a; border: 1px solid #e8d0d0; }
+    
+    /* WLB pill */
+    .wlb-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    
+    .wlb-high { background: #e6f5ea; color: #2d7a4a; }
+    .wlb-very-high { background: #d4f0dc; color: #1a6a38; }
+    .wlb-medium { background: #fff4e0; color: #9a6a2a; }
+    .wlb-variable { background: #f5ebe6; color: #8a5a3a; }
+    
+    /* AI status */
+    .ai-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    .ai-lever { background: #e8f5e8; color: #3a7a4a; }
+    .ai-safe { background: #e0f0e8; color: #2a6a3a; }
+    .ai-low { background: #f0f5f0; color: #4a7a5a; }
+    .ai-risk { background: #fef0e8; color: #aa5a3a; }
+    
+    /* Test box */
+    .test-box {
+      background: linear-gradient(135deg, rgba(199, 123, 74, 0.06), rgba(166, 124, 82, 0.03));
+      border: 1px solid rgba(199, 123, 74, 0.2);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    
+    .test-box strong {
+      color: var(--accent2);
+    }
+    
+    /* Help section */
+    .help-list {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 13px;
+    }
+    
+    .help-list li {
+      margin-bottom: 4px;
+    }
+    
+    /* Skills list */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    
+    .skill {
+      background: rgba(139, 111, 92, 0.08);
+      border: 1px solid var(--line);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 32px;
+      padding: 20px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+    
+    footer em {
+      color: var(--accent2);
+    }
+    
+    @media (max-width: 768px) {
+      h1 { font-size: 1.6em; }
+      .wrap { padding: 16px 12px; }
+    }
+    
+    /* Print */
+    @media print {
+      body { background: white; }
+      .table-wrap { box-shadow: none; }
+      thead th { background: #333; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Ścieżki Kariery — Szczegółowa Mapa</h1>
+    <p class="subtitle">Od rzemiosła po technologię: propozycje dopasowane do profilu</p>
+  </header>
+
+  <div class="intro-box">
+    <strong>Jak czytać tabelę:</strong> Każda ścieżka uwzględnia dzień pracy, work-life balance, sposób wejścia bez "5 lat w ciemno", możliwość pracy zdalnej/lokalnej, wpływ AI, oraz konkretne wsparcie jakie mogą dać rodzice. Kolumna "Szybki test" to propozycja eksperymentu na 2–6 tygodni.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:13%">Ścieżka</th>
+          <th style="width:14%">Dlaczego pasuje</th>
+          <th style="width:12%">Dzień pracy</th>
+          <th style="width:8%">WLB</th>
+          <th style="width:10%">Jak wejść</th>
+          <th style="width:9%">Lokalizacja</th>
+          <th style="width:8%">AI</th>
+          <th style="width:11%">Wsparcie rodziców</th>
+          <th style="width:10%">Do nauki (6–12 mies.)</th>
+          <th style="width:13%">Szybki test (2–6 tyg.)</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>
+            <div class="path-name">Technik dentystyczny</div>
+            <small>(ceramika + CAD/CAM)</small>
+            <div class="tags">
+              <span class="tag tag-manual">warsztat</span>
+              <span class="tag tag-quiet">precyzja</span>
+            </div>
+          </td>
+          <td>Najczystsze połączenie: precyzja palców (harfa) + estetyka (rysunek) + materiały (chemia). Bardzo "stół + lupa + porcelana".</td>
+          <td>Dużo pracy przy stole (wykończenie), trochę komputera (projekt 3D), mało "gadania" (zależnie od pracowni).</td>
+          <td><span class="wlb-pill wlb-high">Wysokie</span><br><small>stałe godziny w labie</small></td>
+          <td>Szkoła policealna / tryb praktyczny. Szybko daje zawód.</td>
+          <td>Stacjonarnie, ale laby też poza metropoliami. Część CAD hybrydowo.</td>
+          <td><span class="ai-status ai-lever">⚡ Dźwignia</span></td>
+          <td>
+            <ul class="help-list">
+              <li>Obserwacja w pracowni</li>
+              <li>Zestaw do modelowania</li>
+              <li>Wsparcie mini-projektów 3D</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">3D (Blender)</span>
+              <span class="skill">kolorystyka</span>
+              <span class="skill">foto produktu</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>1 dzień</strong> obserwacji w labie + <strong>10–20h</strong> modelowania anatomicznej formy + test cierpliwości do wykończeń.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Zegarmistrzostwo</div>
+            <small>(naprawa zegarków)</small>
+            <div class="tags">
+              <span class="tag tag-manual">mikro-precyzja</span>
+              <span class="tag tag-quiet">cisza</span>
+              <span class="tag tag-niche">nisza</span>
+            </div>
+          </td>
+          <td>Mikroprecyzja, cisza, powtarzalny proces, namacalny efekt. Bardzo dużo "flow" dla osób cierpliwych.</td>
+          <td>Prawie wyłącznie stół + lupa/mikroskop, minimalnie komputer, niewiele kontaktu z ludźmi.</td>
+          <td><span class="wlb-pill wlb-very-high">Bardzo wysokie</span><br><small>spokojny rytm</small></td>
+          <td>Kursy + terminowanie/praktyka u mistrza (często sensowniejsze niż studia).</td>
+          <td>Małe miasto: tak, ale nisza. Marka online + wysyłkowo.</td>
+          <td><span class="ai-status ai-safe">🛡️ Bez wpływu</span></td>
+          <td>
+            <ul class="help-list">
+              <li>Narzędzia startowe</li>
+              <li>Kontakt z mistrzem</li>
+              <li>Pomoc w marketingu/WWW</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">mikromechanika</span>
+              <span class="skill">diagnostyka</span>
+              <span class="skill">biznes usługowy</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2 tyg.:</strong> rozbiórka/skręcanie prostego mechanizmu + <strong>1 dzień</strong> w zakładzie zegarmistrza.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Jubilerstwo / złotnictwo</div>
+            <small>(mikro-precyzja)</small>
+            <div class="tags">
+              <span class="tag tag-manual">warsztat</span>
+              <span class="tag tag-quiet">estetyka</span>
+            </div>
+          </td>
+          <td>"Ręce + oko + detal" + artystyczna satysfakcja. Bardzo odporne na AI i daje fizyczny produkt.</td>
+          <td>Stół, narzędzia, czasem mikroskop; kontakt z ludźmi umiarkowany, komputer opcjonalnie.</td>
+          <td><span class="wlb-pill wlb-high">Wysokie</span><br><small>etat/pracownia</small></td>
+          <td>Kursy + praktyka (często szybciej niż studia). Własny sklep online możliwy.</td>
+          <td>Stacjonarnie, ale sprzedaż online. Małe miasto ok z dobrym marketingiem.</td>
+          <td><span class="ai-status ai-lever">⚡ Dźwignia</span><br><small>w projektowaniu</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Materiały/narzędzia</li>
+              <li>Nauka biznesu</li>
+              <li>Sesje foto</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">3D do odlewów</span>
+              <span class="skill">oprawa kamieni</span>
+              <span class="skill">e-commerce</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>3–4 tyg.:</strong> 10 małych prac (pierścionki z mosiądzu/srebra) + wystawienie 3 ofert testowych.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Introligatorstwo</div>
+            <small>(renowacja książek)</small>
+            <div class="tags">
+              <span class="tag tag-manual">precyzja</span>
+              <span class="tag tag-quiet">materia</span>
+              <span class="tag tag-niche">spokojna</span>
+            </div>
+          </td>
+          <td>Precyzja, materia, praca spokojna, bardzo mało "teorii dla teorii". Dla osób, które lubią dłubać i odtwarzać.</td>
+          <td>Stół, kleje, papier, tkaniny; komputer minimalny; ludzi mało.</td>
+          <td><span class="wlb-pill wlb-very-high">Bardzo wysokie</span><br><small>stabilne tempo</small></td>
+          <td>Kursy rzemieślnicze + praktyka w pracowni / muzeum / bibliotece.</td>
+          <td>Możliwe w mniejszych miastach; część zleceń wysyłkowo.</td>
+          <td><span class="ai-status ai-safe">🛡️ Bez wpływu</span></td>
+          <td>
+            <ul class="help-list">
+              <li>Kontakt z pracownią</li>
+              <li>Narzędzia</li>
+              <li>Marketing niszowy</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">chemia konserwatorska</span>
+              <span class="skill">dokumentacja foto</span>
+              <span class="skill">e-commerce</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2–6 tyg.:</strong> renowacja 2–3 starych książek (tanie egzemplarze) + 1 dzień obserwacji w pracowni.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Lutnictwo</div>
+            <small>(konserwacja instrumentów)</small>
+            <div class="tags">
+              <span class="tag tag-manual">drewno</span>
+              <span class="tag tag-quiet">precyzja</span>
+              <span class="tag tag-niche">nisza</span>
+            </div>
+          </td>
+          <td>Muzyka + drewno + precyzja. Daje sens i "produkt, który żyje". Wysoki potencjał satysfakcji.</td>
+          <td>Prawie cały dzień w warsztacie; kontakt z klientem umiarkowany; komputer minimalny.</td>
+          <td><span class="wlb-pill wlb-high">Wysokie</span><br><small>po wejściu w rytm</small></td>
+          <td>Studia specjalistyczne lub model mistrz–uczeń. Długi start, ale "zawód na życie".</td>
+          <td>Warsztat stacjonarny; klienci z całej Polski (wysyłki/wyjazdy).</td>
+          <td><span class="ai-status ai-safe">🛡️ Pomoc</span><br><small>tylko dokumentacja</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Sprzęt warsztatowy</li>
+              <li>Dojazdy do mistrzów</li>
+              <li>Runway 12–24 mies.</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">techniki drewna</span>
+              <span class="skill">lakiery</span>
+              <span class="skill">akustyka</span>
+              <span class="skill">foto portfolio</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2–4 tyg.:</strong> warsztaty stolarskie + 1 dzień w pracowni lutnika + prosty projekt (element/naprawa).
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Renowacja / konserwacja</div>
+            <small>(detal architektury, sztukateria)</small>
+            <div class="tags">
+              <span class="tag tag-manual">teren + pracownia</span>
+              <span class="tag tag-quiet">chemia materiałów</span>
+            </div>
+          </td>
+          <td>Spełnia "żałuję, że nie poszłam w renowację" + wykorzystuje rysunek i chemię materiałów. Namacalny efekt.</td>
+          <td>Miks: pracownia + teren. Czasem fizycznie ciężej (rusztowania, pył), czasem bardzo precyzyjnie.</td>
+          <td><span class="wlb-pill wlb-medium">Średnie</span><br><small>zależy od projektów</small></td>
+          <td>Technikum/policealne/kursy + praktyki; studia konserwatorskie to dłuższa ścieżka (opcjonalnie).</td>
+          <td>Lokalnie + delegacje (zależy od firmy). Zdalnie praktycznie nie.</td>
+          <td><span class="ai-status ai-low">📋 Mały wpływ</span><br><small>dokumentacja</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Praktyki w firmach renowacyjnych</li>
+              <li>Kursy i narzędzia</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">chemia materiałów</span>
+              <span class="skill">rysunek techniczny</span>
+              <span class="skill">dokumentacja</span>
+              <span class="skill">BHP</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2–6 tyg.:</strong> jeden realny projekt renowacyjny (drewno/metal) + 1 dzień na obiekcie z ekipą.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">3D "do materii"</div>
+            <small>(figurki / prototypy / druk 3D)</small>
+            <div class="tags">
+              <span class="tag tag-manual">druk + wykończenie</span>
+              <span class="tag tag-remote">zdalnie ok</span>
+            </div>
+          </td>
+          <td>Łączy rysunek (postacie), precyzję i efekt fizyczny (wydruk/odlewy). Może dawać dużo wolności i czasu.</td>
+          <td>Komputer (modelowanie) + dużo ręcznej obróbki (szlif, podkład, malowanie). Ludzi mało (głównie online).</td>
+          <td><span class="wlb-pill wlb-variable">Zmienne</span><br><small>zależy od zamówień</small></td>
+          <td>Nie potrzeba studiów. Portfolio + sklep + jakość. Kursy ZBrush/Blender + druk 3D.</td>
+          <td>Zdalnie: tak. Lokalizacja mniej istotna.</td>
+          <td><span class="ai-status ai-lever">⚡ Dźwignia</span><br><small>koncept/marketing</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Drukarka żywiczna</li>
+              <li>Wentylacja, maski</li>
+              <li>E-commerce, wyceny</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">sculpt → retopo</span>
+              <span class="skill">print → postprocess</span>
+              <span class="skill">foto produktu</span>
+              <span class="skill">licencje</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>3–4 tyg.:</strong> jedna postać w 3D + jeden wydruk + pełne wykończenie + zdjęcia "jak do sklepu".
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Wytwórca rekwizytów</div>
+            <small>(teatr, eventy, reklama)</small>
+            <div class="tags">
+              <span class="tag tag-manual">szycie + rzeźba</span>
+              <span class="tag tag-wlb">deadline'y</span>
+            </div>
+          </td>
+          <td>Szycie + rzeźba + malowanie + "hands-on". Bardzo kreatywne, fizyczny efekt, często praca w warsztacie.</td>
+          <td>Dużo manualu, trochę narzędzi/elektroniki, czasem współpraca w ekipie. Czasem praca "na planie".</td>
+          <td><span class="wlb-pill wlb-variable">Zmienne</span><br><small>projekty i terminy</small></td>
+          <td>Portfolio + praktyki u scenografa/pracowni. Kursy (materiały, formy, malowanie, BHP).</td>
+          <td>Raczej duże miasta; część zleceń zdalnie/wysyłkowo.</td>
+          <td><span class="ai-status ai-low">📋 Mały wpływ</span><br><small>wizualizacje</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Warsztat + narzędzia</li>
+              <li>Kontakty branżowe</li>
+              <li>Bufor finansowy</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">pianki, żywice</span>
+              <span class="skill">malowanie faktur</span>
+              <span class="skill">LED</span>
+              <span class="skill">druk 3D</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2–6 tyg.:</strong> zbudować 1 rekwizyt "jak do sceny" (z briefem i deadlinem) i zobaczyć, czy deadline'y ją męczą.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Postprodukcja dźwięku</div>
+            <small>(montaż, miks – film/gry)</small>
+            <div class="tags">
+              <span class="tag tag-quiet">słuch</span>
+              <span class="tag tag-remote">zdalnie ok</span>
+              <span class="tag tag-ai">AI-friendly</span>
+            </div>
+          </td>
+          <td>Wykorzystuje słuch muzyczny i technikę bez konieczności "historii muzyki". Może być spokojna praca w studiu.</td>
+          <td>Komputer (DAW), słuchawki/monitory. Kontakt z ludźmi umiarkowany.</td>
+          <td><span class="wlb-pill wlb-medium">Średnie</span><br><small>deadline'y</small></td>
+          <td>Kursy + portfolio (showreel). Studia mogą pomóc, nie są konieczne.</td>
+          <td>Zdalnie: często tak (postprodukcja). Duże miasta = więcej kontaktów.</td>
+          <td><span class="ai-status ai-lever">⚡ Dźwignia</span><br><small>rośnie wartość "ucha"</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Sprzęt audio (interfejs, monitory)</li>
+              <li>Akustyka pokoju</li>
+              <li>1–2 zlecenia testowe</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">DAW (Pro Tools)</span>
+              <span class="skill">Izotope RX</span>
+              <span class="skill">FMOD/Wwise</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2–3 tyg.:</strong> udźwiękowienie 60–90 s sceny (foley + miks) + 1 feedback od kogoś z branży.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Wizualizacja naukowa</div>
+            <small>(ilustracja 2D/3D "dla wyjaśniania")</small>
+            <div class="tags">
+              <span class="tag tag-quiet">rysunek + ścisłość</span>
+              <span class="tag tag-remote">zdalnie ok</span>
+              <span class="tag tag-ai">AI-odporna</span>
+            </div>
+          </td>
+          <td>Rysunek + ścisłość + "prawda merytoryczna". Najmocniejsza ścieżka kreatywna odporna na AI (bo liczy się poprawność).</td>
+          <td>Komputer (2D/3D), mało ludzi (klient/recenzja), dużo skupienia i poprawności.</td>
+          <td><span class="wlb-pill wlb-high">Wysokie</span><br><small>praca zdalna</small></td>
+          <td>Bez konieczności 5 lat. Portfolio + dołożenie biologii/anatomii w praktyce.</td>
+          <td>Zdalnie: tak. Lokalizacja mało istotna (rynek globalny).</td>
+          <td><span class="ai-status ai-safe">🛡️ Pomoc</span><br><small>jakość merytoryczna kluczowa</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Realne tematy z fundacji</li>
+              <li>Grafiki do materiałów/grantów</li>
+              <li>= prawdziwe portfolio</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">anatomia</span>
+              <span class="skill">scientific storytelling</span>
+              <span class="skill">Blender</span>
+              <span class="skill">Clip Studio</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2–6 tyg.:</strong> 1 plansza "jak działa X" (np. PCR/komórka) + 1 krótka animacja 20–30 s.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Bioinformatyka / data</div>
+            <small>(rola "research + data")</small>
+            <div class="tags">
+              <span class="tag tag-remote">zdalnie ok</span>
+              <span class="tag tag-ai">AI-friendly</span>
+            </div>
+          </td>
+          <td>Ścisły umysł + chemia/biologia + realny sens (projekt leku). Wykorzystuje zasoby fundacji i daje elastyczność.</td>
+          <td>Głównie komputer (dane, pipeline'y, literatura), mało ludzi na co dzień, dużo "myślenia".</td>
+          <td><span class="wlb-pill wlb-high">Wysokie</span><br><small>jeśli zdrowe granice</small></td>
+          <td>Możliwe bez 5 lat: 6–12 mies. intensywnej nauki + projekty. Studia można dołożyć później.</td>
+          <td>Zdalnie: tak (często). Rynek globalny.</td>
+          <td><span class="ai-status ai-lever">⚡ Dźwignia</span><br><small>wymaga rozumienia danych</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Realne zadania</li>
+              <li>Mentoring</li>
+              <li>Kontakt z naukowcami</li>
+              <li>Sensowna narracja CV</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">Python/R</span>
+              <span class="skill">statystyka</span>
+              <span class="skill">genomika</span>
+              <span class="skill">Git</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2–4 tyg.:</strong> 1 mini-pipeline na danych publicznych + notatnik "jak doszłam do wyniku" (czy ją kręci?).
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Kontrola jakości / laborant</div>
+            <small>(chemia/materiały)</small>
+            <div class="tags">
+              <span class="tag tag-manual">lab + raporty</span>
+              <span class="tag tag-wlb">procedury</span>
+            </div>
+          </td>
+          <td>Dla osoby, która lubi chemię "praktyczną", procedury i mierzalne wyniki, bez nadmiaru teorii humanistycznej.</td>
+          <td>Lab + raporty, trochę rutyny, umiarkowany kontakt z ludźmi. Zwykle praca w reżimie jakości.</td>
+          <td><span class="wlb-pill wlb-variable">Wysokie/średnie</span><br><small>zależy od zmianowości</small></td>
+          <td>Technik/laborant: często szybciej niż studia; studia chemiczne można dołożyć później.</td>
+          <td>Raczej stacjonarnie; praca też poza metropoliami (przemysł/laby regionalne).</td>
+          <td><span class="ai-status ai-safe">🛡️ Pomoc</span><br><small>procedury zostają</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Kontakt z labem</li>
+              <li>Staże obserwacyjne</li>
+              <li>Projekty dokumentowane</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">GxP/ISO</span>
+              <span class="skill">statystyka jakości</span>
+              <span class="skill">dokumentacja</span>
+              <span class="skill">BHP</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2–3 tyg.:</strong> "dzień w labie" + proste zadanie analizy wyników i raportu (czy rutyna ją uspokaja czy nudzi?).
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="path-name">Admin / wprowadzanie danych</div>
+            <small>(tylko jako etap przejściowy)</small>
+            <div class="tags">
+              <span class="tag tag-wlb">stabilne 8–16</span>
+              <span class="tag tag-ai">AI-ryzyko</span>
+            </div>
+          </td>
+          <td>Może dać spokój i przewidywalne godziny, ale słabo wykorzystuje potencjał (rysunek/STEM/precyzja).</td>
+          <td>Komputer + procedury + kontakt z ludźmi (telefon/mail). Mało "tworzenia".</td>
+          <td><span class="wlb-pill wlb-high">Wysokie</span><br><small>ale ryzyko znudzenia</small></td>
+          <td>Wejście szybkie. Warto tylko, jeśli równolegle robi projekt/portfolio w swojej ścieżce.</td>
+          <td>Czasem zdalnie/hybrydowo, częściej stacjonarnie. W małych miastach dostępne.</td>
+          <td><span class="ai-status ai-risk">⚠️ Ryzyko</span><br><small>automatyzacja rutyny</small></td>
+          <td>
+            <ul class="help-list">
+              <li>Plan równoległy (kurs + portfolio)</li>
+              <li>Limit czasu na ten etap</li>
+            </ul>
+          </td>
+          <td>
+            <div class="skills">
+              <span class="skill">Excel/PowerQuery</span>
+              <span class="skill">Power Automate</span>
+              <span class="skill">komunikacja biznesowa</span>
+            </div>
+          </td>
+          <td>
+            <div class="test-box">
+              <strong>2 tyg.:</strong> spróbować i szczerze ocenić po pracy: "czy czuję spokój czy pustkę?".
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    <p><em>Wskazówka:</em> Zacznij od 1–2 szybkich testów (2–6 tygodni). To daje więcej niż 100 godzin rozmów o przyszłości.</p>
+  </footer>
+</div>
+</body>
+</html>

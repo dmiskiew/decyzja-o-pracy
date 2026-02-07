@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuzia – Ścieżki Kariery & Matura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --surface: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #6b7280;
+            --accent: #6366f1;
+            --accent-light: #eef2ff;
+            --accent-hover: #4f46e5;
+            --border: #e5e7eb;
+            --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.04);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.04);
+            --radius: 16px;
+            --radius-sm: 10px;
+
+            --cat-summary: #8b5cf6;
+            --cat-summary-bg: #f5f3ff;
+            --cat-summary-border: #ddd6fe;
+
+            --cat-directions: #0ea5e9;
+            --cat-directions-bg: #f0f9ff;
+            --cat-directions-border: #bae6fd;
+
+            --cat-matura: #f59e0b;
+            --cat-matura-bg: #fffbeb;
+            --cat-matura-border: #fde68a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 40%, #a78bfa 100%);
+            color: white;
+            padding: 56px 24px 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,.08) 0%, transparent 50%);
+        }
+        .hero h1 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            opacity: .85;
+            max-width: 520px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Container */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 32px 20px 64px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 36px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .section-subtitle {
+            font-size: .85rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Cards grid */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
+        }
+
+        /* Card */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            text-decoration: none;
+            color: inherit;
+            transition: all .2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: var(--radius) var(--radius) 0 0;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+        .card-number {
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            opacity: .5;
+        }
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+        }
+        .card-desc {
+            font-size: .82rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+        .card-arrow {
+            margin-top: auto;
+            padding-top: 6px;
+            font-size: .8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all .2s;
+        }
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Category: Summary */
+        .cat-summary .section-icon { background: var(--cat-summary-bg); color: var(--cat-summary); }
+        .cat-summary .card:hover { border-color: var(--cat-summary-border); }
+        .cat-summary .card::before { background: var(--cat-summary); }
+        .cat-summary .card-arrow { color: var(--cat-summary); }
+
+        /* Category: Directions */
+        .cat-directions .section-icon { background: var(--cat-directions-bg); color: var(--cat-directions); }
+        .cat-directions .card:hover { border-color: var(--cat-directions-border); }
+        .cat-directions .card::before { background: var(--cat-directions); }
+        .cat-directions .card-arrow { color: var(--cat-directions); }
+
+        /* Category: Matura */
+        .cat-matura .section-icon { background: var(--cat-matura-bg); color: var(--cat-matura); }
+        .cat-matura .card:hover { border-color: var(--cat-matura-border); }
+        .cat-matura .card::before { background: var(--cat-matura); }
+        .cat-matura .card-arrow { color: var(--cat-matura); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-muted);
+            font-size: .78rem;
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 480px) {
+            .hero { padding: 40px 20px 36px; }
+            .cards { grid-template-columns: 1fr; }
+            .container { padding: 24px 16px 48px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>🎓 Zuzia – Navigator</h1>
+        <p>Wszystkie analizy, kierunki i narzędzia maturalne w jednym miejscu</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Podsumowania -->
+        <div class="section cat-summary">
+            <div class="section-header">
+                <div class="section-icon">📊</div>
+                <div>
+                    <div class="section-title">Podsumowania & Syntezy</div>
+                    <div class="section-subtitle">Analizy ścieżek kariery, trendy i rekomendacje</div>
+                </div>
+            </div>
+            <div class="cards">
+                <a href="podsumowanie.html" class="card">
+                    <span class="card-number">Podsumowanie #1</span>
+                    <span class="card-title">Synteza Ścieżek Kariery</span>
+                    <span class="card-desc">Pierwsza wersja syntezy – przegląd głównych ścieżek i rekomendacje.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="podsumowanie2.html" class="card">
+                    <span class="card-number">Podsumowanie #2</span>
+                    <span class="card-title">Synteza Ścieżek Kariery v2</span>
+                    <span class="card-desc">Rozszerzona wersja z typologią RIASEC i dodatkowymi profilami.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="podsumowanie3_tend.html" class="card">
+                    <span class="card-number">Podsumowanie #3</span>
+                    <span class="card-title">Zawody z Perspektywami 2025–2030</span>
+                    <span class="card-desc">Analiza trendów rynkowych i zawodów przyszłości.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="podsumowanie4.html" class="card">
+                    <span class="card-number">Podsumowanie #4</span>
+                    <span class="card-title">Zawody z Perspektywami v2</span>
+                    <span class="card-desc">Rozbudowana analiza zawodów z uwzględnieniem bioinformatyki i zdrowia.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="podsumowanie_gem.html" class="card">
+                    <span class="card-number">Gemini #1</span>
+                    <span class="card-title">Trendy 2030 + Synergia z Fundacją</span>
+                    <span class="card-desc">Analiza Gemini – trendy rynkowe, bio/tech, chemia i synergie.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="podsumowanie_gem2.html" class="card">
+                    <span class="card-number">Gemini #2</span>
+                    <span class="card-title">Synteza Ścieżek – Gemini v2</span>
+                    <span class="card-desc">Druga wersja analizy Gemini z typologią RIASEC.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Kierunki -->
+        <div class="section cat-directions">
+            <div class="section-header">
+                <div class="section-icon">🧭</div>
+                <div>
+                    <div class="section-title">Kierunki & Mapy Ścieżek</div>
+                    <div class="section-subtitle">Szczegółowe porównania kierunków studiów i zawodów</div>
+                </div>
+            </div>
+            <div class="cards">
+                <a href="kierunki.html" class="card">
+                    <span class="card-number">Kierunki #1</span>
+                    <span class="card-title">Analiza Ścieżek Rozwoju</span>
+                    <span class="card-desc">Mapa ścieżek edukacyjno-zawodowych z tabelką porównawczą.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="kierunki2.html" class="card">
+                    <span class="card-number">Kierunki #2</span>
+                    <span class="card-title">Mapa Decyzji</span>
+                    <span class="card-desc">Ciemny motyw – interaktywna mapa decyzji i edukacji.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="kierunki3.html" class="card">
+                    <span class="card-number">Kierunki #3</span>
+                    <span class="card-title">Pełna Analiza Ścieżek</span>
+                    <span class="card-desc">Rozbudowane tabele z badge'ami kompetencji i oceną dopasowania.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="kierunki4.html" class="card">
+                    <span class="card-number">Kierunki #4</span>
+                    <span class="card-title">Kompletny Przewodnik</span>
+                    <span class="card-desc">Analiza ścieżek edukacyjno-zawodowych w wersji przewodnikowej.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="kierunki5.html" class="card">
+                    <span class="card-number">Kierunki #5</span>
+                    <span class="card-title">Szczegółowa Mapa Kariery</span>
+                    <span class="card-desc">Elegancki motyw – mapa kariery w ciepłej kolorystyce.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="kierunki6.html" class="card">
+                    <span class="card-number">Kierunki #6</span>
+                    <span class="card-title">Przegląd Kierunków Kariery</span>
+                    <span class="card-desc">Ciemny motyw – nowoczesny przegląd z akcentami fioletowymi.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Matura & inne -->
+        <div class="section cat-matura">
+            <div class="section-header">
+                <div class="section-icon">📝</div>
+                <div>
+                    <div class="section-title">Matura & Narzędzia</div>
+                    <div class="section-subtitle">Odliczanie, organizery i materiały pomocnicze</div>
+                </div>
+            </div>
+            <div class="cards">
+                <a href="matura-odliczanie.html" class="card">
+                    <span class="card-number">Matura</span>
+                    <span class="card-title">Matura 2026 – Organizer 4w1</span>
+                    <span class="card-desc">Odliczanie do matury, matematyka, angielski, polski – wszystko w jednym.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+                <a href="kryteria-przyklad.html" class="card">
+                    <span class="card-number">Przygotowania</span>
+                    <span class="card-title">Hackowanie Egzaminu Ustnego z Matematyki</span>
+                    <span class="card-desc">Strategie i kryteria na egzamin ustny – 4 LO.</span>
+                    <span class="card-arrow">Otwórz →</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Made with ❤️ for Zuzia
+    </div>
+
+</body>
+</html>
+

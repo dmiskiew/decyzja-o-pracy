@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ścieżki edukacji i kariery – mapa decyzji</title>
+  <style>
+    :root{
+      --bg:#0b1020; --card:#111a33; --ink:#eaf0ff; --muted:#a9b4d6;
+      --line:rgba(255,255,255,.12); --accent:#7dd3fc; --accent2:#a78bfa; --good:#34d399; --warn:#fbbf24;
+    }
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#070a14);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;}
+    .wrap{max-width:1180px;margin:28px auto;padding:0 16px;}
+    h1{font-size:22px;margin:0 0 6px;}
+    .sub{color:var(--muted);margin:0 0 18px;}
+    .card{background:rgba(17,26,51,.9);border:1px solid var(--line);border-radius:14px;padding:16px 16px 12px;margin:14px 0;box-shadow:0 18px 60px rgba(0,0,0,.35);}
+    details{border:1px solid var(--line);border-radius:12px;padding:12px 12px 10px;background:rgba(255,255,255,.03);}
+    summary{cursor:pointer;font-weight:650;color:var(--ink);}
+    .note{color:var(--muted);margin:10px 0 0;}
+    .grid2{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:980px){.grid2{grid-template-columns:1.2fr .8fr;}}
+    .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;border:1px solid var(--line)}
+    .table-wrap table{min-width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:12px;border:none}
+    thead th{
+      position:sticky; top:0; z-index:2;
+      background:linear-gradient(180deg,rgba(125,211,252,.18),rgba(167,139,250,.12));
+      color:var(--ink); text-align:left; font-weight:700;
+      padding:10px 10px; border-bottom:1px solid var(--line);
+      vertical-align:bottom;
+    }
+    tbody td{
+      padding:10px 10px; border-bottom:1px solid var(--line);
+      vertical-align:top; color:var(--ink);
+      background:rgba(255,255,255,.02);
+    }
+    tbody tr:hover td{background:rgba(125,211,252,.06);}
+    tbody tr:last-child td{border-bottom:none;}
+    .muted{color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);white-space:nowrap}
+    .chip b{color:var(--ink);font-weight:700}
+    .pill{padding:3px 8px;border-radius:999px;border:1px solid var(--line);display:inline-block}
+    .pill.good{background:rgba(52,211,153,.10);color:#caffea;border-color:rgba(52,211,153,.35)}
+    .pill.warn{background:rgba(251,191,36,.10);color:#fff4d0;border-color:rgba(251,191,36,.35)}
+    .pill.neu{background:rgba(125,211,252,.08);color:#d7f3ff;border-color:rgba(125,211,252,.30)}
+    .score{display:flex;gap:6px;flex-wrap:wrap}
+    .dot{width:10px;height:10px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06)}
+    .dot.on{background:linear-gradient(180deg,var(--accent),var(--accent2));border-color:rgba(125,211,252,.45)}
+    .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+    .kpi .box{border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);padding:10px}
+    .kpi .t{color:var(--muted);font-size:12px}
+    .kpi .v{font-size:16px;font-weight:800;margin-top:2px}
+    .small{font-size:12px;color:var(--muted)}
+    .col-wide{min-width:270px}
+    .col-xwide{min-width:320px}
+    .col-mid{min-width:190px}
+    .col-narrow{min-width:130px}
+    .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .legend .chip{background:rgba(0,0,0,.12)}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Mapa ścieżek po liceum + szkole muzycznej (profil: STEM / ART / MANUAL / PEOPLE)</h1>
+  <p class="sub">Dwie wersje: (1) tabela z oceną wstępną, (2) tabela z pytaniami do samodiagnozy. Oceny są celowo „obiektywno-wstępne” – do doprecyzowania po testach i rozmowach.</p>
+
+  <div class="card">
+    <details>
+      <summary>Mini-przewodnik: formy studiowania i „ile da się online”</summary>
+      <div class="grid2" style="margin-top:12px">
+        <div>
+          <p><b>W Polsce</b> spotkasz: <b>stacjonarne</b>, <b>niestacjonarne</b> (zaoczne/wieczorowe), oraz studia z dużą częścią zajęć zdalnych („<b>hybrydowe / blended</b>”). Zdalne zwykle oznacza: wykłady/ćwiczenia online, a zjazdy/egzaminy/laby na miejscu.</p>
+          <p><b>„100% online” na typowych studiach I/II stopnia w PL</b> – w praktyce ograniczają to limity ECTS dla zajęć zdalnych (różne dla profilu praktycznego i ogólnoakademickiego, a dla wybranych zawodów regulowanych jeszcze ostrzejsze). <span class="muted">Dlatego hasła marketingowe warto zawsze konfrontować z planem studiów i liczbą zjazdów.</span></p>
+          <p><b>Za granicą</b> 100% online bywa normalne. <b>Uznanie dyplomu</b> zależy jednak od celu: do pracy w wielu branżach często wystarcza akredytowana uczelnia i sensowny program, ale do <b>dalszych studiów</b> lub <b>zawodów regulowanych</b> mogą być formalne procedury.</p>
+        </div>
+        <div>
+          <div class="kpi">
+            <div class="box"><div class="t">Najlepsze, gdy…</div><div class="v">Testujesz kierunek</div><div class="small">krótki kurs/portfolio/praktyka</div></div>
+            <div class="box"><div class="t">Ryzyko błędu</div><div class="v">„Studia ≠ zawód”</div><div class="small">sprawdź dzień pracy</div></div>
+            <div class="box"><div class="t">Dla talentu manualnego</div><div class="v">krótsze szkoły</div><div class="small">policealne / rzemiosło</div></div>
+            <div class="box"><div class="t">Dla pracy zdalnej</div><div class="v">cyfrowe ścieżki</div><div class="small">IT / design / data</div></div>
+          </div>
+          <div class="legend">
+            <span class="chip"><b>STEM</b> logika/dane/chemia</span>
+            <span class="chip"><b>ART</b> rysunek/estetyka</span>
+            <span class="chip"><b>MAN</b> praca rękami</span>
+            <span class="chip"><b>PEO</b> ludzie/empatia</span>
+          </div>
+        </div>
+      </div>
+      <p class="note">Wskazówka praktyczna: niezależnie od trybu, najważniejsze jest „czy po 2–6 tygodniach testu nadal chce to robić”.</p>
+    </details>
+  </div>
+
+  <!-- TABLE 1 -->
+  <div class="card">
+    <h2 style="margin:0 0 10px;font-size:18px">Tabela 1 — przegląd ścieżek + ocena wstępna (neutralna)</h2>
+    <p class="sub" style="margin:0 0 12px">Skala łączna (1–5) to wypadkowa: dopasowanie do profilu, rynek/zarobki, WLB, ryzyko AI. To NIE jest „wyrocznia”, tylko punkt startowy do rozmowy.</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-mid">Ścieżka / zawód</th>
+          <th class="col-wide">Jak wygląda dzień pracy</th>
+          <th class="col-mid">Edukacja / czas do wejścia</th>
+          <th class="col-mid">Tryb nauki (PL / online)</th>
+          <th class="col-wide">Plusy dla jej profilu</th>
+          <th class="col-wide">Ryzyka / minusy</th>
+          <th class="col-mid">AI: zagrożenie czy narzędzie?</th>
+          <th class="col-narrow">Fit profilu<br><span class="small">STEM / ART / MAN / PEO</span></th>
+          <th class="col-narrow">Ocena łączna</th>
+          <th class="col-xwide">Mini‑test (2–6 tyg.)</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><b>Informatyka / software</b> (np. app/web, także „dla kreatywnych”)</td>
+          <td>Głównie komputer + praca w zespole; rozwiązywanie problemów, budowanie funkcji, testy.</td>
+          <td><span class="pill neu">6–12 mies.</span> do sensownego junior‑portfolio (projekty) + opcjonalnie studia (3,5–4 lata).</td>
+          <td>PL: stac/zaoczne + częściowo zdalnie. Zdalna praca realna po wejściu w branżę.</td>
+          <td>
+            Mocny „rdzeń” STEM; elastyczność miejsca pracy; można łączyć z pasją (muzyka/sztuka) po godzinach.
+            <div class="chips">
+              <span class="chip">wysoka elastyczność</span>
+              <span class="chip">dużo ofert (duże miasta + remote)</span>
+            </div>
+          </td>
+          <td>Wymaga siedzenia i długiej koncentracji; szybkie zmiany technologii; czasem presja terminów.</td>
+          <td><span class="pill good">Narzędzie</span> (automatyzuje rutynę, ale rośnie próg jakości).</td>
+          <td class="muted">5 / 2 / 1 / 2</td>
+          <td>
+            <div class="score" aria-label="4/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Ustal mały projekt: „prosta aplikacja do planu ćwiczeń na harfie” + publikacja na GitHubie. Sprawdź: czy po 2 tygodniach dalej ją to ciekawi.</td>
+        </tr>
+
+        <tr>
+          <td><b>Data / AI / ML</b> (analityk danych, ML engineer)</td>
+          <td>Komputer, dane, eksperymenty, raportowanie; często mniej „produktowo”, bardziej analitycznie.</td>
+          <td><span class="pill neu">6–18 mies.</span> do pierwszych projektów; studia pomagają (matma/statystyka).</td>
+          <td>PL: stac/zaoczne + sporo online. Zdalna praca częsta.</td>
+          <td>Pasuje do matematyki i analizy; dobra odporność na „AI zabierze pracę” (bo to praca „z AI”).</td>
+          <td>Dużo abstrakcji; mniej „namacalnego” efektu; wymaga cierpliwości do statystyki i jakości danych.</td>
+          <td><span class="pill good">Narzędzie</span> (tu AI to warsztat pracy).</td>
+          <td class="muted">5 / 1 / 1 / 2</td>
+          <td>
+            <div class="score" aria-label="4/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Weź jeden dataset (np. muzyczny / zdrowotny) i zrób 2 wykresy + prosty model przewidywania. Zobacz, czy ją bawi „grzebanie w danych”.</td>
+        </tr>
+
+        <tr>
+          <td><b>Bioinformatyka / genomic data</b></td>
+          <td>Komputer + biologia w tle: analizy, pipeline’y, interpretacja; współpraca z biologami/lekarzami.</td>
+          <td><span class="pill neu">12–24 mies.</span> do sensownego wejścia; studia często 3–5 lat, ale są też kursy i ścieżki mieszane.</td>
+          <td>PL: hybryda możliwa, ale nie 100% online; zagranica częściej full‑online (sprawdzać uznanie).</td>
+          <td>Łączy STEM + ciekawość biologii/chemii; praca przyszłościowa; sensowna „hybryda” talentów.</td>
+          <td>Wymaga jednocześnie biologii i programowania; rynek w PL mniejszy niż w „czystym IT”.</td>
+          <td><span class="pill good">Narzędzie</span> (AI przyspiesza, ale rośnie znaczenie interpretacji i jakości danych).</td>
+          <td class="muted">5 / 1 / 1 / 2</td>
+          <td>
+            <div class="score" aria-label="4/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: podstawy Pythona + jedna analiza „publicznego” przykładu (np. prosty pipeline). Jeśli ją to wciąga, dopiero wtedy rozważać poważniej.</td>
+        </tr>
+
+        <tr>
+          <td><b>Chemia / inż. chemiczna / materiałoznawstwo</b></td>
+          <td>Laboratorium / procesy / kontrola jakości; mniej zdalnie, więcej obecności i procedur.</td>
+          <td><span class="pill neu">3–5 lat</span> (studia) + staże; szybciej: praca techniczna w labie po szkołach/kwalifikacjach (zależnie od roli).</td>
+          <td>PL: głównie stacjonarnie (laby). Online tylko częściowo.</td>
+          <td>Dla osoby „lubię mieszać i rozumieć” – może dawać satysfakcję; praca bardziej „fizyczna” niż IT.</td>
+          <td>Rynek i płace mocno zależą od branży/miasta; początki bywają skromniejsze niż w IT.</td>
+          <td><span class="pill neu">Mieszane</span> (automatyzacja aparatury rośnie, ale eksperyment i interpretacja zostają).</td>
+          <td class="muted">4 / 1 / 2 / 2</td>
+          <td>
+            <div class="score" aria-label="3/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: kółko/staż w labie (choćby obserwacja), plus 2 tygodnie: dziennik „co mnie kręciło, co męczyło”.</td>
+        </tr>
+
+        <tr>
+          <td><b>Technik dentystyczny (CAD/CAM + ceramika)</b></td>
+          <td>Projektowanie 3D (korony/mosty) + precyzyjna praca ręczna (wykończenie, kolor, faktura).</td>
+          <td><span class="pill good">~2,5 roku</span> (szkoła policealna) do konkretnego fachu + szybkie wejście na rynek.</td>
+          <td>PL: stac/zaoczne (zajęcia praktyczne na miejscu). Online tylko dodatki.</td>
+          <td>Silna synergia: manual + estetyka + „chemia materiałów”; stabilność; wysoka odporność na automatyzację „całości”.</td>
+          <td>Praca często siedząca i wymagająca wzroku; mniej „twórczej wolności” niż w sztuce.</td>
+          <td><span class="pill good">Narzędzie</span> (AI/CAD pomaga projektować, ale ręce i oko nadal kluczowe).</td>
+          <td class="muted">3 / 3 / 5 / 1</td>
+          <td>
+            <div class="score" aria-label="5/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+            </div>
+          </td>
+          <td>Mini‑test: 1) kurs podstaw Blender/ZBrush (modelowanie) 2) wizyta w pracowni/labie protetycznym – czy „kręci ją precyzja i detal”.</td>
+        </tr>
+
+        <tr>
+          <td><b>Protetyk słuchu</b></td>
+          <td>Badania słuchu + dobór aparatów + praca z wkładkami/usznymi elementami (manual + kontakt).</td>
+          <td><span class="pill good">~2 lata</span> (szkoła policealna) do zawodu.</td>
+          <td>PL: stac/zaoczne; praktyki na miejscu.</td>
+          <td>Naturalne dla muzyka (słuch, częstotliwości) + konkret medyczny; popyt rosnący ze starzeniem społeczeństwa.</td>
+          <td>Więcej kontaktu z klientem/pacjentem; bywa element sprzedażowy (różnie w zależności od miejsca).</td>
+          <td><span class="pill good">Narzędzie</span> (pomiary i dopasowanie wspierane, ale relacja i dopasowanie zostają).</td>
+          <td class="muted">3 / 1 / 3 / 4</td>
+          <td>
+            <div class="score" aria-label="4/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: dzień obserwacji w gabinecie + rozmowa z protetykiem: „co mnie męczyło: ludzie czy procedury?”.</td>
+        </tr>
+
+        <tr>
+          <td><b>Realizacja dźwięku / sound design</b> (film, koncerty, gry)</td>
+          <td>Studio/teren: nagrania, montaż, miks; czasem nieregularne godziny (projekty, eventy).</td>
+          <td><span class="pill neu">1–3 lata</span> (studia/kursy + portfolio). W branży liczy się showreel.</td>
+          <td>PL: często stacjonarnie (sprzęt), ale postprodukcja bywa zdalna.</td>
+          <td>Łączy muzykę + technikę; różnorodność; można wejść projektowo bez 5 lat studiów.</td>
+          <td>Niestabilność na starcie; duże miasta dają więcej zleceń; czasem praca w weekendy.</td>
+          <td><span class="pill neu">Mieszane</span> (AI pomoże w czyszczeniu/masteringu, ale „ucho i decyzje” zostają).</td>
+          <td class="muted">3 / 3 / 2 / 3</td>
+          <td>
+            <div class="score" aria-label="3/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: zrób 60–90 sekund „soundscape” do krótkiej animacji (dźwięki + miks). Czy to ją wciąga bardziej niż samo granie?</td>
+        </tr>
+
+        <tr>
+          <td><b>Akustyka / inż. dźwięku</b> (sale, automotive, hałas)</td>
+          <td>Pomiary, symulacje, projekty; część biuro/komputer, część teren/pomiary.</td>
+          <td><span class="pill neu">3,5–5 lat</span> (studia techniczne) – wolniej, ale specjalizacja mocna.</td>
+          <td>PL: raczej stacjonarnie; zdalnie ograniczenie.</td>
+          <td>Dla osoby z dobrym słuchem i matematyką – ciekawa nisza „muzyka + fizyka”.</td>
+          <td>Wymaga polubienia fizyki i metrologii; mniej „artystyczne” niż się wydaje.</td>
+          <td><span class="pill good">Narzędzie</span> (symulacje/AI pomagają, ale odpowiedzialność projektu zostaje).</td>
+          <td class="muted">4 / 1 / 1 / 2</td>
+          <td>
+            <div class="score" aria-label="3/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: prosty projekt „akustyka pokoju” + pomiary aplikacją + analiza – czy ją jara część pomiarowo‑matematyczna.</td>
+        </tr>
+
+        <tr>
+          <td><b>Grafika / animacja 2D/3D / motion design</b></td>
+          <td>Komputer: storyboard → animacja → montaż; praca projektowa (często sprinty).</td>
+          <td><span class="pill neu">6–18 mies.</span> do pierwszego showreela; studia opcjonalne, portfolio krytyczne.</td>
+          <td>PL: różnie (uczelnie + kursy); zagranica: dużo online; praca często zdalna.</td>
+          <td>Idealne dla rysunku i „myślenia obrazem”; sporo ofert w reklamie/produktach.</td>
+          <td>Konkurencja i presja; łatwo o „crunch” w branżach kreatywnych; trzeba lubić feedback i poprawki.</td>
+          <td><span class="pill warn">Uwaga</span> (AI obniża ceny prostych zleceń; rośnie wartość stylu + umiejętności technicznych).</td>
+          <td class="muted">2 / 5 / 2 / 2</td>
+          <td>
+            <div class="score" aria-label="3/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: 10–15 sekund animacji postaci (loop). Jeśli ją to bawi mimo żmudnych poprawek – dobry znak.</td>
+        </tr>
+
+        <tr>
+          <td><b>Technical Artist (gry/3D)</b> – most: art ↔ kod</td>
+          <td>Tworzenie narzędzi, shaderów, optymalizacji; rozwiązywanie problemów pipeline’u grafiki.</td>
+          <td><span class="pill neu">12–24 mies.</span> (miks: kursy + projekty). Dyplom mniej ważny niż umiejętności.</td>
+          <td>PL/online: nauka w dużej mierze samodzielnie; praca bywa zdalna.</td>
+          <td>„Unikalny profil”: rysunek + logika; mniejsza konkurencja niż w czystej grafice.</td>
+          <td>Wymaga tolerancji na techniczne „grzebanie”; branża gier bywa nierówna pod kątem WLB.</td>
+          <td><span class="pill good">Narzędzie</span> (AI wspiera, ale TA to „sprawianie, żeby działało”).</td>
+          <td class="muted">4 / 4 / 2 / 1</td>
+          <td>
+            <div class="score" aria-label="4/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: prosty shader + mały skrypt/narzędzie (np. w Unity/Unreal). Czy lubi „naprawiać” i usprawniać?</td>
+        </tr>
+
+        <tr>
+          <td><b>UX/UI / Product Design</b></td>
+          <td>Badanie potrzeb użytkownika + projekt interfejsu + testy; dużo współpracy z ludźmi (ale konkretnie).</td>
+          <td><span class="pill neu">6–12 mies.</span> do portfolio (case studies). Studia mile widziane, nie zawsze konieczne.</td>
+          <td>PL: często hybryda; zdalna praca częsta. Ważne: projekty do portfolio.</td>
+          <td>Łączy „psychologię praktyczną” + estetykę; mniej „humanistycznego lania wody”, więcej rozwiązań.</td>
+          <td>Trzeba lubić rozmowy, feedback i prezentowanie; czasem dużo spotkań.</td>
+          <td><span class="pill good">Narzędzie</span> (AI pomoże szkicować/teksty, ale empatia i decyzje projektowe zostają).</td>
+          <td class="muted">3 / 4 / 1 / 4</td>
+          <td>
+            <div class="score" aria-label="4/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: wybierz aplikację „która wkurza” i zaprojektuj 3 ekrany poprawy + krótki test na 2 osobach.</td>
+        </tr>
+
+        <tr>
+          <td><b>Wizualizacja naukowa / medyczna</b> (ilustracja/animacja)</td>
+          <td>Tworzenie precyzyjnych ilustracji i animacji tłumaczących zjawiska; praca „na styku” wiedzy i obrazu.</td>
+          <td><span class="pill neu">12–24 mies.</span> (portfolio + anatomia/biologia + 3D/2D). To nisza, ale ceniona.</td>
+          <td>Dużo nauki online; praca często zdalna; studia różne (grafika + kursy naukowe).</td>
+          <td>Świetnie wykorzystuje rysunek + „ścisłą głowę”; mniej konkurencji niż w ogólnej ilustracji.</td>
+          <td>Wysoki próg jakości i merytoryki; trzeba lubić dokładność i konsultacje.</td>
+          <td><span class="pill good">Narzędzie</span> (AI pomoże szkicować, ale precyzja i odpowiedzialność merytoryczna zostają). </td>
+          <td class="muted">3 / 5 / 2 / 2</td>
+          <td>
+            <div class="score" aria-label="4/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: jedna „animacja wyjaśniająca” (30–45 s) + 1 plansza schematyczna. Czy ją cieszy precyzja, czy męczy?</td>
+        </tr>
+
+        <tr>
+          <td><b>Konserwacja / renowacja zabytków</b></td>
+          <td>Praca ręczna w pracowni i w terenie; precyzja, materiały, czasem rusztowania.</td>
+          <td><span class="pill neu">2–5+ lat</span> (od ścieżek technicznych po studia ASP). Wejście zależne od specjalizacji.</td>
+          <td>Stacjonarnie (praktyka). Online marginalnie.</td>
+          <td>Wysoka „odporność AI”; praca z materią; dużo satysfakcji, jeśli lubi klimat rzeczy starych.</td>
+          <td>Niszowy rynek; bywa projektowo; często niższe płace na starcie; wymagające egzaminy/portfolio.</td>
+          <td><span class="pill good">Bezpieczne</span> (AI nie zastąpi rąk w terenie).</td>
+          <td class="muted">2 / 4 / 5 / 2</td>
+          <td>
+            <div class="score" aria-label="3/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: warsztaty renowacyjne / snycerskie + obejrzenie „prawdziwej” roboty na obiekcie (czy jej to pachnie sensownie?).</td>
+        </tr>
+
+        <tr>
+          <td><b>Lutnictwo</b> (instrumenty)</td>
+          <td>Warsztat: drewno, narzędzia, naprawy, strojenie; długie projekty i bardzo dużo cierpliwości.</td>
+          <td><span class="pill neu">3–6 lat</span> (studia/terminowanie) zanim przyjdzie stabilność.</td>
+          <td>Stacjonarnie (warsztat). Online tylko teoria.</td>
+          <td>„Zawód z duszą”: muzyka + ręce + precyzja; super odporność na automatyzację.</td>
+          <td>Wąska nisza, długi start; ryzyko finansowe na początku; zależność od renomy.</td>
+          <td><span class="pill good">Bezpieczne</span> (AI nie wyrzeźbi i nie naprawi „na żywo”).</td>
+          <td class="muted">2 / 4 / 5 / 1</td>
+          <td>
+            <div class="score" aria-label="3/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: 2–3 dni w pracowni lutniczej jako obserwacja + proste ćwiczenia ręczne (czy czuje „flow”, czy frustrację?).</td>
+        </tr>
+
+        <tr>
+          <td><b>Muzykoterapia</b></td>
+          <td>Sesje z ludźmi; dużo emocji, praca relacyjna + dokumentacja + planowanie zajęć.</td>
+          <td><span class="pill neu">3–5 lat</span> (często stacjonarnie) + rozwój własny.</td>
+          <td>Stacjonarnie (kontakt). Online najwyżej dodatki.</td>
+          <td>Jeśli lubi ludzi i muzykę „z sensem” – wysoka satysfakcja społeczna.</td>
+          <td>Obciążenie emocjonalne; ryzyko wypalenia; wynagrodzenia zależne od miejsca i formy pracy.</td>
+          <td><span class="pill good">Bezpieczne</span> (relacji AI nie zastąpi).</td>
+          <td class="muted">1 / 4 / 2 / 5</td>
+          <td>
+            <div class="score" aria-label="3/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: wolontariat/obserwacja w ośrodku + rozmowa z terapeutą: „jak to działa na psychikę po 6 miesiącach?”.</td>
+        </tr>
+
+        <tr>
+          <td><b>Edukacja (plastyka/muzyka)</b></td>
+          <td>Stały rytm roku szkolnego; praca z grupą; przygotowanie materiałów, ocenianie.</td>
+          <td><span class="pill neu">3–5 lat</span> (z przygotowaniem pedagogicznym) lub studia + podyplomówka.</td>
+          <td>Stacjonarnie (szkoła). Online marginalnie.</td>
+          <td>Stabilność, wakacje, dużo kontaktu; można łączyć z własną twórczością.</td>
+          <td>Płace i biurokracja; trudne klasy; potrzebna cierpliwość i „gruba skóra”.</td>
+          <td><span class="pill good">Bezpieczne</span> (nauczyciel = relacja + prowadzenie grupy).</td>
+          <td class="muted">1 / 3 / 1 / 5</td>
+          <td>
+            <div class="score" aria-label="3/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: poprowadź 2–3 krótkie zajęcia dla młodszych (kółko/rodzina). Czy to ją ładuje, czy drenuje?</td>
+        </tr>
+
+        <tr>
+          <td><b>Architektura wnętrz / wzornictwo</b></td>
+          <td>Projektowanie + kontakt z klientem + materiały; sporo wizualizacji i iteracji.</td>
+          <td><span class="pill neu">3–5 lat</span> (studia) + portfolio; można szybciej wejść w małe projekty jako asystent.</td>
+          <td>PL: mieszane; część prac komputerowa; zajęcia praktyczne stacjonarnie.</td>
+          <td>Łączy estetykę, przestrzeń i „materiały”; mniej „czystej humanistyki”.</td>
+          <td>Terminy i poprawki; czasem stres; zależy od lokalnego rynku zleceń.</td>
+          <td><span class="pill neu">Mieszane</span> (AI pomoże w koncepcjach, ale projekt + odpowiedzialność zostają).</td>
+          <td class="muted">3 / 4 / 2 / 3</td>
+          <td>
+            <div class="score" aria-label="3/5">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </td>
+          <td>Mini‑test: zaprojektuj jeden pokój (rzuty + moodboard + kosztorys). Czy ją kręci łączenie estetyki z ograniczeniami?</td>
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+
+    <p class="note">
+      Jak czytać oceny: jeśli w tabeli coś ma 3/5, to nie znaczy „nie warto” – często oznacza „warto, ale wymaga pasji / ma ryzyko rynku / zależy od miasta”.
+    </p>
+  </div>
+
+  <!-- TABLE 2 -->
+  <div class="card">
+    <h2 style="margin:0 0 10px;font-size:18px">Tabela 2 — pytania do córki (samodiagnoza; wpisuje 1–5 i notatki)</h2>
+    <p class="sub" style="margin:0 0 12px">Sugestia: niech wypełni sama. Potem porównajcie z Tabelą 1 i zobaczcie, które ścieżki „same wypadają”.</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-mid">Obszar</th>
+          <th class="col-xwide">Pytanie (konkret)</th>
+          <th class="col-narrow">Skala 1–5</th>
+          <th class="col-wide">Co sugeruje wysoki wynik?</th>
+          <th class="col-wide">Notatki córki</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><b>Energia</b></td>
+          <td>Po czym czujesz się lepiej: po pracy <b>z ludźmi</b> czy po pracy <b>w skupieniu</b>?</td>
+          <td class="muted">1 = ludzie męczą<br>5 = ludzie ładują</td>
+          <td>Wysoko: muzykoterapia, edukacja, UX, protetyk słuchu. Nisko: IT/data, lab, warsztat.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>Tryb pracy</b></td>
+          <td>Ile godzin dziennie jesteś w stanie <b>realnie</b> siedzieć przy komputerze bez cierpienia?</td>
+          <td class="muted">1 = 1–2h max<br>5 = 6–8h ok</td>
+          <td>Wysoko: IT/data, animacja, UX, bioinfo. Nisko: kierunki manualne/terenowe lepsze.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>Manual</b></td>
+          <td>Czy praca rękami „na milimetry” daje Ci <b>flow</b> (detal, precyzja, cierpliwość)?</td>
+          <td class="muted">1 = nie znoszę<br>5 = kocham</td>
+          <td>Wysoko: technik dentystyczny, lutnictwo, renowacja. Średnio: protetyk słuchu.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>STEM</b></td>
+          <td>Na ile lubisz abstrakcję: wzory, zależności, „dlaczego to działa”?</td>
+          <td class="muted">1 = meh<br>5 = uwielbiam</td>
+          <td>Wysoko: data/AI, bioinfo, inżynierie, akustyka. Nisko: czysto artystyczne.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>Chemia/biologia</b></td>
+          <td>Czy bardziej ciekawi Cię: <b>lab i materia</b> czy <b>dane i modele</b>?</td>
+          <td class="muted">1 = tylko dane<br>5 = tylko lab</td>
+          <td>1–2: bioinfo/data. 3: hybrydy. 4–5: chemia/lab/renowacja (materiały).</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>Sztuka</b></td>
+          <td>Czy wolisz: <b>rysować tworząc świat</b> czy <b>rysować „dla celu” (wyjaśnić coś)</b>?</td>
+          <td class="muted">1 = świat / styl<br>5 = wyjaśnianie</td>
+          <td>1–2: concept art/gamedev. 4–5: wizualizacja naukowa/UX/motion „edukacyjny”.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>Stres</b></td>
+          <td>Jak znosisz terminy i poprawki (feedback, iteracje)?</td>
+          <td class="muted">1 = źle<br>5 = spoko</td>
+          <td>Wysoko: branże projektowe (animacja, UX, IT). Nisko: rozważ stabilniejsze (edukacja, fach medyczny).</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>Stabilność</b></td>
+          <td>Co jest ważniejsze: <b>stabilny etat</b> czy <b>różnorodność i wolność</b>?</td>
+          <td class="muted">1 = wolność<br>5 = etat</td>
+          <td>5: edukacja, zawody medyczno‑techniczne. 1–2: freelance audio/animacja/sztuka.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>Lokalizacja</b></td>
+          <td>Czy chcesz/ możesz wyjechać do dużego miasta na 3–5 lat?</td>
+          <td class="muted">1 = nie<br>5 = tak</td>
+          <td>Wysoko otwiera: specjalistyczne uczelnie/rynki. Nisko: wybieraj ścieżki możliwe lokalnie lub zdalnie.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>„Papier”</b></td>
+          <td>Jak ważny jest dyplom vs umiejętność/portfolio?</td>
+          <td class="muted">1 = portfolio<br>5 = dyplom</td>
+          <td>5: kierunki formalne/regulowane. 1–2: design/animacja/gamedev/audio – liczy się showreel.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>Tempo</b></td>
+          <td>Czy wolisz drogę „<b>szybko do zawodu</b>” (1–2,5 roku), czy „<b>głębiej i dłużej</b>” (3–5 lat)?</td>
+          <td class="muted">1 = szybko<br>5 = dłużej</td>
+          <td>1–2: policealne, kursy, portfolio. 4–5: studia inżynierskie/5‑letnie kierunki.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+        <tr>
+          <td><b>Co ją „woła”</b></td>
+          <td>Gdybyś miała wybrać 1 rzecz na 2 miesiące: <b>kod</b> / <b>lab</b> / <b>animacja</b> / <b>warsztat</b> / <b>praca z ludźmi</b> – co wybierasz?</td>
+          <td class="muted">Wpisz wybór</td>
+          <td>To najlepszy kompas do testu. Jedna rzecz, jeden mini‑projekt, bez wielkich deklaracji.</td>
+          <td class="muted">(…)</td>
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+
+    <p class="note">
+      Pro tip: po wypełnieniu weźcie 3 najwyżej „pasujące” obszary i ustawcie <b>3 mini‑testy</b> (po 2–6 tygodni każdy). To daje więcej niż 100 godzin dyskusji.
+    </p>
+  </div>
+
+  <p class="sub" style="margin-top:10px">
+    Jeśli chcesz, mogę też zrobić trzecią rzecz: <b>krótką „matrycę punktową”</b> (automatyczne podsumowanie wyników z Tabeli 2 → top 5 ścieżek z Tabeli 1).
+  </p>
+</div>
+</body>
+</html>

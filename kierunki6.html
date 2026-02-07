@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Przegląd Kierunków Kariery</title>
+  <style>
+    :root {
+      --bg: #0f0f12;
+      --card: #18181f;
+      --ink: #e8e6f0;
+      --muted: #9590a8;
+      --line: rgba(148, 140, 180, 0.12);
+      --accent: #a78bfa;
+      --accent2: #818cf8;
+      --good: #4ade80;
+      --warn: #fbbf24;
+      --info: #60a5fa;
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at top, #1a1a24 0%, var(--bg) 60%);
+      color: var(--ink);
+      font: 14px/1.5 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      min-height: 100vh;
+    }
+    
+    .wrap {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 36px 20px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    h1 {
+      font-size: 2em;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--info) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0 0 8px;
+    }
+    
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05em;
+      margin: 0;
+    }
+    
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding: 16px 20px;
+      background: rgba(167, 139, 250, 0.04);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    
+    .legend-dot.manual { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .legend-dot.remote { background: linear-gradient(135deg, #a78bfa, #818cf8); }
+    .legend-dot.ai { background: linear-gradient(135deg, #4ade80, #22c55e); }
+    .legend-dot.people { background: linear-gradient(135deg, #60a5fa, #3b82f6); }
+    .legend-dot.stable { background: linear-gradient(135deg, #94a3b8, #64748b); }
+    
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 
+        0 0 0 1px rgba(167, 139, 250, 0.05),
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 100px rgba(167, 139, 250, 0.03);
+    }
+    
+    table {
+      width: 100%;
+      min-width: 1100px;
+      border-collapse: collapse;
+    }
+    
+    thead th {
+      background: linear-gradient(180deg, rgba(167, 139, 250, 0.12) 0%, rgba(129, 140, 248, 0.06) 100%);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 18px 16px;
+      text-align: left;
+      vertical-align: bottom;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    tbody td {
+      padding: 18px 16px;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+      line-height: 1.65;
+    }
+    
+    tbody tr:hover td {
+      background: rgba(167, 139, 250, 0.03);
+    }
+    
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    /* Career name */
+    .career-name {
+      font-size: 1.05em;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    
+    .tag-icon {
+      font-size: 12px;
+    }
+    
+    .tag.tag-workshop { border-color: rgba(245, 158, 11, 0.3); color: #fbbf24; }
+    .tag.tag-precision { border-color: rgba(251, 191, 36, 0.3); color: #fde68a; }
+    .tag.tag-quiet { border-color: rgba(148, 163, 184, 0.3); color: #cbd5e1; }
+    .tag.tag-niche { border-color: rgba(244, 114, 182, 0.3); color: #f9a8d4; }
+    .tag.tag-remote { border-color: rgba(167, 139, 250, 0.3); color: #c4b5fd; }
+    .tag.tag-ai { border-color: rgba(74, 222, 128, 0.3); color: #86efac; }
+    .tag.tag-lab { border-color: rgba(96, 165, 250, 0.3); color: #93c5fd; }
+    .tag.tag-people { border-color: rgba(251, 146, 60, 0.3); color: #fdba74; }
+    .tag.tag-stable { border-color: rgba(148, 163, 184, 0.3); color: #94a3b8; }
+    .tag.tag-risk { border-color: rgba(248, 113, 113, 0.3); color: #fca5a5; }
+    
+    /* Content text */
+    .content-text {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    
+    .content-text strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    
+    /* Status pills */
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    .status.good { background: rgba(74, 222, 128, 0.12); color: #4ade80; }
+    .status.neutral { background: rgba(148, 163, 184, 0.12); color: #94a3b8; }
+    .status.mixed { background: rgba(251, 191, 36, 0.12); color: #fbbf24; }
+    .status.remote { background: rgba(167, 139, 250, 0.12); color: #a78bfa; }
+    
+    /* AI section */
+    .ai-note {
+      background: rgba(74, 222, 128, 0.06);
+      border: 1px solid rgba(74, 222, 128, 0.15);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    
+    .ai-note strong {
+      color: #4ade80;
+    }
+    
+    /* Dev section */
+    .dev-list {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    
+    .dev-list li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    
+    .dev-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 36px;
+      padding: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+    
+    footer strong {
+      color: var(--accent);
+    }
+    
+    @media (max-width: 768px) {
+      h1 { font-size: 1.5em; }
+      .wrap { padding: 20px 12px; }
+      .legend { gap: 8px; padding: 12px; }
+    }
+    
+    /* Scrollbar styling */
+    .table-wrap::-webkit-scrollbar {
+      height: 8px;
+    }
+    .table-wrap::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.02);
+      border-radius: 4px;
+    }
+    .table-wrap::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.3);
+      border-radius: 4px;
+    }
+    .table-wrap::-webkit-scrollbar-thumb:hover {
+      background: rgba(167, 139, 250, 0.5);
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Przegląd Kierunków Kariery</h1>
+    <p class="subtitle">Kształcenie, charakter pracy, rynek i perspektywy rozwoju</p>
+  </header>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot manual"></span> Praca manualna</div>
+    <div class="legend-item"><span class="legend-dot remote"></span> Możliwa praca zdalna</div>
+    <div class="legend-item"><span class="legend-dot ai"></span> AI jako narzędzie</div>
+    <div class="legend-item"><span class="legend-dot people"></span> Kontakt z ludźmi</div>
+    <div class="legend-item"><span class="legend-dot stable"></span> Stabilność</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">Kierunek / Zawód</th>
+          <th style="width:17%">Wymagane kształcenie</th>
+          <th style="width:22%">Charakter pracy</th>
+          <th style="width:20%">Rynek i zarobki</th>
+          <th style="width:23%">Rozwój i uwagi</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>
+            <div class="career-name">Technik dentystyczny</div>
+            <div class="tags">
+              <span class="tag tag-workshop"><span class="tag-icon">🔧</span> warsztat + lupa</span>
+              <span class="tag tag-precision">precyzja</span>
+              <span class="tag tag-quiet">mało ludzi</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Szkoła policealna</strong> (ok. 2–2,5 roku) + egzamin zawodowy.
+              <div class="status-row">
+                <span class="status good">Realny start bez studiów</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Praca w <strong>laboratorium protetycznym</strong>: modelowanie, szlifowanie, warstwy porcelany/kompozytu, często przy lupach/mikroskopie.
+              <br><br>
+              Najczęściej spokojne tempo, skupienie, efekt "do dotknięcia".
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Duży popyt</strong> (gabinetów stomatologicznych nie brakuje).
+              <br><br>
+              Wynagrodzenia zależne od regionu i doświadczenia; w praktyce często stabilne i rosnące z umiejętnościami.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Świetny match do "wizji warsztatowej".
+              <ul class="dev-list">
+                <li>CAD/CAM, druk 3D, estetyka, materiały</li>
+                <li>Lokalizacja: możliwa praca też poza metropoliami</li>
+              </ul>
+            </div>
+            <div class="ai-note">
+              <strong>AI:</strong> raczej wsparcie, nie zastąpi ręki i oka
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Lutnik</div>
+            <div class="tags">
+              <span class="tag tag-workshop"><span class="tag-icon">🪵</span> drewno</span>
+              <span class="tag tag-quiet">cisza</span>
+              <span class="tag tag-niche">nisza</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Różnie: szkoły/uczelnie artystyczne + praktyka, albo <strong>ścieżka rzemieślnicza u mistrza</strong>.
+              <br><br>
+              W praktyce liczy się warsztat i renoma.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Warsztat</strong>, dużo precyzji i cierpliwości; praca etapami (klejenie, lakier, regulacje).
+              <br><br>
+              Kontakt z klientem raczej punktowy.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Niszowo, ale <strong>dobry fachowiec ma klientów</strong> (instrumenty, naprawy).
+              <br><br>
+              Rozkręcenie reputacji zajmuje czas.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Odporne na AI (to rzemiosło)</li>
+                <li>Łatwiej w większych ośrodkach muzycznych</li>
+                <li>Wsparcie rodziców: narzędzia, kontakty, finansowanie startu</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Konserwator zabytków</div>
+            <div class="tags">
+              <span class="tag tag-precision">detal</span>
+              <span class="tag tag-workshop">teren + pracownia</span>
+              <span class="tag tag-lab">chemia materiałów</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Najczęściej <strong>studia</strong> (ASP/uniwersytety) + mocna baza plastyczna (egzaminy z rysunku) i podstawy chemii materiałów.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Część pracy <strong>w terenie</strong> (rusztowania, obiekty), część w pracowni pod lupą.
+              <br><br>
+              Duża odpowiedzialność, praca projektowa.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Zależy od projektów i finansowania (instytucje/publiczne/prywatne).
+              <br><br>
+              W metropoliach i miastach z zabytkami zwykle więcej zleceń.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Portfolio prac mocno pomaga</li>
+                <li>Staże u pracowni konserwatorskich</li>
+              </ul>
+            </div>
+            <div class="ai-note">
+              <strong>AI:</strong> pomocniczo (dokumentacja/analizy), nie zastąpi ręki
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Złotnik / jubiler</div>
+            <div class="tags">
+              <span class="tag tag-precision">mikro-precyzja</span>
+              <span class="tag tag-workshop">estetyka</span>
+              <span class="tag tag-workshop">warsztat</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Rzemiosło</strong> (praktyka u mistrza) + kursy / szkoły branżowe; opcjonalnie studia projektowe (ASP).
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Stół jubilerski</strong>, lutowanie, oprawa kamieni, polerowanie.
+              <br><br>
+              Może być cicho i "sam na sam" z pracą.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Etat:</strong> zwykle umiarkowane.
+              <br><br>
+              <strong>Własna marka:</strong> potencjalnie wysokie, ale ryzyko i potrzeba sprzedaży/marketingu.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>CAD w jubilerstwie, druk 3D</li>
+                <li>Sprzedaż online możliwa (Etsy/IG)</li>
+              </ul>
+            </div>
+            <div class="ai-note">
+              <strong>AI:</strong> może wspierać projektowanie, wykonanie zostaje ludzkie
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Biotechnolog / genetyka</div>
+            <div class="tags">
+              <span class="tag tag-lab">lab</span>
+              <span class="tag tag-stable">procedury</span>
+              <span class="tag tag-lab">chemia + bio</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Studia</strong> (biotechnologia/biologia molekularna) – zwykle licencjat/inż., często warto magistra.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Praca w <strong>laboratorium</strong>: pipetowanie, PCR, hodowle, aparatura.
+              <br><br>
+              Trochę raportów przy komputerze, ale zwykle nie "8h na krześle".
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Najwięcej ofert w większych ośrodkach (R&D, firmy, instytuty).
+              <br><br>
+              Stabilność zależna od sektora (prywatny vs nauka).
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Rośnie rola narzędzi analitycznych</li>
+                <li>Ogromny plus: możliwe staże/projekty w fundacji</li>
+              </ul>
+            </div>
+            <div class="ai-note">
+              <strong>AI:</strong> warto rozumieć dane, ale lab pozostaje labem
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Bioinformatyka</div>
+            <div class="tags">
+              <span class="tag tag-remote">zdalnie</span>
+              <span class="tag tag-stable">komputer</span>
+              <span class="tag tag-ai">AI-friendly</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Studia bioinformatyczne/informatyczne lub ścieżka <strong>kursy + projekty + wiedza domenowa</strong>.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Głównie komputer (kod, statystyka, pipeline'y).
+              <br><br>
+              Dobra dla osoby, która lubi ścisłe rzeczy, ale <strong>mniej pasuje do niechęci "8h przed ekranem"</strong>.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Perspektywiczne</strong>, często możliwa praca zdalna.
+              <br><br>
+              Stawki zależne od poziomu IT i branży.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Dbać o ergonomię/ruch: przerwy, hybryda</li>
+                <li>AI raczej szansa (narzędzia, modele)</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Chemia</div>
+            <div class="tags">
+              <span class="tag tag-lab">analiza</span>
+              <span class="tag tag-lab">lab + raporty</span>
+              <span class="tag tag-stable">przemysł</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Studia chemiczne/technologiczne</strong> (licencjat/inż., często magister daje lepsze opcje).
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Laboratorium lub zakład</strong>: analityka, kontrola jakości, czasem zmiany.
+              <br><br>
+              Mieszanka ruchu i biurka.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Oferty zależne od regionu (większy przemysł = więcej opcji).
+              <br><br>
+              Na starcie bywa różnie; rośnie z doświadczeniem i specjalizacją.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Warto celować w specjalizacje (QA/QC, R&D)</li>
+                <li>AI: wsparcie w analizie danych</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Programowanie / IT</div>
+            <div class="tags">
+              <span class="tag tag-remote">zdalnie</span>
+              <span class="tag tag-ai">duże zarobki</span>
+              <span class="tag tag-stable">ekran</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Studia opcjonalne.</strong> Najszybciej: kursy + praktyka + projekty.
+              <br><br>
+              Duży atut: nauka w firmie rodzinnej.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Praca przy komputerze, często zdalnie.
+              <br><br>
+              <strong>Może męczyć</strong>, jeśli nie lubi siedzenia 8h.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Duży rynek, dobre widełki</strong> – ale wejście dla juniorów robi się trudniejsze.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Rośnie znaczenie rozumienia problemu, architektury i testów</li>
+                <li>Opcja: IT + projekty kreatywne (gra/komiks/animacja)</li>
+              </ul>
+            </div>
+            <div class="ai-note">
+              <strong>AI:</strong> automatyzuje część kodowania → rośnie znaczenie architektury
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Grafika / ilustracja / animacja</div>
+            <div class="tags">
+              <span class="tag tag-workshop">portfolio</span>
+              <span class="tag tag-niche">kreatywność</span>
+              <span class="tag tag-remote">często zdalnie</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Studia artystyczne pomagają, ale <strong>najważniejsze jest portfolio</strong>.
+              <br><br>
+              Kursy (anatomia, perspektywa, digital painting) dają szybki progres.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Często komputer/tablet, praca projektowa, <strong>terminy</strong>.
+              <br><br>
+              Możliwe freelance i praca zdalna.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Globalna konkurencja</strong>; zarobki bardzo zróżnicowane.
+              <br><br>
+              Najlepiej działa nisza + konsekwentne portfolio.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Strategia: portfolio + nisza (np. postacie, styl)</li>
+              </ul>
+            </div>
+            <div class="ai-note">
+              <strong>AI:</strong> podcina proste zlecenia, ale premiuje unikalny styl
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Realizacja dźwięku</div>
+            <div class="tags">
+              <span class="tag tag-precision">słuch</span>
+              <span class="tag tag-workshop">studio + eventy</span>
+              <span class="tag tag-niche">projektowo</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Studia (muzyczne/filmowe/techniczne) lub <strong>kursy + praktyka</strong>.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Studio:</strong> spokojniej (miks, nagrania).
+              <br><br>
+              <strong>Eventy:</strong> stres, hałas, godziny wieczorne.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Etaty ograniczone; dużo freelance.
+              <br><br>
+              Zarobki zależne od sieci kontaktów i projektów.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Coraz lepsze narzędzia AI do miksu – warto je znać</li>
+                <li>Ścieżka: małe zlecenia + portfolio audio</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Nauczyciel plastyki</div>
+            <div class="tags">
+              <span class="tag tag-stable">stabilność</span>
+              <span class="tag tag-people">dużo ludzi</span>
+              <span class="tag tag-stable">wolne wakacje</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Studia + przygotowanie pedagogiczne</strong> (lub podyplomówka kwalifikacyjna).
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Praca z dziećmi/młodzieżą, <strong>kontakt intensywny</strong>.
+              <br><br>
+              Część pracy "po godzinach" (przygotowanie).
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Stabilna praca</strong>, ale zarobki zwykle umiarkowane (rośnie z awansem).
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Dobre, jeśli lubi ludzi i chce stały rytm roku</li>
+              </ul>
+            </div>
+            <div class="ai-note">
+              <strong>AI:</strong> raczej narzędzie w przygotowaniu materiałów; rola nauczyciela zostaje
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="career-name">Własny biznes</div>
+            <div class="tags">
+              <span class="tag tag-risk">przedsiębiorczość</span>
+              <span class="tag tag-people">kontakt z ludźmi</span>
+              <span class="tag tag-risk">ryzyko</span>
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Formalnie brak, praktycznie: <strong>doświadczenie + podstawy finansów/marketingu</strong>.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              Na starcie: <strong>dużo pracy, mało wolnego</strong>.
+              <br><br>
+              Docelowo: możliwe więcej wolnego po zatrudnieniu ludzi, ale odpowiedzialność zostaje.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <strong>Potencjał zysku bez limitu</strong>, ale ryzyko i konkurencja duże.
+            </div>
+          </td>
+          <td>
+            <div class="content-text">
+              <ul class="dev-list">
+                <li>Pomysł: kawiarnia + galeria + sprzedaż rękodzieła</li>
+              </ul>
+            </div>
+            <div class="ai-note">
+              <strong>AI:</strong> pomoże w marketingu/analizach, nie poprowadzi lokalu
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    <p><strong>Wskazówka:</strong> Nie ma jednej "właściwej" ścieżki. Najważniejsze jest przetestowanie 2–3 opcji w praktyce, zanim podejmiesz decyzję.</p>
+  </footer>
+</div>
+</body>
+</html>

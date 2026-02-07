@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analiza Ścieżek Rozwoju</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #f4f4f9; padding: 20px; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 40px; }
+        h2 { color: #2980b9; border-bottom: 2px solid #2980b9; padding-bottom: 10px; margin-top: 50px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; background-color: #fff; box-shadow: 0 0 20px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; vertical-align: top; }
+        th { background-color: #2980b9; color: #fff; font-weight: 600; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; }
+        tr:hover { background-color: #f1f1f1; }
+        .rating { font-weight: bold; color: #27ae60; }
+        .risk { color: #e74c3c; font-size: 0.9em; }
+        .opportunity { color: #27ae60; font-size: 0.9em; }
+        .question { font-style: italic; color: #555; background-color: #eaf2f8; padding: 10px; border-left: 4px solid #2980b9; border-radius: 4px; }
+        .synergy-badge { display: inline-block; background: #e8f6f3; color: #16a085; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 5px; margin-bottom: 5px; font-weight: bold; }
+        
+        /* Kolory dla specyficznych ocen */
+        .high-match { color: #27ae60; } /* Zielony */
+        .med-match { color: #f39c12; } /* Pomarańczowy */
+        .niche-match { color: #8e44ad; } /* Fioletowy */
+    </style>
+</head>
+<body>
+
+    <h1>Mapa Ścieżek Edukacyjno-Zawodowych</h1>
+
+    <h2>WERSJA 1: Analiza Strategiczna (Fakty i Potencjał)</h2>
+    <p>Obiektywne zestawienie oparte na Twoich unikalnych predyspozycjach: połączeniu zdolności manualnych (rysunek, instrument), ścisłych (chemia, logika) i analitycznych.</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 20%;">Ścieżka / Kierunek</th>
+                <th style="width: 25%;">Dlaczego to pasuje? (Synergia)</th>
+                <th style="width: 25%;">Plusy i Przyszłość (AI & Rynek)</th>
+                <th style="width: 20%;">Wyzwania i Ryzyka</th>
+                <th style="width: 10%;">Ocena Zgodności</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Technik Dentystyczny (CAD/CAM + Ceramika)</strong><br><small>Szkoła policealna / Medyk</small></td>
+                <td>
+                    <span class="synergy-badge">Manualne</span>
+                    <span class="synergy-badge">Chemia</span>
+                    <span class="synergy-badge">Estetyka</span>
+                    <br>Łączy precyzję rąk (jak gra na harfie) z wiedzą chemiczną o materiałach i cyfrowym projektowaniem 3D.
+                </td>
+                <td>
+                    <span class="opportunity">✔ Bezpieczne przed AI</span> (robot nie zrobi artystycznego wykończenia).<br>
+                    ✔ Krótka nauka (2-2,5 roku).<br>
+                    ✔ Konkretny fach w ręku.
+                </td>
+                <td>Praca siedząca, wymagająca ogromnej cierpliwości. Na początku niższe zarobki, które rosną wraz z biegłością w ceramice/CAD.</td>
+                <td class="rating high-match">BARDZO WYSOKA</td>
+            </tr>
+            <tr>
+                <td><strong>Bioinformatyka / Analiza Danych</strong><br><small>Studia lub Gap Year w firmie</small></td>
+                <td>
+                    <span class="synergy-badge">Logika</span>
+                    <span class="synergy-badge">Chemia</span>
+                    <span class="synergy-badge">Rozwiązywanie problemów</span>
+                    <br>Wykorzystuje umysł ścisły. Możliwość "testu" w bezpiecznych warunkach (firma taty/fundacja) bez presji.
+                </td>
+                <td>
+                    <span class="opportunity">✔ Top zarobki</span> i praca zdalna.<br>
+                    ✔ Współpraca z AI zamiast konkurencji.<br>
+                    ✔ Udział w ważnych projektach (np. leki).
+                </td>
+                <td>
+                    <span class="risk">⚠ Ryzyko:</span> Wymaga polubienia programowania i siedzenia w kodzie. Brak aspektu manualnego/artystycznego. Może być "za suche".
+                </td>
+                <td class="rating med-match">WYSOKA (Jako Inżynier)</td>
+            </tr>
+            <tr>
+                <td><strong>Lutnictwo Artystyczne / Renowacja</strong><br><small>Akademia Muzyczna / Czeladnictwo</small></td>
+                <td>
+                    <span class="synergy-badge">Słuch Absolutny</span>
+                    <span class="synergy-badge">Drewno</span>
+                    <span class="synergy-badge">Chemia</span>
+                    <br>Elitarne rzemiosło. Wykorzystuje słuch muzyczny, zdolności rzeźbiarskie i chemię (lakiery, konserwacja).
+                </td>
+                <td>
+                    <span class="opportunity">✔ Całkowicie odporne na AI.</span><br>
+                    ✔ Praca z "duszą" i fizyczną materią.<br>
+                    ✔ Prestiż w wąskim gronie.
+                </td>
+                <td>
+                    <span class="risk">⚠ Bardzo wąska nisza.</span> Trudny rynek, zarobki niestabilne na początku. Wymaga pasji graniczącej z obsesją.
+                </td>
+                <td class="rating niche-match">NISZOWA (Dla Pasjonata)</td>
+            </tr>
+            <tr>
+                <td><strong>GameDev (Concept Art / Tech Art)</strong><br><small>Portfolio + Kursy</small></td>
+                <td>
+                    <span class="synergy-badge">Rysunek</span>
+                    <span class="synergy-badge">Technologia</span>
+                    <br>Nowoczesne wykorzystanie talentu plastycznego. Tech Art łączy zmysł artysty z logiką działania silnika gry.
+                </td>
+                <td>
+                    Możliwość pracy przy ciekawych projektach. Dobre zarobki dla specjalistów (zwłaszcza Tech Art).
+                </td>
+                <td>
+                    <span class="risk">⚠ Konkurencja z AI</span> (generowanie obrazów). Duża presja, stres ("crunch"), niestabilność zatrudnienia.
+                </td>
+                <td class="rating med-match">ŚREDNIA / WYSOKA</td>
+            </tr>
+            <tr>
+                <td><strong>Protetyk Słuchu</strong><br><small>Szkoła policealna</small></td>
+                <td>
+                    <span class="synergy-badge">Akustyka</span>
+                    <span class="synergy-badge">Kontakt z pacjentem</span>
+                    <br>Zastosowanie wiedzy muzycznej (dźwięk, częstotliwości) w medycynie.
+                </td>
+                <td>
+                    Szybkie wejście na rynek (2 lata). Stabilna praca (starzejące się społeczeństwo).
+                </td>
+                <td>
+                    Mniej kreatywne niż pozostałe opcje. Dużo pracy "sprzedażowej" i kontaktu z trudnym pacjentem (seniorzy).
+                </td>
+                <td class="rating med-match">DOBRA (Stabilna)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>WERSJA 2: "Check Your Pulse" (Perspektywa Osobista)</h2>
+    <p>Nie patrz na to "co się opłaca", ale jak chcesz spędzać swoje 8 godzin dziennie przez najbliższe lata.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 20%;">Obszar</th>
+                <th style="width: 40%;">Pytania do Ciebie (Rachunek Sumienia)</th>
+                <th style="width: 40%;">Jak wygląda "zwykły wtorek" w tej pracy?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Świat Materii (Zęby / Drewno / Zabytki)</strong></td>
+                <td>
+                    <div class="question">
+                        "Czy lubisz mieć brudne ręce od gipsu/farby/drewna?"<br>
+                        "Czy cieszy Cię, gdy po 5 godzinach dłubania powstaje jeden, idealny przedmiot?"<br>
+                        "Czy wolisz pracować w ciszy/skupieniu, czy w hałasie?"
+                    </div>
+                </td>
+                <td>
+                    Siedzisz przy stole warsztatowym. W tle leci podcast/muzyka. Masz przed sobą mikroskop lub lupy. Precyzyjnie nakładasz warstwy porcelany lub szlifujesz drewno. Nikt Ci nie przeszkadza. Liczy się efekt fizyczny, który możesz dotknąć.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Świat Logiki (Bioinformatyka / Dane / AI)</strong></td>
+                <td>
+                    <div class="question">
+                        "Czy lubisz rozwiązywać zagadki logiczne, które nie mają od razu rozwiązania?"<br>
+                        "Czy nie przeszkadza Ci, że efekt Twojej pracy widać tylko na ekranie?"<br>
+                        "Czy jesteś gotowa ciągle się uczyć nowych rzeczy, bo stare przestają działać?"
+                    </div>
+                </td>
+                <td>
+                    Siedzisz przed dwoma monitorami. Piszesz kod lub analizujesz wykresy. Szukasz błędu w danych. Często masz spotkania online (jeśli praca zdalna). Twój mózg pracuje na wysokich obrotach, ciało odpoczywa (wymagany sport po pracy!).
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Świat Kreacji Cyfrowej (Gry / Grafika)</strong></td>
+                <td>
+                    <div class="question">
+                        "Czy rysowanie to dla Ciebie przyjemność, czy męka, gdy musisz poprawiać to samo 10 razy pod klienta?"<br>
+                        "Czy akceptujesz to, że Twoja praca może trafić 'do kosza', bo zmieniła się koncepcja gry?"
+                    </div>
+                </td>
+                <td>
+                    Praca zespołowa. Deadline goni deadline. Tworzysz szkice, modele 3D. Dużo feedbacku od szefa ("zmień kolor", "zrób to mroczniej"). Jest twórczo, ale dynamicznie i czasem stresująco.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Świat Pomagania (Terapia / Protetyka Słuchu)</strong></td>
+                <td>
+                    <div class="question">
+                        "Czy cudze emocje i problemy Cię obciążają, czy dają napęd?"<br>
+                        "Czy masz cierpliwość tłumaczyć to samo trzeci raz starszej osobie?"
+                    </div>
+                </td>
+                <td>
+                    Dużo rozmów. Jesteś w gabinecie/sali. Pracujesz z żywym człowiekiem, który bywa marudny, chory, smutny, ale też wdzięczny. Wracasz do domu zmęczona emocjonalnie, ale z poczuciem misji.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Opcja: GAP YEAR (Rok Testowy)</strong></td>
+                <td>
+                    <div class="question">
+                        "Czy boisz się, że 'wypadniesz z rytmu' nauki?"<br>
+                        "Czy wolałabyś przez rok popróbować 3 różnych rzeczy (trochę kodu, trochę rysunku, trochę kursu manualnego) bez presji na dyplom?"
+                    </div>
+                </td>
+                <td>
+                    Elastyczność. Pracujesz trochę u taty (testujesz bioinfo), robisz kurs rysunku, idziesz na praktyki do technika. Po roku wiesz, czego NIE chcesz robić (co jest równie ważne).
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

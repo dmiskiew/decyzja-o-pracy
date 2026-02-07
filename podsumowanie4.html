@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zawody z Perspektywami 2025–2030 | Analiza dla Zuzanny</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f7f5f0;
+            --card: #ffffff;
+            --ink: #1a1815;
+            --muted: #6b6560;
+            --line: rgba(26, 24, 21, 0.08);
+            --accent: #c17f59;
+            --accent-soft: #e8d5c4;
+            --success: #5a8a6e;
+            --success-soft: #e0efe6;
+            --warning: #c9a857;
+            --warning-soft: #f5efd8;
+            --info: #5a7a9a;
+            --info-soft: #dfeaf5;
+            --niche: #8a6a9a;
+            --niche-soft: #f0e8f5;
+            --bio: #059669;
+            --bio-soft: #d1fae5;
+            --health: #0284c7;
+            --health-soft: #e0f2fe;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            color: var(--muted);
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .sources {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+        
+        .source-badge {
+            background: var(--card);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            font-weight: 500;
+            color: var(--muted);
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        h2 .emoji {
+            font-size: 1.1em;
+        }
+        
+        .section-intro {
+            color: var(--muted);
+            font-size: 0.95em;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+        
+        /* Tables */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(26, 24, 21, 0.06);
+            background: var(--card);
+            border: 1px solid var(--line);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+        
+        thead th {
+            background: linear-gradient(180deg, var(--ink) 0%, #2d2a26 100%);
+            color: #f5f0eb;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 16px 14px;
+            text-align: left;
+            vertical-align: bottom;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            white-space: nowrap;
+        }
+        
+        tbody td {
+            padding: 16px 14px;
+            vertical-align: top;
+            border-bottom: 1px solid var(--line);
+        }
+        
+        tbody tr:hover td {
+            background: rgba(193, 127, 89, 0.04);
+        }
+        
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Category rows */
+        .category-row td {
+            background: linear-gradient(135deg, var(--accent-soft) 0%, #f5ebe3 100%) !important;
+            font-weight: 700;
+            font-size: 0.95em;
+            color: var(--accent);
+            padding: 12px 14px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .category-row.bio td { background: linear-gradient(135deg, var(--bio-soft) 0%, #ecfdf5 100%) !important; color: var(--bio); border-color: var(--bio); }
+        .category-row.health td { background: linear-gradient(135deg, var(--health-soft) 0%, #f0f9ff 100%) !important; color: var(--health); border-color: var(--health); }
+        .category-row.craft td { background: linear-gradient(135deg, var(--warning-soft) 0%, #fef9e7 100%) !important; color: #92400e; border-color: #d97706; }
+        .category-row.it td { background: linear-gradient(135deg, var(--niche-soft) 0%, #f5f3ff 100%) !important; color: var(--niche); border-color: var(--niche); }
+        .category-row.business td { background: linear-gradient(135deg, #ffe4e6 0%, #fff1f2 100%) !important; color: #be123c; border-color: #e11d48; }
+        
+        /* Path name */
+        .path-name {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        
+        .path-detail {
+            font-size: 0.85em;
+            color: var(--muted);
+        }
+        
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 8px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+        
+        .tag-top { background: var(--success-soft); color: var(--success); border: 1px solid rgba(90, 138, 110, 0.2); }
+        .tag-manual { background: #fef3e2; color: #a66d3a; border: 1px solid #f0d9b8; }
+        .tag-chem { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+        .tag-art { background: #fce7f3; color: #9d174d; border: 1px solid #fbcfe8; }
+        .tag-music { background: var(--info-soft); color: var(--info); border: 1px solid rgba(90, 122, 154, 0.2); }
+        .tag-ai { background: #e8f5e8; color: #3a7a4a; border: 1px solid #c8e8c8; }
+        .tag-ai-risk { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+        .tag-niche { background: var(--niche-soft); color: var(--niche); border: 1px solid rgba(138, 106, 154, 0.2); }
+        .tag-local { background: var(--warning-soft); color: #8a7030; border: 1px solid #e8ddb0; }
+        .tag-trend { background: var(--bio-soft); color: var(--bio); border: 1px solid rgba(5, 150, 105, 0.2); }
+        
+        /* Rating */
+        .rating {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .dot.filled { background: linear-gradient(180deg, var(--accent) 0%, #a66d3a 100%); border-color: transparent; }
+        
+        /* Pros/cons */
+        .pro { color: var(--success); font-size: 0.9em; }
+        .con { color: #c45a5a; font-size: 0.9em; }
+        
+        /* Highlight row */
+        .highlight-row td {
+            background: linear-gradient(135deg, var(--success-soft) 0%, #f0f8f4 100%) !important;
+        }
+        
+        /* Questions table */
+        .questions-table td {
+            padding: 20px;
+        }
+        
+        .question-text {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.1em;
+            font-style: italic;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        
+        .scale-hint {
+            font-size: 0.8em;
+            color: var(--muted);
+            background: rgba(0,0,0,0.03);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+        
+        .suggests {
+            font-size: 0.85em;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+        
+        .suggests strong {
+            color: var(--accent);
+        }
+        
+        /* Answer inputs */
+        .answer-input {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        .answer-input input[type="range"] {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--info-soft) 0%, var(--success-soft) 100%);
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+        
+        .answer-input input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, var(--accent-soft) 0%, #f5ebe3 100%);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 18px 22px;
+            margin-bottom: 28px;
+        }
+        
+        .info-box strong {
+            color: var(--accent);
+        }
+        
+        .info-box.trend {
+            background: linear-gradient(135deg, var(--bio-soft) 0%, #ecfdf5 100%);
+            border-left-color: var(--bio);
+        }
+        
+        .info-box.trend strong {
+            color: var(--bio);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            color: var(--muted);
+            margin-top: 50px;
+            padding: 24px;
+            border-top: 1px solid var(--line);
+            font-size: 0.9em;
+        }
+        
+        footer em {
+            display: block;
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.2em;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        
+        /* Print styles */
+        @media print {
+            body { background: white; padding: 10px; }
+            .table-wrap { box-shadow: none; }
+            .answer-input { display: none; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            table { font-size: 0.8em; min-width: 1100px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header>
+        <h1>🎯 Zawody z Perspektywami 2025–2030</h1>
+        <p class="subtitle">Rozszerzony wachlarz opcji dla profilu: zdolności manualne + chemia + rysunek + słuch absolutny. Trendy rynkowe + dopasowanie do predyspozycji.</p>
+        <div class="sources">
+            <span class="source-badge">📊 WEF Future of Jobs 2025</span>
+            <span class="source-badge">📋 MEN Lista Zawodów 2025</span>
+            <span class="source-badge">📈 Barometr Zawodów PL</span>
+            <span class="source-badge">🏥 Min. Zdrowia – Siatka Płac</span>
+        </div>
+    </header>
+
+    <div class="info-box trend">
+        <strong>📈 Co mówią raporty 2025?</strong> Największy wzrost zatrudnienia: ochrona zdrowia (85 mln miejsc pracy globalnie do 2030), zielona transformacja, biotechnologia, zawody techniczne/rzemieślnicze (deficyt!). IT nadal mocne, ale wysoka konkurencja i ryzyko AI. Kluczowe kompetencje przyszłości: adaptacja, umiejętność uczenia się, łączenie technologii z kreatywnością.
+    </div>
+
+    <!-- ==================== TABELA 1: WSZYSTKIE ŚCIEŻKI ==================== -->
+    <section class="section">
+        <h2><span class="emoji">📊</span> Tabela 1: Przegląd Ścieżek Kariery</h2>
+        <p class="section-intro">Zawody pogrupowane tematycznie. Każdy z oceną dopasowania do Twojego profilu. Sortowane od najlepszego fit w każdej kategorii.</p>
+        
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="min-width: 200px;">Ścieżka / Kierunek</th>
+                        <th style="min-width: 100px;">Czas nauki</th>
+                        <th style="min-width: 220px;">Charakter pracy</th>
+                        <th style="min-width: 110px;">Zarobki 2025</th>
+                        <th style="min-width: 200px;">Plusy</th>
+                        <th style="min-width: 200px;">Minusy / Uwagi</th>
+                        <th style="min-width: 90px;">Fit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <!-- ===== TOP: RZEMIOSŁO MANUALNE ===== -->
+                    <tr class="category-row craft">
+                        <td colspan="7">⭐ TOP – Rzemiosło Precyzyjne (idealne dla "warsztat + precyzja + efekt fizyczny")</td>
+                    </tr>
+                    
+                    <tr class="highlight-row">
+                        <td>
+                            <div class="path-name">Technik Dentystyczny</div>
+                            <div class="path-detail">CAD/CAM + Ceramika artystyczna</div>
+                            <div class="tags">
+                                <span class="tag tag-top">🥇 TOP</span>
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-ai">AI-safe</span>
+                            </div>
+                        </td>
+                        <td><strong>2,5 roku</strong><br><span class="path-detail">Policealna (Medyk)</span></td>
+                        <td>Laboratorium protetyczne. Porcelana, mikroskop, lupy. Precyzyjne nakładanie warstw. Praca w ciszy, samodzielna. Projektowanie 3D.</td>
+                        <td><strong>4-5k → 12k+</strong><br><span class="path-detail">Ceramika/CAD = top</span></td>
+                        <td class="pro">✓ Idealnie pasuje do "wizji"<br>✓ Krótka nauka, bezpłatna<br>✓ Chemia + manualne + estetyka<br>✓ AI nie zrobi artyst. wykończenia<br>✓ Możliwość własnego labo</td>
+                        <td class="con">⚠ Praca siedząca<br>⚠ Niższe zarobki na start<br>⚠ Mało kontaktu z ludźmi</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Złotnik-Jubiler</div>
+                            <div class="path-detail">Rzemiosło + projektowanie</div>
+                            <div class="tags">
+                                <span class="tag tag-top">🥈 TOP</span>
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-art">Rysunek</span>
+                            </div>
+                        </td>
+                        <td><strong>1-2 lata</strong><br><span class="path-detail">Kurs / branżowa</span></td>
+                        <td>Warsztat. Metale szlachetne, kamienie, lutowanie. Precyzja + estetyka. Możliwość własnej marki biżuterii.</td>
+                        <td><strong>3,5k → 15k+</strong><br><span class="path-detail">Własna marka = więcej</span></td>
+                        <td class="pro">✓ Rysunek + rzemiosło<br>✓ Możliwość własnej marki<br>✓ Bardzo kreatywne<br>✓ AI-odporne</td>
+                        <td class="con">⚠ Wymaga inwestycji na start<br>⚠ Budowanie klientów trwa</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Konserwacja Dzieł Sztuki</div>
+                            <div class="path-detail">Malarstwo / Rzeźba / Papier</div>
+                            <div class="tags">
+                                <span class="tag tag-niche">Prestiżowa</span>
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-art">Rysunek</span>
+                            </div>
+                        </td>
+                        <td><strong>5-6 lat</strong><br><span class="path-detail">ASP (egzamin!)</span></td>
+                        <td>Muzea, pracownie. Praca z zabytkami, obrazami. Chemia konserwatorska + manualne + estetyka. Cicho, skupienie.</td>
+                        <td><strong>5k → 12k+</strong><br><span class="path-detail">Za granicą więcej</span></td>
+                        <td class="pro">✓ WSZYSTKIE predyspozycje!<br>✓ Prestiż, praca z pięknem<br>✓ AI nie zagrozi<br>✓ Możliwość pracy za granicą</td>
+                        <td class="con">⚠ Długie studia (6 lat)<br>⚠ Egzamin praktyczny<br>⚠ Wyjazd do dużego miasta</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Zegarmistrz</div>
+                            <div class="path-detail">Mikromechanika</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-niche">Nisza</span>
+                            </div>
+                        </td>
+                        <td><strong>3 lata</strong><br><span class="path-detail">Branżowa + praktyka</span></td>
+                        <td>Ekstremalna precyzja. Lupy, narzędzia mikroskopijne. Praca w absolutnej ciszy i skupieniu.</td>
+                        <td><strong>3,5k → 12k+</strong><br><span class="path-detail">Luksusowe marki = top</span></td>
+                        <td class="pro">✓ Pasuje do wizji "precyzja"<br>✓ Praca w ciszy<br>✓ Deficyt fachowców</td>
+                        <td class="con">⚠ Wąska nisza<br>⚠ Mało miejsc pracy</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- ===== MUZYCZNE ===== -->
+                    <tr class="category-row" style="background: linear-gradient(135deg, var(--info-soft), #f0f9ff) !important; color: var(--info); border-color: var(--info);">
+                        <td colspan="7">🎵 Muzyczne – Wykorzystanie słuchu absolutnego</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Lutnictwo Artystyczne</div>
+                            <div class="path-detail">Budowa / renowacja instrumentów</div>
+                            <div class="tags">
+                                <span class="tag tag-music">Słuch</span>
+                                <span class="tag tag-manual">Drewno</span>
+                                <span class="tag tag-chem">Lakiery</span>
+                                <span class="tag tag-ai">AI-safe</span>
+                            </div>
+                        </td>
+                        <td><strong>5 lat</strong><br><span class="path-detail">AM Poznań / czeladnictwo</span></td>
+                        <td>Budowa skrzypiec, wiolonczeli. Drewno, lakiery, akustyka. Elitarne rzemiosło. Praca z "duszą" i materią.</td>
+                        <td><strong>4-6k → 20k+</strong><br><span class="path-detail">Renoma = bardzo dużo</span></td>
+                        <td class="pro">✓ Słuch absolutny = przewaga!<br>✓ Prestiż w wąskim gronie<br>✓ Całkowicie AI-odporne<br>✓ Praca z pięknem</td>
+                        <td class="con">⚠ Egzamin: zbudować instrument!<br>⚠ Bardzo wąski rynek<br>⚠ Wymaga pasji-obsesji</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Protetyk Słuchu</div>
+                            <div class="path-detail">Aparaty słuchowe, audiometria</div>
+                            <div class="tags">
+                                <span class="tag tag-music">Słuch</span>
+                                <span class="tag tag-trend">📈 Trend</span>
+                                <span class="tag tag-ai">AI-safe</span>
+                            </div>
+                        </td>
+                        <td><strong>2 lata</strong><br><span class="path-detail">Policealna</span></td>
+                        <td>Gabinet. Badania słuchu, dobór aparatów. Kontakt z pacjentem (głównie seniorzy). Wykorzystanie wiedzy o dźwięku.</td>
+                        <td><strong>5,5k → 10k</strong><br><span class="path-detail">Stabilnie</span></td>
+                        <td class="pro">✓ Słuch absolutny = przewaga<br>✓ Szybkie wejście na rynek<br>✓ Starzejące się społeczeństwo<br>✓ Stabilna praca</td>
+                        <td class="con">⚠ Mniej kreatywne<br>⚠ Praca "sprzedażowa"<br>⚠ Trudny pacjent (seniorzy)</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Reżyseria Dźwięku</div>
+                            <div class="path-detail">Film, gry, studio</div>
+                            <div class="tags">
+                                <span class="tag tag-music">Słuch</span>
+                                <span class="tag tag-art">Kreatywne</span>
+                            </div>
+                        </td>
+                        <td><strong>3-5 lat</strong><br><span class="path-detail">AM / Filmówka</span></td>
+                        <td>Studio nagrań. DAW, miksy, mastering. Praca dla filmu, gier, reklamy. Deadline'y, projekty.</td>
+                        <td><strong>4,5k → 15k+</strong><br><span class="path-detail">Freelance = zmienne</span></td>
+                        <td class="pro">✓ Wykorzystuje słuch<br>✓ Kreatywne projekty<br>✓ Branża rozrywkowa</td>
+                        <td class="con">⚠ Deadline'y, stres<br>⚠ DUŻO komputera (8h+)<br>⚠ Niestabilność freelance</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- ===== BIOTECHNOLOGIA / DIAGNOSTYKA ===== -->
+                    <tr class="category-row bio">
+                        <td colspan="7">🧬 Biotechnologia & Diagnostyka – Trendy wzrostowe, chemia w praktyce</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Diagnosta Laboratoryjny</div>
+                            <div class="path-detail">Specjalizacja: genetyka medyczna</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-trend">📈 Trend</span>
+                                <span class="tag tag-ai">AI-safe</span>
+                            </div>
+                        </td>
+                        <td><strong>5 lat + specjalizacja</strong><br><span class="path-detail">Analityka medyczna</span></td>
+                        <td>Laboratorium. NGS, PCR, sekwencjonowanie. Praca z próbkami, sprzętem. Precyzyjna, rutynowa, ale ważna.</td>
+                        <td><strong>8,3k → 10,5k brutto</strong><br><span class="path-detail">(od VII 2025, min. ustawowe)</span></td>
+                        <td class="pro">✓ Wykorzystuje chemię<br>✓ Nowoczesne technologie<br>✓ Wzrost 15-20% do 2028<br>✓ Deficyt specjalistów</td>
+                        <td class="con">⚠ Długa ścieżka (5+ lat)<br>⚠ Mniej manualne niż rzemiosło<br>⚠ Ciągłe dokształcanie</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Technik Analityki Medycznej</div>
+                            <div class="path-detail">Szybsza ścieżka do laboratorium</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-manual">Precyzja</span>
+                            </div>
+                        </td>
+                        <td><strong>3 lata</strong><br><span class="path-detail">Policealna / lic.</span></td>
+                        <td>Laboratorium. Wykonywanie badań pod nadzorem diagnosty. Rutyna, procedury, precyzja.</td>
+                        <td><strong>~7,7k brutto</strong><br><span class="path-detail">(od VII 2025)</span></td>
+                        <td class="pro">✓ Szybkie wejście na rynek<br>✓ Można dalej studiować<br>✓ Stabilne zatrudnienie</td>
+                        <td class="con">⚠ Niższe zarobki<br>⚠ Ograniczone uprawnienia<br>⚠ Mniej samodzielności</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Biotechnolog</div>
+                            <div class="path-detail">Farmacja, środowisko, biomedycyna</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-trend">📈 Trend</span>
+                            </div>
+                        </td>
+                        <td><strong>5 lat</strong><br><span class="path-detail">Studia mgr inż.</span></td>
+                        <td>Laboratorium R&D, firma farmaceutyczna. Projekty badawcze, rozwój produktów. Mix lab + komputer.</td>
+                        <td><strong>7k → 12k+</strong><br><span class="path-detail">W firmach farmaceut. więcej</span></td>
+                        <td class="pro">✓ Zawód ceniony globalnie<br>✓ Niska konkurencja w PL<br>✓ Rozwój medycyny, farmacji</td>
+                        <td class="con">⚠ Długie studia<br>⚠ Może być "suche"<br>⚠ Mniej manualny niż rzemiosło</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- ===== OCHRONA ZDROWIA ===== -->
+                    <tr class="category-row health">
+                        <td colspan="7">🏥 Ochrona Zdrowia – Deficytowe, stabilne, 85 mln nowych miejsc pracy globalnie</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Technik Optyk</div>
+                            <div class="path-detail">Okulary, soczewki + estetyka</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-art">Estetyka</span>
+                            </div>
+                        </td>
+                        <td><strong>2 lata</strong><br><span class="path-detail">Policealna</span></td>
+                        <td>Salon optyczny. Dobieranie opraw, wykonywanie okularów. Kontakt z klientem + aspekt estetyczny.</td>
+                        <td><strong>4k → 7k</strong><br><span class="path-detail">Własny salon = więcej</span></td>
+                        <td class="pro">✓ Zdolności manualne w użyciu<br>✓ Aspekt estetyczny (moda)<br>✓ Ścieżka do własnego salonu<br>✓ 65% Polaków nosi okulary</td>
+                        <td class="con">⚠ Konkurencja sieciówek<br>⚠ Rynek dość nasycony<br>⚠ Dużo kontaktu z klientem</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Fizjoterapeuta</div>
+                            <div class="path-detail">Rehabilitacja</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-trend">📈 Trend</span>
+                            </div>
+                        </td>
+                        <td><strong>5 lat</strong><br><span class="path-detail">Studia jednolite mgr</span></td>
+                        <td>Gabinet/szpital. Praca z pacjentem – masaż, ćwiczenia, rehabilitacja. Dużo kontaktu z ludźmi.</td>
+                        <td><strong>5k → 12k+</strong><br><span class="path-detail">Prywatnie więcej</span></td>
+                        <td class="pro">✓ Praca manualna z ciałem<br>✓ Duży deficyt<br>✓ Możliwość własnego gabinetu</td>
+                        <td class="con">⚠ DUŻO kontaktu z ludźmi<br>⚠ Fizycznie wymagająca<br>⚠ Długie studia</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- ===== IT / DANE ===== -->
+                    <tr class="category-row it">
+                        <td colspan="7">💻 IT & Dane – Top zarobki, ale konkurencja i ryzyko AI</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Bioinformatyka</div>
+                            <div class="path-detail">Analiza danych biologicznych</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Bio + IT</span>
+                            </div>
+                        </td>
+                        <td><strong>3-5 lat</strong><br><span class="path-detail">Studia</span></td>
+                        <td>100% komputer. Kod, pipeline'y, dane. Praca zdalna. Projekty genomiczne, lekowe.</td>
+                        <td><strong>8k → 20k+</strong><br><span class="path-detail">Top zarobki</span></td>
+                        <td class="pro">✓ Najwyższe zarobki<br>✓ Praca zdalna<br>✓ Współpraca z AI, nie konkurencja</td>
+                        <td class="con">⚠ 8h+ przy komputerze!<br>⚠ BRAK aspektu manualnego<br>⚠ Może być "za suche"</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">GameDev – Tech Art</div>
+                            <div class="path-detail">Grafika + logika silnika</div>
+                            <div class="tags">
+                                <span class="tag tag-art">Rysunek</span>
+                                <span class="tag tag-ai-risk">⚠ AI-ryzyko</span>
+                            </div>
+                        </td>
+                        <td><strong>Portfolio</strong><br><span class="path-detail">Kursy + projekty</span></td>
+                        <td>Studio gier. 3D, shader, efekty wizualne. Dużo komputera. Deadline'y, crunch.</td>
+                        <td><strong>8k → 18k+</strong><br><span class="path-detail">Dla specjalistów</span></td>
+                        <td class="pro">✓ Wykorzystanie rysunku<br>✓ Tech Art = logika + sztuka<br>✓ Ciekawe projekty</td>
+                        <td class="con">⚠ Konkurencja z AI (generowanie)<br>⚠ Crunch, stres, deadline'y<br>⚠ Niestabilność zatrudnienia</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Wizualizacja Naukowa</div>
+                            <div class="path-detail">Ilustracje medyczne/naukowe</div>
+                            <div class="tags">
+                                <span class="tag tag-art">Rysunek</span>
+                                <span class="tag tag-chem">Nauka</span>
+                                <span class="tag tag-ai">AI-safe</span>
+                            </div>
+                        </td>
+                        <td><strong>Portfolio</strong><br><span class="path-detail">Studia + samodzielnie</span></td>
+                        <td>Freelance/wydawnictwa. Ilustracje do publikacji naukowych. Precyzja + estetyka.</td>
+                        <td><strong>Zróżnicowane</strong><br><span class="path-detail">Freelance = zależne od klientów</span></td>
+                        <td class="pro">✓ Rysunek + nauka<br>✓ AI nie zastąpi dokładności<br>✓ Praca zdalna, elastyczna</td>
+                        <td class="con">⚠ Dużo komputera<br>⚠ Freelance = niestabilność<br>⚠ Budowanie portfolio trwa</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- ===== WŁASNY BIZNES ===== -->
+                    <tr class="category-row business">
+                        <td colspan="7">🚀 Własny Biznes – Opcje na przyszłość (po zdobyciu doświadczenia)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Salon Optyczny</div>
+                            <div class="path-detail">Po technikum optycznym</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-art">Estetyka</span>
+                            </div>
+                        </td>
+                        <td><strong>2 lata + doświadczenie</strong></td>
+                        <td>Własny punkt. Sprzedaż okularów, badania wzroku (z optykiem/optometrystą). Zarządzanie + estetyka.</td>
+                        <td><strong>Inwestycja: 100-200k</strong><br><span class="path-detail">Franczyza od 50k</span></td>
+                        <td class="pro">✓ 65% Polaków nosi okulary<br>✓ Wysokie marże (30-50%)<br>✓ Franczyza = mniejsze ryzyko</td>
+                        <td class="con">⚠ Wysokie koszty startu<br>⚠ Konkurencja sieciówek<br>⚠ Wymaga zdolności biznesowych</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Pracownia Jubilerska</div>
+                            <div class="path-detail">Własna marka biżuterii</div>
+                            <div class="tags">
+                                <span class="tag tag-manual">Manualne</span>
+                                <span class="tag tag-art">Rysunek</span>
+                            </div>
+                        </td>
+                        <td><strong>2-3 lata + praktyka</strong></td>
+                        <td>Własny warsztat. Projektowanie, produkcja, sprzedaż (online/targi). Pełna kontrola twórcza.</td>
+                        <td><strong>Inwestycja: 30-80k</strong><br><span class="path-detail">Zyski zależne od marki</span></td>
+                        <td class="pro">✓ Pełna wolność twórcza<br>✓ Rysunek + rzemiosło<br>✓ E-commerce = globalny zasięg</td>
+                        <td class="con">⚠ Budowanie marki trwa lata<br>⚠ Wymaga marketingu<br>⚠ Konkurencja handmade</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Laboratorium Diagnostyczne</div>
+                            <div class="path-detail">Sekwencjonowanie, PCR, NGS</div>
+                            <div class="tags">
+                                <span class="tag tag-chem">Chemia</span>
+                                <span class="tag tag-trend">📈 Trend</span>
+                            </div>
+                        </td>
+                        <td><strong>5+ lat + doświadczenie</strong></td>
+                        <td>Własne laboratorium z usługami dla lekarzy/firm. Wymaga wykształcenia diagnosty.</td>
+                        <td><strong>Inwestycja: 500k+</strong><br><span class="path-detail">Sprzęt NGS bardzo drogi</span></td>
+                        <td class="pro">✓ Rynek rośnie dynamicznie<br>✓ Wysoka rentowność<br>✓ B2B dla innych firm/lekarzy</td>
+                        <td class="con">⚠ BARDZO wysokie koszty<br>⚠ Regulacje, akredytacje<br>⚠ Wymaga lat doświadczenia</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- ===== STRATEGICZNE ===== -->
+                    <tr class="category-row">
+                        <td colspan="7">🧭 Opcja Strategiczna</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="path-name">Gap Year (Rok Testowy)</div>
+                            <div class="path-detail">Świadome próbowanie</div>
+                            <div class="tags">
+                                <span class="tag tag-top">Strategiczny</span>
+                            </div>
+                        </td>
+                        <td><strong>1 rok</strong></td>
+                        <td>Testowanie: kurs rysunku + praktyki w labo protetycznym + trochę kodu + wolontariat. Po roku wiesz, czego NIE chcesz.</td>
+                        <td><strong>Zależy</strong></td>
+                        <td class="pro">✓ Bez presji<br>✓ Testowanie wielu opcji<br>✓ Lepsze przygotowanie<br>✓ Świadomy wybór</td>
+                        <td class="con">⚠ Wymaga dyscypliny!<br>⚠ "Rok straty"?<br>⚠ Presja społeczna</td>
+                        <td>
+                            <div class="rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ==================== TABELA 2: PYTANIA DO SAMODIAGNOZY ==================== -->
+    <section class="section">
+        <h2><span class="emoji">🪞</span> Tabela 2: Pytania do Przemyślenia</h2>
+        <p class="section-intro">Nie patrz na "co się opłaca", ale jak chcesz spędzać swoje 8 godzin dziennie. Wypełnij szczerze – to więcej powie niż 100 godzin dyskusji.</p>
+        
+        <div class="table-wrap">
+            <table class="questions-table">
+                <thead>
+                    <tr>
+                        <th style="min-width: 140px;">Obszar</th>
+                        <th style="min-width: 380px;">Pytanie</th>
+                        <th style="min-width: 140px;">Skala</th>
+                        <th style="min-width: 300px;">Co sugeruje wynik?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td><strong>🔋 Energia / Ludzie</strong></td>
+                        <td>
+                            <div class="question-text">"Po czym czujesz się lepiej: po pracy z ludźmi czy po pracy w skupieniu?"</div>
+                            <div class="answer-input">
+                                <span>1 = ludzie męczą</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = ludzie ładują</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: samodzielna<br>4–5: z ludźmi</span></td>
+                        <td class="suggests"><strong>1–2:</strong> technik dent., lab, jubiler, konserwacja, zegarmistrz<br><strong>4–5:</strong> fizjoterapeuta, protetyk słuchu, optyk (sprzedaż)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>💻 Komputer</strong></td>
+                        <td>
+                            <div class="question-text">"Ile godzin dziennie jesteś w stanie realnie siedzieć przy komputerze bez cierpienia?"</div>
+                            <div class="answer-input">
+                                <span>1 = 1-2h max</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = 6-8h ok</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: manualne<br>4–5: IT/dane</span></td>
+                        <td class="suggests"><strong>1–2:</strong> technik dent., lutnik, jubiler, fizjoterapeuta, zegarmistrz<br><strong>4–5:</strong> bioinformatyka, gamedev, wizualizacja naukowa</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>✋ Precyzja manualna</strong></td>
+                        <td>
+                            <div class="question-text">"Czy praca rękami 'na milimetry' daje Ci flow? (detal, cierpliwość, skupienie)"</div>
+                            <div class="answer-input">
+                                <span>1 = nie znoszę</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = kocham</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: unikać manualu<br>4–5: rzemiosło</span></td>
+                        <td class="suggests"><strong>4–5:</strong> technik dent., lutnictwo, jubiler, zegarmistrz, konserwacja<br><strong>1–2:</strong> IT, bioinformatyka, reżyseria dźwięku</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>🧪 Lab vs Dane</strong></td>
+                        <td>
+                            <div class="question-text">"Czy bardziej ciekawi Cię: lab i materia (probówki, mikroskop) czy dane i modele (komputer)?"</div>
+                            <div class="answer-input">
+                                <span>1 = tylko dane</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = tylko lab/materia</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: bioinformatyka<br>4–5: lab/rzemiosło</span></td>
+                        <td class="suggests"><strong>1–2:</strong> bioinformatyka, wizualizacja naukowa<br><strong>3:</strong> biotechnologia (mix)<br><strong>4–5:</strong> technik dent., diagnosta lab, konserwacja</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>🔬 Abstrakcja / STEM</strong></td>
+                        <td>
+                            <div class="question-text">"Na ile lubisz abstrakcję: wzory, zależności, 'dlaczego to działa'?"</div>
+                            <div class="answer-input">
+                                <span>1 = meh</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = uwielbiam</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: artystyczne<br>4–5: STEM</span></td>
+                        <td class="suggests"><strong>4–5:</strong> bioinformatyka, biotechnologia, diagnosta, akustyka<br><strong>1–2:</strong> jubiler, konserwacja (bardziej artyst.)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>🎨 Cel rysunku</strong></td>
+                        <td>
+                            <div class="question-text">"Czy wolisz: rysować tworząc świat (styl, emocje) czy rysować 'dla celu' (wyjaśnić coś)?"</div>
+                            <div class="answer-input">
+                                <span>1 = świat/styl</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = wyjaśnianie</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: concept art<br>4–5: wizualizacja</span></td>
+                        <td class="suggests"><strong>1–2:</strong> concept art, gamedev, jubiler (projektowanie)<br><strong>4–5:</strong> wizualizacja naukowa, konserwacja (dokumentacja)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>😰 Stres / Deadline'y</strong></td>
+                        <td>
+                            <div class="question-text">"Jak znosisz terminy i poprawki pod presją?"</div>
+                            <div class="answer-input">
+                                <span>1 = źle</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = spoko</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: stabilne<br>4–5: projektowe</span></td>
+                        <td class="suggests"><strong>1–2:</strong> technik dent., diagnosta, zegarmistrz (rutyna)<br><strong>4–5:</strong> gamedev, reżyseria dźwięku, freelance</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>🏠 Stabilność</strong></td>
+                        <td>
+                            <div class="question-text">"Co jest ważniejsze: stabilny etat czy różnorodność i wolność?"</div>
+                            <div class="answer-input">
+                                <span>1 = wolność</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = etat</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: freelance<br>4–5: etat</span></td>
+                        <td class="suggests"><strong>4–5:</strong> diagnosta, technik dent., protetyk słuchu (etat)<br><strong>1–2:</strong> jubiler własna marka, freelance audio/art</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>📍 Lokalizacja</strong></td>
+                        <td>
+                            <div class="question-text">"Czy chcesz/możesz wyjechać do dużego miasta na 3-5 lat?"</div>
+                            <div class="answer-input">
+                                <span>1 = nie</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = tak</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: lokalne/zdalne<br>4–5: studia</span></td>
+                        <td class="suggests"><strong>4–5:</strong> konserwacja (Wrocław ASP), lutnictwo (Poznań AM), biotechnologia<br><strong>1–2:</strong> technik dent. (lokalna policealna), optyk, protetyk</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>⏰ Tempo</strong></td>
+                        <td>
+                            <div class="question-text">"Czy wolisz drogę 'szybko do zawodu' (1-2,5 roku) czy 'głębiej i dłużej' (3-6 lat)?"</div>
+                            <div class="answer-input">
+                                <span>1 = szybko</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = dłużej</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: policealna<br>4–5: studia</span></td>
+                        <td class="suggests"><strong>1–2:</strong> technik dent. (2,5r), jubiler (1-2r), optyk (2r), protetyk (2r)<br><strong>4–5:</strong> konserwacja (6 lat), bioinformatyka (5 lat), diagnosta (5+)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>🎵 Muzyka</strong></td>
+                        <td>
+                            <div class="question-text">"Czy słuch absolutny to coś, co chcesz wykorzystać zawodowo?"</div>
+                            <div class="answer-input">
+                                <span>1 = nie koniecznie</span>
+                                <input type="range" min="1" max="5" value="3">
+                                <span>5 = tak, to kluczowe</span>
+                            </div>
+                        </td>
+                        <td><span class="path-detail">1–2: ignoruj<br>4–5: muzyczne</span></td>
+                        <td class="suggests"><strong>4–5:</strong> lutnictwo, protetyk słuchu, reżyseria dźwięku<br><strong>1–2:</strong> pozostałe ścieżki (chemia, manualne, IT)</td>
+                    </tr>
+                    
+                    <tr style="background: linear-gradient(135deg, rgba(193,127,89,0.08), rgba(232,213,196,0.3));">
+                        <td><strong>💡 KLUCZOWE</strong></td>
+                        <td>
+                            <div class="question-text">"Gdybyś miała spędzić 2 miesiące robiąc TYLKO jedną rzecz bez zobowiązań, co wybierasz?"</div>
+                            <div class="scale-hint">
+                                <strong>Opcje:</strong> KOD / LAB / ANIMACJA / WARSZTAT (fizyczny) / PRACA Z LUDŹMI / MUZYKA
+                            </div>
+                        </td>
+                        <td><span class="path-detail">Wpisz wybór</span></td>
+                        <td class="suggests">To najlepszy kompas. Wybierz jedno i zrób mini-test (2-6 tygodni praktyk/kursu). To da więcej niż 100h rozmów o przyszłości.</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="info-box" style="margin-top: 24px;">
+            <strong>💡 Pro tip:</strong> Po wypełnieniu weź 3 obszary, gdzie masz najwyższe wyniki, i ustaw <strong>3 mini-testy</strong> (po 2-6 tygodni każdy). Np.: tydzień w laboratorium protetycznym + kurs jubilerski + dzień próbny u optyka. To da więcej niż jakikolwiek test psychologiczny.
+        </div>
+    </section>
+
+    <footer>
+        <em>"AI nie eliminuje zawodów – eliminuje przeciętność. Wygrywają ci, którzy łączą unikalne kompetencje."</em>
+        <p>Źródła: WEF Future of Jobs 2025 • MEN Lista Zawodów 2025 • Barometr Zawodów PL • Min. Zdrowia Siatka Płac 2025 • Cedefop/ILO</p>
+        <p style="margin-top: 8px;">Wygenerowano: styczeń 2026</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

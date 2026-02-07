@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analiza Ścieżek Edukacyjno-Zawodowych – Kompletny Przewodnik</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --card: #ffffff;
+            --accent: #2563eb;
+            --accent-light: #dbeafe;
+            --success: #059669;
+            --success-light: #d1fae5;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --danger: #dc2626;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        h1 { 
+            font-size: 1.8rem; 
+            color: var(--accent); 
+            margin-bottom: 8px;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+        }
+        h2 { 
+            font-size: 1.4rem; 
+            color: var(--text); 
+            margin: 30px 0 15px; 
+            padding-left: 12px;
+            border-left: 4px solid var(--accent);
+        }
+        h3 { font-size: 1.1rem; color: var(--accent); margin: 20px 0 10px; }
+        
+        .intro { 
+            background: var(--card); 
+            padding: 20px; 
+            border-radius: 12px; 
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .intro p { margin-bottom: 10px; }
+        .intro strong { color: var(--accent); }
+        
+        .profile-box {
+            background: linear-gradient(135deg, var(--accent-light), #ede9fe);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid var(--accent);
+        }
+        .profile-box h3 { color: var(--accent); margin-top: 0; }
+        .profile-box blockquote {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-style: italic;
+            border-left: 4px solid var(--success);
+            margin: 15px 0;
+        }
+        
+        /* TABELA GŁÓWNA */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card);
+            font-size: 0.9rem;
+        }
+        thead th {
+            background: linear-gradient(180deg, #1e40af, #2563eb);
+            color: white;
+            padding: 14px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        tbody td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        tbody tr:hover { background: #f3f4f6; }
+        tbody tr:last-child td { border-bottom: none; }
+        
+        .zawod-name { 
+            font-weight: 700; 
+            color: var(--accent);
+            font-size: 1rem;
+        }
+        .zawod-type { 
+            font-size: 0.75rem; 
+            color: var(--muted);
+            display: block;
+            margin-top: 3px;
+        }
+        
+        /* BADGES */
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin: 2px;
+        }
+        .badge-success { background: var(--success-light); color: var(--success); }
+        .badge-warning { background: var(--warning-light); color: var(--warning); }
+        .badge-danger { background: #fee2e2; color: var(--danger); }
+        .badge-info { background: var(--accent-light); color: var(--accent); }
+        .badge-neutral { background: #f3f4f6; color: var(--muted); }
+        
+        /* OCENY */
+        .rating {
+            display: flex;
+            gap: 4px;
+        }
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #e5e7eb;
+        }
+        .dot.filled { background: linear-gradient(180deg, var(--accent), #7c3aed); }
+        
+        /* SEKCJE */
+        .section-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .pros { background: var(--success-light); padding: 15px; border-radius: 8px; }
+        .cons { background: #fee2e2; padding: 15px; border-radius: 8px; }
+        .pros h4 { color: var(--success); margin-bottom: 8px; }
+        .cons h4 { color: var(--danger); margin-bottom: 8px; }
+        .pros ul, .cons ul { margin-left: 18px; }
+        .pros li, .cons li { margin-bottom: 4px; font-size: 0.9rem; }
+        
+        /* STRATEGIA */
+        .strategy-box {
+            background: linear-gradient(135deg, #fef3c7, #fed7aa);
+            border: 2px solid var(--warning);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .strategy-box h3 { color: #92400e; }
+        
+        .timeline {
+            margin: 15px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--accent);
+        }
+        .timeline-item {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .timeline-item strong { color: var(--accent); }
+        
+        /* PODSUMOWANIE */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid var(--border);
+        }
+        .summary-card.recommended {
+            border-color: var(--success);
+            background: var(--success-light);
+        }
+        .summary-card h4 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .summary-card.recommended h4 { color: var(--success); }
+        
+        .small { font-size: 0.85rem; color: var(--muted); }
+        .highlight { background: #fef08a; padding: 2px 6px; border-radius: 4px; }
+        
+        @media (max-width: 768px) {
+            .pros-cons { grid-template-columns: 1fr; }
+            h1 { font-size: 1.4rem; }
+            table { font-size: 0.8rem; }
+            thead th, tbody td { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <h1>🎯 Mapa Ścieżek Edukacyjno-Zawodowych</h1>
+    <p class="small">Kompleksowa analiza dla absolwentki liceum + szkoły muzycznej II st. | Styczeń 2026</p>
+    
+    <div class="intro">
+        <p><strong>Kluczowy profil:</strong> STEM (matematyka, chemia) + zdolności manualne (rysunek, harfa) + słuch muzyczny + analityczno-psychologiczny charakter. Słabsze strony humanistyczne (polski, historia muzyki).</p>
+        <p><strong>Lokalizacja:</strong> Okolice Zielonej Góry | <strong>Zasoby:</strong> Firma IT rodzinna + Fundacja badawcza (FD/DMD)</p>
+    </div>
+    
+    <div class="profile-box">
+        <h3>💎 Złota wskazówka – jej własne słowa o idealnej pracy:</h3>
+        <blockquote>
+            "Siedzisz przy stole warsztatowym. W tle leci podcast/muzyka. Masz przed sobą mikroskop lub lupy. 
+            Precyzyjnie nakładasz warstwy porcelany lub szlifujesz drewno. Nikt Ci nie przeszkadza. 
+            Liczy się efekt fizyczny, który możesz dotknąć."
+        </blockquote>
+        <p>👉 <strong>To nie jest opis pracy programisty ani analityka danych!</strong> To opis rzemieślnika-artysty. Tabela poniżej sortuje kierunki pod kątem tej wizji.</p>
+    </div>
+    
+    <h2>📊 Tabela Porównawcza Kierunków</h2>
+    
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:14%">Ścieżka / Zawód</th>
+                    <th style="width:12%">Edukacja</th>
+                    <th style="width:14%">Jak wygląda dzień pracy?</th>
+                    <th style="width:10%">Zarobki (brutto)</th>
+                    <th style="width:12%">AI & Przyszłość</th>
+                    <th style="width:12%">Plusy</th>
+                    <th style="width:12%">Minusy</th>
+                    <th style="width:7%">Fit profilu</th>
+                    <th style="width:7%">Ocena</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <!-- TECHNIK DENTYSTYCZNY -->
+                <tr style="background: #ecfdf5;">
+                    <td>
+                        <span class="zawod-name">🦷 Technik Dentystyczny</span>
+                        <span class="zawod-type">CAD/CAM + Ceramika</span>
+                        <br><span class="badge badge-success">TOP REKOMENDACJA</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">~2,5 roku</span><br>
+                        Szkoła policealna<br>
+                        <span class="small">Zielona Góra: "Medyk" (bezpłatna), TEB</span>
+                    </td>
+                    <td>
+                        Warsztat + komputer. Projektujesz w Exocad (3D), frezujesz, potem nakładasz porcelanę pędzelkiem. Praca siedząca, w skupieniu, przy muzyce/podcastach. Rzadki kontakt z pacjentem.
+                    </td>
+                    <td>
+                        Start: <strong>4800-5800 zł</strong><br>
+                        Senior: <strong>7000-9000+ zł</strong><br>
+                        <span class="small">Ceramiści i CAD-owcy więcej</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">Bezpieczne</span><br>
+                        AI projektuje, ale ręka i oko kluczowe. Japońska regeneracja zębów (2030+) dotyczy tylko wrodzonych braków – nie zagraża protetyce.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>IDEALNIE pasuje do profilu</li>
+                            <li>Krótka nauka</li>
+                            <li>Dostępne w Zielonej Górze</li>
+                            <li>Praca samodzielna</li>
+                            <li>Chemia materiałów + estetyka</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Praca siedząca (wymaga ergonomii)</li>
+                            <li>Wymaga cierpliwości</li>
+                            <li>Początkowo niższe zarobki</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">MAN</span>
+                        <span class="badge badge-info">STEM</span>
+                        <span class="badge badge-warning">ART</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                        </div>
+                        <span class="small">5/5</span>
+                    </td>
+                </tr>
+                
+                <!-- RENOWACJA ZABYTKÓW -->
+                <tr>
+                    <td>
+                        <span class="zawod-name">🏛️ Renowacja Elementów Architektury</span>
+                        <span class="zawod-type">Konserwacja</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">2-2,5 roku</span> (policealna)<br>
+                        lub <span class="badge badge-neutral">5 lat</span> (ASP magister)<br>
+                        <span class="small">Kraków: ZSAB. ASP: Wa, Kr, Wr, Toruń</span>
+                    </td>
+                    <td>
+                        Pracownia + teren (obiekty zabytkowe). Sztukaterie, rzeźby kamienne, detale drewniane. Praca ręczna z materiałami (gips, zaprawy, lakiery). Czasem rusztowania, czasem precyzyjne dłubanie.
+                    </td>
+                    <td>
+                        Start: <strong>3500-4500 zł</strong><br>
+                        Senior: <strong>6000-10000 zł</strong><br>
+                        <span class="small">(duży rozrzut, zależy od projektów)</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">Odporne na AI</span><br>
+                        Praca manualna + decyzyjna w terenie. AI może pomóc w dokumentacji, modelowaniu 3D.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Spełnia "wizję idealną"</li>
+                            <li>Żałowała technikum renowacji</li>
+                            <li>Chemia materiałów + dłonie</li>
+                            <li>Praca z misją/zabytkami</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Niestabilne zarobki na start</li>
+                            <li>Często delegacje</li>
+                            <li>Policealna daje technika, ASP daje pełne uprawnienia</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">MAN</span>
+                        <span class="badge badge-warning">ART</span>
+                        <span class="badge badge-info">STEM</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="small">4/5</span>
+                    </td>
+                </tr>
+                
+                <!-- LUTNICTWO -->
+                <tr>
+                    <td>
+                        <span class="zawod-name">🎻 Lutnictwo Artystyczne</span>
+                        <span class="zawod-type">Budowa/renowacja instrumentów</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-neutral">4-6 lat</span> (AM Poznań)<br>
+                        lub praktyka u mistrza<br>
+                        <span class="small">Jedyny kierunek w PL: AM Poznań</span>
+                    </td>
+                    <td>
+                        Warsztat: drewno, lakiery, montaż. Słuch muzyczny do kalibracji dźwięku. Samotna praca w skupieniu. Kontakt z muzykami przy naprawach/konsultacjach.
+                    </td>
+                    <td>
+                        Start: <strong>3000-5000 zł</strong><br>
+                        Mistrz: <strong>nieograniczone</strong><br>
+                        <span class="small">(renoma = cena)</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">W pełni odporne</span><br>
+                        Rękodzieło artystyczne. AI nie zbuduje Stradivariusa.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Łączy słuch + ręce + chemię</li>
+                            <li>Unikalna nisza prestiżowa</li>
+                            <li>Praca fizyczna z "duszą"</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Bardzo wąski rynek</li>
+                            <li>Długa ścieżka do samodzielności</li>
+                            <li>Egzamin na AM: teczka + słuch</li>
+                            <li>Wymaga pasji graniczącej z obsesją</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">MAN</span>
+                        <span class="badge badge-warning">ART</span>
+                        <span class="badge badge-neutral">MUSIC</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="small">4/5 (niszowe)</span>
+                    </td>
+                </tr>
+                
+                <!-- PROTETYK SŁUCHU -->
+                <tr>
+                    <td>
+                        <span class="zawod-name">👂 Protetyk Słuchu</span>
+                        <span class="zawod-type">Audiometria + otoplastyka</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">~2 lata</span><br>
+                        Szkoła policealna<br>
+                        <span class="small">Zielona Góra: "Medyk", "Żak"</span>
+                    </td>
+                    <td>
+                        Gabinet + pacjenci. Badanie słuchu (audiometria), dobór aparatów, wykonywanie wkładek usznych (manual). Więcej kontaktu z ludźmi niż technik dentystyczny.
+                    </td>
+                    <td>
+                        Start: <strong>4500-5500 zł</strong><br>
+                        + prowizje od sprzedaży<br>
+                        Senior: <strong>6000-8000 zł</strong>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">Bezpieczne</span><br>
+                        Starzejące się społeczeństwo = rosnący popyt. AI wspomaga pomiary, ale relacja i dopasowanie zostają.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Słuch muzyczny = przewaga</li>
+                            <li>Akustyka + manual</li>
+                            <li>Stabilny rynek</li>
+                            <li>Dostępne lokalnie</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Więcej pracy z ludźmi (seniorzy)</li>
+                            <li>Element sprzedażowy</li>
+                            <li>Mniej "artystyczne"</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-info">STEM</span>
+                        <span class="badge badge-warning">MAN</span>
+                        <span class="badge badge-danger">PEO</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="small">4/5</span>
+                    </td>
+                </tr>
+                
+                <!-- REALIZACJA DŹWIĘKU -->
+                <tr>
+                    <td>
+                        <span class="zawod-name">🎧 Realizacja / Reżyseria Dźwięku</span>
+                        <span class="zawod-type">Studio, film, gry</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">3-5 lat</span> (UMFC, AM Katowice, PWSFTviT Łódź)<br>
+                        lub kursy + portfolio<br>
+                    </td>
+                    <td>
+                        Studio/teren. Komputer (DAW: ProTools, Logic) + sesje nagraniowe. Praca projektowa, nieregularne godziny. Współpraca z reżyserami, muzykami.
+                    </td>
+                    <td>
+                        Start: <strong>4000-6000 zł</strong><br>
+                        Freelance projekty: <strong>5000-15000+/projekt</strong><br>
+                        <span class="small">(duże wahania)</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">Mieszane</span><br>
+                        AI automatyzuje czyszczenie/mastering, ale "ucho i decyzje" zostają. Wymaga adaptacji.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Łączy muzykę + technikę</li>
+                            <li>Różnorodność projektów</li>
+                            <li>Słuch = ogromna przewaga</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Więcej komputera niż "wizja idealna"</li>
+                            <li>Niestabilność (freelance)</li>
+                            <li>Duże miasta głównie</li>
+                            <li>Egzaminy wstępne trudne</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-info">STEM</span>
+                        <span class="badge badge-warning">ART</span>
+                        <span class="badge badge-neutral">MUSIC</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="small">3/5</span>
+                    </td>
+                </tr>
+                
+                <!-- BIOINFORMATYKA -->
+                <tr>
+                    <td>
+                        <span class="zawod-name">🧬 Bioinformatyka</span>
+                        <span class="zawod-type">Data + Bio</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">3-5 lat</span> (studia)<br>
+                        lub Gap Year + kursy<br>
+                        <span class="small">UW, UJ, PWr, możliwa fundacja jako inkubator</span>
+                    </td>
+                    <td>
+                        Głównie komputer (6-8h): analiza danych, pipeline'y, Python/R, statystyka. Spotkania z biologami. Czasem hybryda z labem.
+                    </td>
+                    <td>
+                        Mediana: <strong>9500 zł</strong><br>
+                        Rozstęp: <strong>7400-14000+ zł</strong><br>
+                        <span class="small">Najwyższe w tej tabeli</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">AI = narzędzie</span><br>
+                        AI przyspiesza, ale rośnie znaczenie interpretacji i jakości danych. Wymaga ciągłej nauki.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Najlepsze zarobki</li>
+                            <li>Fundacja = inkubator</li>
+                            <li>Praca zdalna możliwa</li>
+                            <li>Pasuje do STEM</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li><strong>NIE pasuje do "wizji idealnej"</strong></li>
+                            <li>6-8h przy komputerze</li>
+                            <li>Brak fizycznego produktu</li>
+                            <li>Wymaga polubienia kodu</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-info">STEM</span>
+                        <span class="badge badge-neutral">LOGIC</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="small">3/5 (vs profil)</span>
+                    </td>
+                </tr>
+                
+                <!-- MUZYKOTERAPIA -->
+                <tr>
+                    <td>
+                        <span class="zawod-name">🎵 Muzykoterapia</span>
+                        <span class="zawod-type">Terapia przez muzykę</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">3-5 lat</span><br>
+                        AM (Wrocław, Łódź, Katowice), UZ (specjalność)<br>
+                    </td>
+                    <td>
+                        Sesje z pacjentami (1:1 lub grupy). Placówki zdrowotne, edukacyjne, domy opieki. Praca emocjonalna. Mało komputera.
+                    </td>
+                    <td>
+                        Start: <strong>3000-4500 zł</strong><br>
+                        Senior: <strong>5000-8000 zł</strong><br>
+                        <span class="small">(duży rozrzut regionalny)</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">Odporne na AI</span><br>
+                        Relacja i empatia = rdzeń pracy.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Wykorzystuje muzykę + empatię</li>
+                            <li>Praca z sensem/misją</li>
+                            <li>UZ ma tę specjalność</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Dużo pracy z "trudnymi" pacjentami</li>
+                            <li>Obciążenie emocjonalne</li>
+                            <li>Niższe zarobki</li>
+                            <li>Wymaga odporności psychicznej</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-neutral">MUSIC</span>
+                        <span class="badge badge-danger">PEO</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="small">3/5</span>
+                    </td>
+                </tr>
+                
+                <!-- CHEMIA / LAB -->
+                <tr>
+                    <td>
+                        <span class="zawod-name">🧪 Chemia / Laboratorium</span>
+                        <span class="zawod-type">Analityka, QC, R&D</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">3-5 lat</span> (studia)<br>
+                        lub KKZ Technik Analityk (krócej)<br>
+                    </td>
+                    <td>
+                        Laboratorium: pipety, aparatura, procedury, dokumentacja. Mix pracy ręcznej i komputera. Zwykle stałe godziny.
+                    </td>
+                    <td>
+                        Chemik: <strong>6000-8800 zł</strong><br>
+                        Laborant: <strong>5500-7000 zł</strong><br>
+                        <span class="small">(zależy od branży)</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">Mieszane</span><br>
+                        Automatyzacja aparatury rośnie, ale interpretacja i planowanie zostają.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Kocha chemię</li>
+                            <li>Praca "namacalna"</li>
+                            <li>Różne branże (pharma, kosmetyki, przemysł)</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Mniejszy rynek w PL</li>
+                            <li>Często duże miasta</li>
+                            <li>Studia chemiczne trudne i długie</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-info">STEM</span>
+                        <span class="badge badge-warning">MAN</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="small">3/5</span>
+                    </td>
+                </tr>
+                
+                <!-- NAUCZYCIEL PLASTYKI -->
+                <tr>
+                    <td>
+                        <span class="zawod-name">🎨 Nauczyciel Plastyki</span>
+                        <span class="zawod-type">Edukacja</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">3-5 lat</span><br>
+                        Edukacja artystyczna + przygotowanie pedagogiczne<br>
+                    </td>
+                    <td>
+                        Szkoła: lekcje, przygotowania, sprawdzanie, rady pedagogiczne. Dużo kontaktu z dziećmi. Wakacje + ferie.
+                    </td>
+                    <td>
+                        Start: <strong>~5150 zł</strong><br>
+                        Dyplomowany: <strong>~6200 zł</strong><br>
+                        <span class="small">(pensja nauczyciela)</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">Bezpieczne</span><br>
+                        AI nie zastąpi nauczyciela.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Stabilność (etat)</li>
+                            <li>Wolne letnie</li>
+                            <li>Praca z dziećmi może być fajna</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Niskie zarobki</li>
+                            <li>Dużo dokumentacji</li>
+                            <li>Mało godzin plastyki = kilka szkół</li>
+                            <li>Wychowawczo wymagające</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">ART</span>
+                        <span class="badge badge-danger">PEO</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="small">2/5</span>
+                    </td>
+                </tr>
+                
+                <!-- GAMEDEV -->
+                <tr>
+                    <td>
+                        <span class="zawod-name">🎮 GameDev / Concept Art</span>
+                        <span class="zawod-type">Grafika do gier</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">1-3 lata</span> (kursy + portfolio)<br>
+                        CDV Poznań, kursy online<br>
+                    </td>
+                    <td>
+                        Komputer: rysowanie, modelowanie 3D, sprinty projektowe. Praca zespołowa, deadline'y, "crunch" przed premierami. Feedbacki, poprawki.
+                    </td>
+                    <td>
+                        Junior: <strong>4000-6000 zł</strong><br>
+                        Senior: <strong>8000-15000+ zł</strong><br>
+                    </td>
+                    <td>
+                        <span class="badge badge-danger">Zagrożone</span><br>
+                        AI generuje obrazy. Rośnie wartość stylu i kierowania AI, ale spadają stawki za prostą grafikę.
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Wykorzystuje rysunek</li>
+                            <li>Praca twórcza</li>
+                            <li>Można zdalnie</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="font-size:0.85rem; margin-left:15px;">
+                            <li>Dużo komputera</li>
+                            <li>Konkurencja + AI</li>
+                            <li>Crunch, stres</li>
+                            <li>Niestabilność</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">ART</span>
+                        <span class="badge badge-info">TECH</span>
+                    </td>
+                    <td>
+                        <div class="rating">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="small">3/5 (ryzyko AI)</span>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    
+    <p class="small" style="margin-top:10px;">
+        <strong>Legenda:</strong> 
+        <span class="badge badge-success">MAN</span> = zdolności manualne | 
+        <span class="badge badge-info">STEM</span> = nauki ścisłe | 
+        <span class="badge badge-warning">ART</span> = artystyczne | 
+        <span class="badge badge-danger">PEO</span> = praca z ludźmi |
+        <span class="badge badge-neutral">MUSIC</span> = muzyczne
+    </p>
+    
+    <h2>🎯 Strategiczne Scenariusze</h2>
+    
+    <div class="summary-grid">
+        <div class="summary-card recommended">
+            <h4>🏆 SCENARIUSZ A: "Mistrzyni Precyzji"</h4>
+            <p><strong>Technik Dentystyczny</strong> w Zielonej Górze</p>
+            <div class="timeline">
+                <div class="timeline-item"><strong>Teraz - maj 2026:</strong> Matura (podstawy, rozszerzenia opcjonalnie za rok)</div>
+                <div class="timeline-item"><strong>Wrzesień 2026:</strong> Start w "Medyk" (bezpłatne)</div>
+                <div class="timeline-item"><strong>2028/2029:</strong> Dyplom + praca</div>
+            </div>
+            <p class="small">✅ Idealne dopasowanie do profilu | ✅ Lokalne | ✅ Krótkie | ✅ Konkretny fach</p>
+        </div>
+        
+        <div class="summary-card">
+            <h4>🧪 SCENARIUSZ B: "Gap Year + Test"</h4>
+            <p><strong>Rok na testowanie</strong> przed decyzją</p>
+            <div class="timeline">
+                <div class="timeline-item"><strong>Teraz - maj 2026:</strong> Matura</div>
+                <div class="timeline-item"><strong>Czerwiec-grudzień 2026:</strong> Praktyka w fundacji (bioinfo) LUB staż w pracowni protetycznej LUB kurs renowacji</div>
+                <div class="timeline-item"><strong>Styczeń 2027:</strong> Świadoma decyzja</div>
+            </div>
+            <p class="small">✅ Testuje bez ryzyka | ✅ Wykorzystuje zasoby rodziny | ⚠️ Wymaga dyscypliny</p>
+        </div>
+        
+        <div class="summary-card">
+            <h4>🎻 SCENARIUSZ C: "Unikalna Artystka"</h4>
+            <p><strong>Lutnictwo</strong> na AM Poznań (jeśli pasja)</p>
+            <div class="timeline">
+                <div class="timeline-item"><strong>Teraz - czerwiec:</strong> Przygotowanie teczki (rzeźba, rysunek)</div>
+                <div class="timeline-item"><strong>Lipiec 2026:</strong> Egzamin wstępny</div>
+                <div class="timeline-item"><strong>2030:</strong> Dyplom + własna pracownia</div>
+            </div>
+            <p class="small">✅ Prestiżowa nisza | ⚠️ Wymaga pasji-obsesji | ⚠️ Wąski rynek</p>
+        </div>
+    </div>
+    
+    <div class="strategy-box">
+        <h3>⚠️ Ważne Uwagi Strategiczne</h3>
+        <ul style="margin-left: 20px;">
+            <li><strong>Bioinformatyka ≠ wizja idealna:</strong> Mimo że ma zdolności STEM i rodzina ma fundację, bioinformatyka to 6-8h komputera dziennie. Jeśli jej "wizja idealna" to warsztat + dłonie + fizyczny produkt – to NIE jest dla niej, nawet jeśli finansowo byłoby lepsze.</li>
+            <li><strong>Japońska regeneracja zębów:</strong> NIE zagraża technikowi dentystycznemu. Lek (jeśli zadziała) będzie dostępny najwcześniej ~2030, drogi, tylko dla wrodzonych braków zębów. Protezy, korony, mosty pozostaną standardem przez dekady.</li>
+            <li><strong>Matura rozszerzona:</strong> Dla technika dentystycznego wystarczy podstawa. Rozszerzenia (chemia, matma) otwierają dodatkowe drzwi na przyszłość, ale nie są krytyczne teraz.</li>
+            <li><strong>Lokalizacja:</strong> Technik dentystyczny i protetyk słuchu dostępne w Zielonej Górze. Lutnictwo, renowacja ASP, realizacja dźwięku = duże miasta.</li>
+        </ul>
+    </div>
+    
+    <h2>📋 Mini-Testy do Wykonania w 30 Dni</h2>
+    
+    <div class="section-card">
+        <p>Zanim podejmie decyzję, niech spróbuje <strong>3 mini-testów</strong> (po 2-6 tygodni każdy):</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+            <div style="background: #ecfdf5; padding: 15px; border-radius: 8px;">
+                <strong>Test 1: Precyzja manualna</strong><br>
+                Kurs podstaw Blendera (modelowanie 3D) lub ZBrusha. 
+                Albo: 1 dzień w pracowni protetycznej jako obserwator.
+                <br><span class="small">Pytanie: Czy precyzyjne dłubanie daje jej flow?</span>
+            </div>
+            <div style="background: #fef3c7; padding: 15px; border-radius: 8px;">
+                <strong>Test 2: Kod vs materia</strong><br>
+                Mini-projekt w Pythonie (prosty skrypt analizy danych) – czy to ją wciąga czy męczy?
+                <br><span class="small">Pytanie: Czy lubi rozwiązywać zagadki logiczne na ekranie?</span>
+            </div>
+            <div style="background: #dbeafe; padding: 15px; border-radius: 8px;">
+                <strong>Test 3: Dźwięk</strong><br>
+                Zrób 60-sekundowy soundscape do krótkiej animacji (foley + miks w darmowym DAW).
+                <br><span class="small">Pytanie: Czy to ją wciąga bardziej niż samo granie?</span>
+            </div>
+        </div>
+    </div>
+    
+    <h2>📝 Kryteria Decyzji – Kwestionariusz dla Córki</h2>
+    
+    <div class="section-card">
+        <p>Niech odpowie na te pytania skalą 1-5:</p>
+        <table style="font-size: 0.9rem;">
+            <tr>
+                <td style="width: 40%;">Ile godzin dziennie realnie jestem w stanie siedzieć przy komputerze bez cierpienia?</td>
+                <td style="width: 30%;">1 = 1-2h max | 5 = 6-8h ok</td>
+                <td style="width: 30%;">Wysoko → IT/bioinfo. Nisko → manual/teren.</td>
+            </tr>
+            <tr>
+                <td>Czy praca rękami "na milimetry" daje mi flow?</td>
+                <td>1 = nie znoszę | 5 = kocham</td>
+                <td>Wysoko → technik dentystyczny, lutnictwo, renowacja</td>
+            </tr>
+            <tr>
+                <td>Czy cudze emocje i problemy mnie obciążają czy dają napęd?</td>
+                <td>1 = obciążają | 5 = napęd</td>
+                <td>Wysoko → muzykoterapia, nauczyciel. Nisko → warsztat solo.</td>
+            </tr>
+            <tr>
+                <td>Co jest ważniejsze: stabilny etat czy wolność/różnorodność?</td>
+                <td>1 = wolność | 5 = etat</td>
+                <td>5 → nauczyciel, protetyk. 1-2 → freelance audio/art.</td>
+            </tr>
+            <tr>
+                <td>Czy chcę/mogę wyjechać do dużego miasta na 3-5 lat?</td>
+                <td>1 = nie | 5 = tak</td>
+                <td>Wysoko → specjalistyczne uczelnie. Nisko → lokalne opcje.</td>
+            </tr>
+        </table>
+    </div>
+    
+    <h2>🔮 Finalna Rekomendacja</h2>
+    
+    <div class="section-card" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 2px solid #059669;">
+        <h3 style="color: #059669; margin-top: 0;">Na podstawie profilu i "wizji idealnej":</h3>
+        
+        <p><strong>🥇 Pierwsza rekomendacja: Technik Dentystyczny (CAD/CAM + ceramika)</strong></p>
+        <ul style="margin-left: 20px;">
+            <li>Idealnie pasuje do opisu "stół warsztatowy, mikroskop, nakładanie porcelany, fizyczny produkt"</li>
+            <li>Łączy wszystkie mocne strony: chemia materiałów + precyzja rąk + estetyka</li>
+            <li>Dostępne lokalnie w Zielonej Górze, bezpłatne ("Medyk")</li>
+            <li>Tylko 2,5 roku do zawodu (nie 5 lat studiów)</li>
+            <li>Stabilny rynek + dobre perspektywy + możliwość rozwoju (CAD, ceramika, własna pracownia)</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><strong>🥈 Alternatywa jeśli pasja ciągnie gdzie indziej:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Renowacja zabytków</strong> (policealna lub ASP) – jeśli żal za technikum renowacji jest silny</li>
+            <li><strong>Lutnictwo</strong> (AM Poznań) – tylko jeśli instrumenty to pasja-obsesja</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><strong>⚠️ Odradzam jako główną ścieżkę:</strong></p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Bioinformatyka</strong> – mimo zdolności i zasobów, to praca komputerowa, która nie pasuje do "wizji idealnej"</li>
+            <li><strong>GameDev Concept Art</strong> – duże ryzyko AI + konkurencja + niestabilność</li>
+        </ul>
+    </div>
+    
+    <p class="small" style="margin-top: 30px; text-align: center;">
+        Dokument wygenerowany 18 stycznia 2026 | Dane o zarobkach: 2025 | Analizowane źródła: wynagrodzenia.pl, jooble.pl, dokumenty załączone
+    </p>
+    
+</div>
+</body>
+</html>
