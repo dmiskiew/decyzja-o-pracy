@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyniki Kwestionariuszy Kariery - Zuzanna</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #d4772b;
+            border-bottom: 3px solid #d4772b;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #d4772b;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 5px solid #d4772b;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        h4 {
+            color: #666;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .question-block {
+            background: #f9f9f9;
+            border-left: 4px solid #d4772b;
+            padding: 15px;
+            margin-bottom: 15px;
+            page-break-inside: avoid;
+        }
+        
+        .question-number {
+            font-weight: bold;
+            color: #d4772b;
+            margin-bottom: 8px;
+        }
+        
+        .question-text {
+            font-style: italic;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .answer {
+            font-weight: bold;
+            color: #2c7a3d;
+            padding: 8px 12px;
+            background: #e8f5e9;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .anchor-card {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            border: 2px solid #d4772b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+        
+        .anchor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .anchor-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .anchor-score {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #d4772b;
+        }
+        
+        .anchor-description {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .anchor-paths {
+            background: white;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+        
+        .paths-label {
+            font-weight: bold;
+            color: #d4772b;
+            margin-bottom: 5px;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            page-break-inside: auto;
+        }
+        
+        th {
+            background: #d4772b;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .riasec-card {
+            background: #f9f9f9;
+            border: 2px solid #555;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+        
+        .riasec-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .riasec-type {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .riasec-score {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #d4772b;
+        }
+        
+        .riasec-quote {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 12px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+        
+        .riasec-paths {
+            margin-top: 10px;
+        }
+        
+        .path-high {
+            color: #2c7a3d;
+            font-weight: bold;
+        }
+        
+        .path-low {
+            color: #c62828;
+            font-weight: bold;
+        }
+        
+        .ikigai-section {
+            background: #fff3e0;
+            border: 3px solid #ff9800;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+        
+        .ikigai-title {
+            font-size: 1.4em;
+            color: #e65100;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ikigai-subtitle {
+            font-size: 0.9em;
+            color: #f57c00;
+            font-style: italic;
+            margin-left: 15px;
+        }
+        
+        .ikigai-question {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+        
+        .ikigai-notes {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .note-item {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .note-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background: #fff9c4;
+            border: 2px solid #fbc02d;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        .highlight-title {
+            font-weight: bold;
+            color: #f57f17;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 3px;
+        }
+        
+        .badge-gold {
+            background: #ffd700;
+            color: #333;
+        }
+        
+        .badge-silver {
+            background: #c0c0c0;
+            color: #333;
+        }
+        
+        .badge-bronze {
+            background: #cd7f32;
+            color: white;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+                font-size: 1.5em;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .anchor-card, .riasec-card, .ikigai-section {
+                page-break-inside: avoid;
+            }
+            
+            tr {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Wyniki Kwestionariuszy Kariery</h1>
+        <p style="font-size: 1.1em; color: #666; margin-bottom: 30px;">
+            <strong>Imię:</strong> Zuzanna<br>
+            <strong>Data wypełnienia:</strong> Luty 2026<br>
+            <strong>Cel:</strong> Wybór ścieżki kariery i edukacji
+        </p>
+
+        <!-- SEKCJA 1: 40 PYTAŃ Z ODPOWIEDZIAMI -->
+        <div class="section">
+            <h2>📝 Pytania bazowe - 40 odpowiedzi</h2>
+            
+            <div class="question-block">
+                <div class="question-number">PYTANIE 1 Z 40</div>
+                <div class="question-text">Nie chcę, żeby praca zabierała mi czas na rodzinę i hobby.</div>
+                <div class="answer">Odpowiedź: 5 - Zdecydowanie tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 2 Z 40</div>
+                <div class="question-text">Lubię zagłębiać się w jeden temat i poznawać go do perfekcji.</div>
+                <div class="answer">Odpowiedź: 5 - Zdecydowanie tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 3 Z 40</div>
+                <div class="question-text">Wolałabym pracować na własnych zasadach niż w sztywnej hierarchii.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 4 Z 40</div>
+                <div class="question-text">Satysfakcję daje mi rozwiązywanie trudnych problemów w mojej specjalności.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 5 Z 40</div>
+                <div class="question-text">Ważne jest dla mnie, żeby samodzielnie decydować, jak wykonuję swoją pracę.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 6 Z 40</div>
+                <div class="question-text">Ekscytuje mnie pomysł budowania czegoś od podstaw.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 7 Z 40</div>
+                <div class="question-text">Wolałabym pracować na własnych zasadach niż w sztywnej hierarchii.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 8 Z 40</div>
+                <div class="question-text">Lubię podejmować się zadań, które inni uważają za zbyt trudne.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 9 Z 40</div>
+                <div class="question-text">Chciałabym pracować w organizacji, która ma ważną misję społeczną.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 10 Z 40</div>
+                <div class="question-text">Awans na stanowisko kierownicze byłby dla mnie marzeniem.</div>
+                <div class="answer">Odpowiedź: 2 - Raczej nie</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 11 Z 40</div>
+                <div class="question-text">Ekscytuje mnie pomysł budowania czegoś od podstaw.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 12 Z 40</div>
+                <div class="question-text">Wolałabym zarabiać mniej, ale mieć więcej wolnego czasu.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 13 Z 40</div>
+                <div class="question-text">Chciałabym kiedyś kierować dużym zespołem lub organizacją.</div>
+                <div class="answer">Odpowiedź: 2 - Raczej nie</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 14 Z 40</div>
+                <div class="question-text">Nudzę się, gdy praca jest zbyt łatwa i powtarzalna.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 15 Z 40</div>
+                <div class="question-text">Nie boję się ryzyka, jeśli widzę szansę na stworzenie czegoś wartościowego.</div>
+                <div class="answer">Odpowiedź: 5 - Zdecydowanie tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 16 Z 40</div>
+                <div class="question-text">Ważne jest dla mnie, żeby mieć pewność stałego zatrudnienia.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 17 Z 40</div>
+                <div class="question-text">Nie lubię, gdy ktoś kontroluje każdy mój krok.</div>
+                <div class="answer">Odpowiedź: 5 - Zdecydowanie tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 18 Z 40</div>
+                <div class="question-text">Pokonywanie przeszkód daje mi ogromną satysfakcję.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 19 Z 40</div>
+                <div class="question-text">Wolałabym pracę z dobrymi świadczeniami niż ekscytującą, ale ryzykowną.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 20 Z 40</div>
+                <div class="question-text">Satysfakcję daje mi rozwiązywanie trudnych problemów w mojej specjalności.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 21 Z 40</div>
+                <div class="question-text">Wolałabym stworzyć coś nowego niż doskonalić to, co już istnieje.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 22 Z 40</div>
+                <div class="question-text">Wolę jasno określoną ścieżkę rozwoju niż niepewne, ale potencjalnie duże możliwości.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 23 Z 40</div>
+                <div class="question-text">Czuję się dobrze, gdy mogę podejmować decyzje, które dotyczą innych ludzi.</div>
+                <div class="answer">Odpowiedź: 2 - Raczej nie</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 24 Z 40</div>
+                <div class="question-text">Lubię organizować pracę grupy i przydzielać zadania.</div>
+                <div class="answer">Odpowiedź: 2 - Raczej nie</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 25 Z 40</div>
+                <div class="question-text">Chciałabym, żeby ludzie przychodzili do mnie po radę jako do autorytetu w danej dziedzinie.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 26 Z 40</div>
+                <div class="question-text">Zależy mi na tym, żeby móc planować przyszłość z wyprzedzeniem.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 27 Z 40</div>
+                <div class="question-text">Lubię zagłębiać się w jeden temat i poznawać go do perfekcji.</div>
+                <div class="answer">Odpowiedź: 5 - Zdecydowanie tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 28 Z 40</div>
+                <div class="question-text">Podziwiam ludzi, którzy są najlepsi w swojej dziedzinie.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 29 Z 40</div>
+                <div class="question-text">Poczucie stabilności finansowej jest dla mnie kluczowe.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 30 Z 40</div>
+                <div class="question-text">Ważne jest dla mnie, żeby samodzielnie decydować, jak wykonuję swoją pracę.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 31 Z 40</div>
+                <div class="question-text">Najlepiej pracuję, gdy mam ambitny cel do osiągnięcia.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 32 Z 40</div>
+                <div class="question-text">Wybrałabym gorzej płatną pracę, jeśli miałaby realny wpływ na świat.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 33 Z 40</div>
+                <div class="question-text">Potrafię motywować innych do działania.</div>
+                <div class="answer">Odpowiedź: 2 - Raczej nie</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 34 Z 40</div>
+                <div class="question-text">Marzę o stworzeniu czegoś własnego – firmy, produktu lub projektu.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 35 Z 40</div>
+                <div class="question-text">Nie chcę, żeby praca zabierała mi czas na rodzinę i hobby.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 36 Z 40</div>
+                <div class="question-text">Idealny pracodawca rozumie, że praca to nie całe życie.</div>
+                <div class="answer">Odpowiedź: 5 - Zdecydowanie tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 37 Z 40</div>
+                <div class="question-text">Ważne jest dla mnie, żeby moja kariera była zgodna z moimi wartościami.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 38 Z 40</div>
+                <div class="question-text">Rywalizacja dodaje mi energii i motywacji.</div>
+                <div class="answer">Odpowiedź: 2 - Raczej nie</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 39 Z 40</div>
+                <div class="question-text">Mogłabym zarabiać mniej, jeśli w zamian miałabym pełną swobodę działania.</div>
+                <div class="answer">Odpowiedź: 3 - Trudno powiedzieć</div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-number">PYTANIE 40 Z 40</div>
+                <div class="question-text">Wolałabym być uznaną ekspertką niż dyrektorką firmy.</div>
+                <div class="answer">Odpowiedź: 4 - Raczej tak</div>
+            </div>
+        </div>
+
+        <!-- SEKCJA 2: KOTWICE KARIERY -->
+        <div class="section" style="page-break-before: always;">
+            <h2>⚓ Twoje Kotwice Kariery</h2>
+            <p style="margin-bottom: 25px; font-style: italic; color: #666;">
+                Wyniki uszeregowane od najsilniejszej do najsłabszej kotwicy
+            </p>
+
+            <div class="anchor-card" style="border-color: #FFD700; background: linear-gradient(135deg, #fff9e6 0%, #ffe680 100%);">
+                <div class="anchor-header">
+                    <div>
+                        <span class="badge badge-gold">🏆 NAJSILNIEJSZA KOTWICA</span>
+                        <div class="anchor-title">☀️ Styl życia / równowaga</div>
+                    </div>
+                    <div class="anchor-score">22/25</div>
+                </div>
+                <div class="anchor-description">
+                    Zależy Ci na harmonii między pracą a życiem prywatnym. Kariera jest ważna, ale nie kosztem zdrowia, relacji i pasji.
+                </div>
+                <div class="anchor-paths">
+                    <div class="paths-label">PRZYKŁADOWE ŚCIEŻKI:</div>
+                    Praca z elastycznym grafikiem, nauczycielka, terapeutka, freelancerka, praca hybrydowa/zdalna
+                </div>
+            </div>
+
+            <div class="anchor-card" style="border-color: #C0C0C0;">
+                <div class="anchor-header">
+                    <div>
+                        <span class="badge badge-silver">🥈 DRUGA KOTWICA</span>
+                        <div class="anchor-title">🔧 Kompetencja techniczna / funkcjonalna</div>
+                    </div>
+                    <div class="anchor-score">20/25</div>
+                </div>
+                <div class="anchor-description">
+                    Motywuje Cię bycie ekspertem w swojej dziedzinie. Cenisz głęboką wiedzę i doskonalenie umiejętności. Wolisz być najlepszą w tym, co robisz, niż zarządzać innymi.
+                </div>
+                <div class="anchor-paths">
+                    <div class="paths-label">PRZYKŁADOWE ŚCIEŻKI:</div>
+                    Specjalistka, badaczka, inżynier, muzyk-wirtuoz, programistka, analityczka, biotechnolog, lekarz-specjalista
+                </div>
+            </div>
+
+            <div class="anchor-card" style="border-color: #CD7F32;">
+                <div class="anchor-header">
+                    <div>
+                        <span class="badge badge-bronze">🥉 TRZECIA KOTWICA</span>
+                        <div class="anchor-title">🚀 Kreatywność przedsiębiorcza</div>
+                    </div>
+                    <div class="anchor-score">20/25</div>
+                </div>
+                <div class="anchor-description">
+                    Motywuje Cię tworzenie czegoś nowego – produktu, firmy, projektu. Masz energię do budowania od zera i nie boisz się ryzyka.
+                </div>
+                <div class="anchor-paths">
+                    <div class="paths-label">PRZYKŁADOWE ŚCIEŻKI:</div>
+                    Założycielka startupu, innowatorka, designerka, producentka, kompozytorka, twórczyni treści
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Pozostałe kotwice:</h3>
+
+            <div class="anchor-card">
+                <div class="anchor-header">
+                    <div class="anchor-title">🦅 Autonomia / niezależność</div>
+                    <div class="anchor-score">18/25</div>
+                </div>
+                <div class="anchor-description">
+                    Cenisz wolność w decydowaniu jak, kiedy i nad czym pracujesz. Sztywne reguły i korporacyjne struktury Cię ograniczają.
+                </div>
+                <div class="anchor-paths">
+                    <div class="paths-label">PRZYKŁADOWE ŚCIEŻKI:</div>
+                    Freelancerka, artystka, przedsiębiorczyni, konsultantka, naukowczyni, pisarka, muzykoterapeutka
+                </div>
+            </div>
+
+            <div class="anchor-card">
+                <div class="anchor-header">
+                    <div class="anchor-title">💚 Służba / poświęcenie sprawie</div>
+                    <div class="anchor-score">17/25</div>
+                </div>
+                <div class="anchor-description">
+                    Chcesz, żeby Twoja praca miała sens i pomagała innym. Wartości i misja są dla Ciebie ważniejsze niż pieniądze.
+                </div>
+                <div class="anchor-paths">
+                    <div class="paths-label">PRZYKŁADOWE ŚCIEŻKI:</div>
+                    Lekarka, psycholożka, terapeutka, pracowniczka NGO, nauczycielka, wolontariuszka, muzykoterapeutka
+                </div>
+            </div>
+
+            <div class="anchor-card">
+                <div class="anchor-header">
+                    <div class="anchor-title">⚡ Czyste wyzwanie</div>
+                    <div class="anchor-score">17/25</div>
+                </div>
+                <div class="anchor-description">
+                    Motywuje Cię pokonywanie trudności. Szukasz zadań, które wydają się niemożliwe. Rywalizacja i presja dodają Ci energii.
+                </div>
+                <div class="anchor-paths">
+                    <div class="paths-label">PRZYKŁADOWE ŚCIEŻKI:</div>
+                    Chirurg, pilotka, negocjatorka, analityczka strategiczna, sportowczyni, solistka koncertowa
+                </div>
+            </div>
+
+            <div class="anchor-card">
+                <div class="anchor-header">
+                    <div class="anchor-title">🏠 Bezpieczeństwo / stabilność</div>
+                    <div class="anchor-score">17/25</div>
+                </div>
+                <div class="anchor-description">
+                    Cenisz pewność zatrudnienia, stałe dochody i przewidywalność. Ważna jest dla Ciebie stabilna ścieżka kariery i poczucie bezpieczeństwa.
+                </div>
+                <div class="anchor-paths">
+                    <div class="paths-label">PRZYKŁADOWE ŚCIEŻKI:</div>
+                    Urzędniczka, nauczycielka, lekarka, prawniczka, księgowa, pracownik sektora publicznego
+                </div>
+            </div>
+
+            <div class="anchor-card">
+                <div class="anchor-header">
+                    <div class="anchor-title">👥 Kompetencja menedżerska</div>
+                    <div class="anchor-score">10/25</div>
+                </div>
+                <div class="anchor-description">
+                    Chcesz kierować zespołami i organizacjami. Lubisz koordynować pracę innych, podejmować decyzje i brać odpowiedzialność za wyniki grupy.
+                </div>
+                <div class="anchor-paths">
+                    <div class="paths-label">PRZYKŁADOWE ŚCIEŻKI:</div>
+                    Menedżerka, dyrektorka, liderka zespołu, koordynatorka projektów, dyrygentka, organizatorka eventów
+                </div>
+            </div>
+        </div>
+
+        <!-- SEKCJA 3: TABELA Z WYNIKAMI SKAL -->
+        <div class="section" style="page-break-before: always;">
+            <h2>📊 Wyniki według skal 1-5</h2>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KOTWICA</th>
+                            <th>SKALA 1-5</th>
+                            <th>CO OZNACZA WYSOKI WYNIK?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kompetencja techniczna</strong></td>
+                            <td><strong style="color: #d4772b;">4.5/5</strong></td>
+                            <td>Ścieżki specjalistyczne: technik dent. (ceramika), lutnik, zegarmistrz, konserwator</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Autonomia / Niezależność</strong></td>
+                            <td><strong style="color: #d4772b;">4/5</strong></td>
+                            <td><span class="path-high">Wysoko:</span> własna pracownia, freelance, praca zdalna<br>
+                                <span class="path-low">Nisko:</span> etat w firmie/instytucji</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bezpieczeństwo / Stabilność</strong></td>
+                            <td><strong style="color: #d4772b;">3/5</strong></td>
+                            <td><span class="path-high">Wysoko:</span> etat, zawody medyczne, edukacja<br>
+                                <span class="path-low">Nisko:</span> freelance, własny biznes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Służba / Misja</strong></td>
+                            <td><strong style="color: #d4772b;">2.5/5</strong></td>
+                            <td><span class="path-high">Wysoko:</span> muzykoterapia, fundacja, medycyna, edukacja + synergia z GeneQuest!</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wyzwanie</strong></td>
+                            <td><strong style="color: #d4772b;">3/5</strong></td>
+                            <td><span class="path-high">Wysoko:</span> IT, bioinformatyka, projektowanie<br>
+                                <span class="path-low">Nisko:</span> praca rutynowa, powtarzalna</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Styl życia</strong></td>
+                            <td><strong style="color: #d4772b;">3/5</strong></td>
+                            <td><span class="path-high">Wysoko:</span> praca 8-16, bez deadline'ów, lokalna<br>
+                                <span class="path-low">Nisko:</span> startup, branża kreatywna (Crunch)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kreatywność przedsiębiorcza</strong></td>
+                            <td><strong style="color: #d4772b;">4/5</strong></td>
+                            <td><span class="path-high">Wysoko:</span> własna pracownia jubilerska, marka, studio<br>
+                                <span class="path-low">Nisko:</span> etat w instytucji</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SEKCJA 4: HOLLAND RIASEC -->
+        <div class="section" style="page-break-before: always;">
+            <h2>💎 Typ osobowości zawodowej (Holland RIASEC)</h2>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">📌 Interpretacja kodu Hollanda:</div>
+                Zapisz 3 typy, w których masz najwyższe wyniki (np. RAI, AIR). To Twój "kod Holland". 
+                Porównaj go z kodami przy ścieżkach w tabelach. Im większe pokrycie, tym lepsze dopasowanie.
+            </div>
+
+            <div class="riasec-card" style="border-color: #d4772b;">
+                <div class="riasec-header">
+                    <div>
+                        <span style="background: #d4772b; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: bold;">R</span>
+                        <span class="riasec-type" style="margin-left: 10px;">Realistic</span>
+                    </div>
+                    <div class="riasec-score">5/5</div>
+                </div>
+                <div class="riasec-quote">
+                    "Czy lubisz pracować z narzędziami, maszynami lub materiałami? Czy sprawia Ci satysfakcję zadania wymagające zręczności rąk?"
+                </div>
+                <div class="riasec-paths">
+                    <div><span class="path-high">Wysoko:</span> technik dent., jubiler, zegarmistrz, lutnik, laborant</div>
+                    <div><span class="path-low">Nisko:</span> zawody biurowe, czysto społeczne</div>
+                </div>
+            </div>
+
+            <div class="riasec-card" style="border-color: #2196F3;">
+                <div class="riasec-header">
+                    <div>
+                        <span style="background: #2196F3; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: bold;">I</span>
+                        <span class="riasec-type" style="margin-left: 10px;">Investigative</span>
+                    </div>
+                    <div class="riasec-score">4.5/5</div>
+                </div>
+                <div class="riasec-quote">
+                    "Czy lubisz analizować problemy i szukać rozwiązań? Czy fascynuje Cię zrozumienie 'dlaczego coś działa'?"
+                </div>
+                <div class="riasec-paths">
+                    <div><span class="path-high">Wysoko:</span> bioinformatyka, biotechnologia, chemia, konserwacja</div>
+                    <div><span class="path-low">Nisko:</span> prace rutynowe, wykonawcze</div>
+                </div>
+            </div>
+
+            <div class="riasec-card" style="border-color: #9C27B0;">
+                <div class="riasec-header">
+                    <div>
+                        <span style="background: #9C27B0; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: bold;">A</span>
+                        <span class="riasec-type" style="margin-left: 10px;">Artistic</span>
+                    </div>
+                    <div class="riasec-score">4.5/5</div>
+                </div>
+                <div class="riasec-quote">
+                    "Czy cenisz możliwość wyrażania siebie i tworzenia? Czy estetyka i piękno są dla Ciebie ważne w pracy?"
+                </div>
+                <div class="riasec-paths">
+                    <div><span class="path-high">Wysoko:</span> technik dent. (ceramika), jubiler, lutnik, grafika, konserwacja</div>
+                    <div><span class="path-low">Nisko:</span> praca stricte analityczna/techniczna</div>
+                </div>
+            </div>
+
+            <div class="riasec-card" style="border-color: #4CAF50;">
+                <div class="riasec-header">
+                    <div>
+                        <span style="background: #4CAF50; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: bold;">S</span>
+                        <span class="riasec-type" style="margin-left: 10px;">Social</span>
+                    </div>
+                    <div class="riasec-score">2.7/5</div>
+                </div>
+                <div class="riasec-quote">
+                    "Czy energię czerpiesz z pomagania innym? Czy kontakt z ludźmi Cię napędza czy męczy?"
+                </div>
+                <div class="riasec-paths">
+                    <div><span class="path-high">Wysoko:</span> muzykoterapia, protetyk słuchu, nauczyciel</div>
+                    <div><span class="path-low">Nisko:</span> praca samodzielna w warsztacie/lab</div>
+                </div>
+            </div>
+
+            <div class="riasec-card" style="border-color: #FF5722;">
+                <div class="riasec-header">
+                    <div>
+                        <span style="background: #FF5722; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: bold;">E</span>
+                        <span class="riasec-type" style="margin-left: 10px;">Enterprising</span>
+                    </div>
+                    <div class="riasec-score">2/5</div>
+                </div>
+                <div class="riasec-quote">
+                    "Czy widzisz siebie jako osobę przekonującą innych, zarządzającą, prowadzącą własny biznes?"
+                </div>
+                <div class="riasec-paths">
+                    <div><span class="path-high">Wysoko:</span> własna pracownia/marka, freelance</div>
+                    <div><span class="path-low">Nisko:</span> praca najemna, etat</div>
+                </div>
+            </div>
+
+            <div class="riasec-card" style="border-color: #607D8B;">
+                <div class="riasec-header">
+                    <div>
+                        <span style="background: #607D8B; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: bold;">C</span>
+                        <span class="riasec-type" style="margin-left: 10px;">Conventional</span>
+                    </div>
+                    <div class="riasec-score">3/5</div>
+                </div>
+                <div class="riasec-quote">
+                    "Czy lubisz pracę uporządkowaną, według procedur? Czy cenisz przewidywalność i strukturę?"
+                </div>
+                <div class="riasec-paths">
+                    <div><span class="path-high">Wysoko:</span> laborant, kontrola jakości, zegarmistrz</div>
+                    <div><span class="path-low">Nisko:</span> praca stricte kreatywna, bez procedur</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEKCJA 5: PYTANIA PRAKTYCZNE -->
+        <div class="section" style="page-break-before: always;">
+            <h2>🔧 Pytania praktyczne (polskie doradztwo zawodowe)</h2>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>OBSZAR</th>
+                            <th>PYTANIE</th>
+                            <th>ODPOWIEDŹ</th>
+                            <th>IMPLIKACJE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>📺 Tolerancja ekranu</strong></td>
+                            <td>"Ile godzin dziennie realnie jestem w stanie siedzieć przy komputerze bez cierpienia fizycznego i psychicznego?"</td>
+                            <td><strong>5, max 8, ale nie przepadam</strong></td>
+                            <td>
+                                <span class="path-low">1-3h:</span> unikaj IT/bioinfo<br>
+                                <span class="path-high">6-8h:</span> IT, design, data - ok
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>👆 Test precyzji</strong></td>
+                            <td>"Czy praca wymagająca precyzji na milimetry przez kilka godzin daje mi 'flow' czy frustrację?"</td>
+                            <td><strong>Flow! Na maxa!</strong></td>
+                            <td>
+                                <span class="path-high">Flow:</span> technik dent., jubiler, zegarmistrz<br>
+                                <span class="path-low">Frustracja:</span> unikaj rzemiosła precyzyjnego
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>📍 Mobilność</strong></td>
+                            <td>"Czy jestem gotowa wyjechać do dużego miasta na 3-5 lat dla lepszej edukacji/pracy?"</td>
+                            <td><strong>Ta, może być</strong></td>
+                            <td>
+                                <span class="path-high">Tak:</span> konserwacja (Wrocław), lutnictwo (Poznań)<br>
+                                <span class="path-low">Nie:</span> policealna lokalna, praca zdalna
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>⏱️ Tempo startu</strong></td>
+                            <td>"Wolę 'szybko do zawodu' (1-2,5 roku) czy 'głębiej i dłużej' (3-6 lat studiów)?"</td>
+                            <td><strong>Obojętnie</strong></td>
+                            <td>
+                                <span class="path-high">Szybko:</span> policealna, kursy<br>
+                                <span class="path-high">Dłużej:</span> studia, ASP
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>📋 Dyplom vs Portfolio</strong></td>
+                            <td>"Czy zależy mi na formalnym dyplomie, czy wolę pokazać co umiem (portfolio, projekty)?"</td>
+                            <td><strong>Obojętnie</strong></td>
+                            <td>
+                                <span class="path-high">Dyplom:</span> konserwacja (wymagany!), biotechnologia<br>
+                                <span class="path-high">Portfolio:</span> gamedev, grafika, audio
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>😊 Deadline'y</strong></td>
+                            <td>"Jak reaguję na presję terminów i konieczność wielokrotnych poprawek?"</td>
+                            <td><strong>Nie lubię, ale dam radę</strong></td>
+                            <td>
+                                <span class="path-high">Dobrze:</span> IT, animacja, branże projektowe<br>
+                                <span class="path-low">Źle:</span> rzemiosło, edukacja, stabilne etaty
+                            </td>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td><strong>💡 TEST KLUCZOWY</strong></td>
+                            <td>"Gdybym miała 2 miesiące bez żadnych zobowiązań, co wybierałabym na próbę?"<br>
+                                <em>Opcje: KOD (programowanie) / LAB (chemia) / ANIMACJA (grafika) / WARSZTAT (fizyczny) / LUDZIE (terapia/nauka)</em>
+                            </td>
+                            <td><strong>Wszystko mogę spróbować, ale preferuję Lab, Anim, Warsztat</strong></td>
+                            <td>
+                                <strong>To najlepszy kompas. Jedno słowo = kierunek pierwszego mini-testu.</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SEKCJA 6: PYTANIA DO SAMODIAGNOZY -->
+        <div class="section" style="page-break-before: always;">
+            <h2>🔍 Pytania do samodiagnozy</h2>
+            <p style="margin-bottom: 25px; font-style: italic; color: #666;">
+                Nie patrz na "co się opłaca", ale jak chcesz spędzać swoje 8 godzin dziennie.
+            </p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>OBSZAR</th>
+                            <th>PYTANIE</th>
+                            <th>CO SUGERUJE WYNIK?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🔋 Energia</strong></td>
+                            <td>"Po czym czujesz się lepiej: po pracy z ludźmi czy po pracy w skupieniu?"<br>
+                                <em>Skala: 1 = ludzie męczą | 5 = ludzie ładują</em>
+                            </td>
+                            <td>
+                                <span class="path-high">Wysoko:</span> muzykoterapia, protetyk słuchu, nauczyciel<br>
+                                <span class="path-low">Nisko:</span> technik dent., lab, warsztat solo
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>💻 Komputer</strong></td>
+                            <td>"Ile godzin dziennie jesteś w stanie realnie siedzieć przy komputerze bez cierpienia?"<br>
+                                <em>Skala: 1 = 1-2h max | 5 = 6-8h ok</em>
+                            </td>
+                            <td>
+                                <span class="path-high">Wysoko:</span> IT, bioinformatyka, animacja, UX<br>
+                                <span class="path-low">Nisko:</span> technik dent., lutnik, jubiler, lab
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>✋ Precyzja manualna</strong></td>
+                            <td>"Czy praca rękami 'na milimetry' daje Ci flow? (detal, cierpliwość, skupienie)"<br>
+                                <em>Skala: 1 = nie znoszę | 5 = kocham</em>
+                            </td>
+                            <td>
+                                <span class="path-high">Wysoko:</span> technik dent., lutnictwo, jubiler, zegarmistrz, konserwacja<br>
+                                <span class="path-low">Nisko:</span> IT, muzykoterapia
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔬 STEM / Abstrakcja</strong></td>
+                            <td>"Na ile lubisz abstrakcję: wzory, zależności, 'dlaczego to działa'?"<br>
+                                <em>Skala: 1 = meh | 5 = uwielbiam</em>
+                            </td>
+                            <td>
+                                <span class="path-high">Wysoko:</span> bioinformatyka, biotechnologia, akustyka<br>
+                                <span class="path-low">Nisko:</span> czysto artystyczne
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>🧪 Lab vs Dane</strong></td>
+                            <td>"Czy bardziej ciekawi Cię: lab i materia czy dane i modele?"<br>
+                                <em>Skala: 1 = tylko dane | 5 = tylko lab</em>
+                            </td>
+                            <td>
+                                <strong>1-2:</strong> bioinformatyka, data<br>
+                                <strong>3:</strong> biotechnologia (mix)<br>
+                                <strong>4-5:</strong> technik dent., lab, renowacja
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>🎨 Cel rysunku</strong></td>
+                            <td>"Czy wolisz: rysować/tworząc świat (styl, emocje) czy rysować 'dla celu' (wyjaśnić coś)?"<br>
+                                <em>Skala: 1 = świat/styl | 5 = wyjaśnianie</em>
+                            </td>
+                            <td>
+                                <strong>1-2:</strong> concept art, gamedev, animacja<br>
+                                <strong>4-5:</strong> wizualizacja naukowa, UX, edukacja
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SEKCJA 7: IKIGAI -->
+        <div class="section" style="page-break-before: always;">
+            <h2>🎯 IKIGAI – 4 kluczowe pytania</h2>
+            
+            <div class="ikigai-section">
+                <div class="ikigai-title">
+                    ❤️ Co KOCHASZ?
+                    <span class="ikigai-subtitle">Pasja</span>
+                </div>
+                <div class="ikigai-question">
+                    "Co robisz, gdy nikt nie patrzy i nie musisz? Co sprawia, że tracisz poczucie czasu? 
+                    Co czym mogłabyś mówić godzinami?"
+                </div>
+                <div class="ikigai-notes">
+                    <div class="note-item">Prace plastyczne (rysowanie, lepienie, ozdabianie wypieków)</div>
+                    <div class="note-item">Szukać kamyczków, ich właściwości i pierwiastki jak ze sobą reagują związki</div>
+                    <div class="note-item">Stylizować / oglądać pinterest z ciuchami</div>
+                    <div class="note-item">Grać w siatkę, natry, snowboard, spacery po górach</div>
+                </div>
+            </div>
+
+            <div class="ikigai-section">
+                <div class="ikigai-title">
+                    👍 W czym jesteś DOBRA?
+                    <span class="ikigai-subtitle">Talent</span>
+                </div>
+                <div class="ikigai-question">
+                    "Co przychodzi Ci łatwiej niż innym? Za co Cię chwalą? Co robisz lepiej niż przeciętna osoba?"
+                </div>
+                <div class="ikigai-notes">
+                    <div class="note-item">Chemia i matematyka</div>
+                    <div class="note-item">Znajomi mnie chwalą za zdolności artystyczne i gust w ubiorze</div>
+                    <div class="note-item">Grę na harfie</div>
+                </div>
+            </div>
+
+            <div class="ikigai-section">
+                <div class="ikigai-title">
+                    🌍 Czego świat POTRZEBUJE?
+                    <span class="ikigai-subtitle">Misja</span>
+                </div>
+                <div class="ikigai-question">
+                    "Jakie problemy chciałabyś rozwiązać? Komu chciałabyś pomóc? Co Cię złości w świecie?"
+                </div>
+                <div class="ikigai-notes">
+                    <div class="note-item">Złości mnie niesprawiedliwość w traktowaniu ludzi, szufladkowanie, 
+                    lub gdy ktoś niemiły, w związku z czym chciałabym uwrażliwić ludzie na przykład przez grę - 
+                    pokazać inną perspektywę</div>
+                    <div class="note-item">Pomóc innym rozwijać skrzydła, bo inni podcinają, ale pośrednio, zakulisowo</div>
+                    <div class="note-item">Pomóc być sprawniejszym fizycznie</div>
+                </div>
+            </div>
+
+            <div class="ikigai-section">
+                <div class="ikigai-title">
+                    💰 Za co można Ci ZAPŁACIĆ?
+                    <span class="ikigai-subtitle">Zawód</span>
+                </div>
+                <div class="ikigai-question">
+                    "Jakie umiejętności masz, za które ludzie są gotowi płacić? Co możesz zaoferować rynkowi pracy?"
+                </div>
+                <div class="ikigai-notes">
+                    <h4 style="color: #e65100; margin-bottom: 10px;">Teraz:</h4>
+                    <div class="note-item">Rysunki, szyte ciuchów, stylizacje, korepetycje, koncert harfy</div>
+                    <div class="note-item" style="font-style: italic; color: #999;">Muszę właśnie zdecydować...</div>
+                    
+                    <h4 style="color: #e65100; margin: 20px 0 10px 0;">Za 2-5 lat:</h4>
+                    <div style="padding: 15px; background: #fff; border-radius: 4px; font-style: italic; color: #999;">
+                        Do wypełnienia po wyborze kierunku...
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-title">💡 PRO TIP:</div>
+                Po wypełnieniu weź 3 obszary, gdzie masz najwyższe wyniki, i ustaw <strong>3 mini-testy</strong> 
+                (po 2-6 tygodni każdy). To da więcej niż 100 godzin rozmów o przyszłości.
+            </div>
+        </div>
+
+        <!-- STOPKA -->
+        <div style="margin-top: 60px; padding-top: 30px; border-top: 2px solid #ddd; text-align: center; color: #999;">
+            <p><strong>Dokument wygenerowany:</strong> Luty 2026</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">
+                Ten raport jest punktem wyjścia do dyskusji o przyszłości. Wyniki nie są ostateczne – 
+                to narzędzie do refleksji i eksploracji możliwości.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
